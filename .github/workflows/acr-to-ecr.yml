@@ -1,4 +1,4 @@
-name: Migrate ACR Image to ECR
+name: Migrate ACR Images to ECR (Mapping File)
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  migrate-image:
+  migrate-images:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,10 +26,6 @@ jobs:
         run: |
           az acr login --name ${{ vars.AZURE_ACR_NAME }}
 
-      - name: Pull image from ACR
-        run: |
-          docker pull ${{ vars.AZURE_ACR_NAME }}.azurecr.io/my-app:latest
-
       - name: Configure AWS credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -41,10 +37,15 @@ jobs:
           aws ecr get-login-password --region ${{ vars.AWS_REGION }} | \
           docker login --username AWS --password-stdin ${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com
 
-      - name: Tag image for ECR
+      - name: Migrate images using mapping file
         run: |
-          docker tag ${{ vars.AZURE_ACR_NAME }}.azurecr.io/my-app:latest ${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com/my-app:latest
-
-      - name: Push image to ECR
-        run: |
-          docker push ${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com/my-app:latest
+          cat acr-ecr-mapping.json | jq -c '.[]' | while read -r item; do
+            acr_repo=$(echo $item | jq -r '.acr_repo')
+            acr_tag=$(echo $item | jq -r '.acr_tag')
+            ecr_repo=$(echo $item | jq -r '.ecr_repo')
+            ecr_tag=$(echo $item | jq -r '.ecr_tag')
+            echo "Migrating $acr_repo:$acr_tag to $ecr_repo:$ecr_tag"
+            docker pull ${{ vars.AZURE_ACR_NAME }}.azurecr.io/$acr_repo:$acr_tag
+            docker tag ${{ vars.AZURE_ACR_NAME }}.azurecr.io/$acr_repo:$acr_tag ${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com/$ecr_repo:$ecr_tag
+            docker push ${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com/$ecr_repo:$ecr_tag
+          done
