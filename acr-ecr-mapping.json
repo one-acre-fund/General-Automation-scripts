@@ -1,8 +1,8 @@
 [
   {
-    "acr_repo": "dataiku-mad/apimodel-another-test-on-development",
-    "acr_tag": "r-2023-03-18-17-57-40-980",
+    "acr_repo": "alpine",
+    "acr_tag": "latest",
     "ecr_repo": "testrepo",
-    "ecr_tag": "r-2023-03-18-17-57-40-980"
+    "ecr_tag": "latest"
   }
 ]
