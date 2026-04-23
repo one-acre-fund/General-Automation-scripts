@@ -1,5 +1,4 @@
 ﻿[
-  { "acr_repo": "419830066942.dkr.ecr.ap-south-1.amazonaws.com/phee-connector-ams-paygops",                               "ecr_repo": "phee-connector-ams-paygops" },
   { "acr_repo": "airbyte-ktb",                                              "ecr_repo": "airbyte-ktb" },
   { "acr_repo": "airflow",                                                  "ecr_repo": "airflow" },
   { "acr_repo": "alertmanager",                                             "ecr_repo": "alertmanager" },
