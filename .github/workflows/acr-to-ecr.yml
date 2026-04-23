@@ -72,12 +72,18 @@ jobs:
             tags=$(az acr repository show-tags \
               --name "$AZURE_ACR_NAME" \
               --repository "${acr_repo}" \
-              --output tsv 2>/dev/null) || true
+              --output tsv 2>/tmp/acr_err_$$.txt) || true
 
             if [ -z "$tags" ]; then
-              echo "WARNING: [${acr_repo}] No tags found, skipping."
+              if grep -qi "not found\|does not exist\|repository.*not found\|No repository" /tmp/acr_err_$$.txt 2>/dev/null; then
+                echo "WARNING: [${acr_repo}] Repository does not exist in ACR, skipping."
+              else
+                echo "WARNING: [${acr_repo}] No tags found (repo exists but is empty), skipping."
+              fi
+              rm -f /tmp/acr_err_$$.txt
               return 0
             fi
+            rm -f /tmp/acr_err_$$.txt
 
             # Ensure ECR repository exists
             aws ecr describe-repositories --repository-names "${ecr_repo}" \
@@ -87,18 +93,32 @@ jobs:
               --image-scanning-configuration scanOnPush=true > /dev/null
 
             tag_count=0
+            skipped=0
+            failed=0
             for tag in $tags; do
               src="${ACR_REG}/${acr_repo}:${tag}"
               dst="${ECR_REG}/${ecr_repo}:${tag}"
+
+              # Skip if already in ECR
+              if aws ecr describe-images \
+                  --repository-name "${ecr_repo}" \
+                  --image-ids imageTag="${tag}" \
+                  --region "$AWS_REGION_VAR" > /dev/null 2>&1; then
+                echo "    [${acr_repo}:${tag}] Already in ECR, skipping."
+                skipped=$((skipped + 1))
+                continue
+              fi
+
               echo "    [${acr_repo}] Migrating :${tag}"
               if oras copy "${src}" "${dst}"; then
                 tag_count=$((tag_count + 1))
               else
-                echo "WARNING: [${acr_repo}:${tag}] oras copy failed, skipping tag."
+                echo "ERROR: [${acr_repo}:${tag}] oras copy failed."
+                failed=$((failed + 1))
               fi
             done
 
-            echo "==> Done: ${acr_repo} (${tag_count} tags migrated)"
+            echo "==> Done: ${acr_repo} (${tag_count} migrated, ${skipped} skipped, ${failed} failed)"
           }
 
           export -f migrate_repo
@@ -138,8 +158,9 @@ jobs:
                 --repository-name "${ecr_repo}" \
                 --region ${{ vars.AWS_REGION }} \
                 --filter tagStatus=TAGGED \
-                --query 'length(imageIds)' \
-                --output text 2>/dev/null || echo "0")
+                --output json 2>/dev/null \
+                | jq -r '(.imageIds // []) | length' 2>/dev/null || echo "0")
+              image_count=${image_count:-0}
 
               echo "| \`${ACR}/${acr_repo}\` | \`${ECR}/${ecr_repo}\` | ${image_count} |"
             done
