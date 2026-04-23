@@ -57,7 +57,7 @@ jobs:
             tags=$(az acr repository show-tags \
               --name ${{ vars.AZURE_ACR_NAME }} \
               --repository "${acr_repo}" \
-              --output tsv 2>/dev/null)
+              --output tsv 2>/dev/null) || true
 
             if [ -z "$tags" ]; then
               echo "WARNING: No tags found for ${acr_repo}, skipping."
