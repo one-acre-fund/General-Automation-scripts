@@ -1,6 +1,6 @@
 # ACR → ECR Migration Summary
 
-Last updated: 2026-04-23 09:12:32 UTC
+Last updated: 2026-04-23 09:32:52 UTC
 
 | Source ACR Repository | Target ECR Repository | Images in ECR |
 |---|---|---|
