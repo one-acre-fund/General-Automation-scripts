@@ -7,12 +7,6 @@
   }
   {
     "acr_repo": "helm/duma",
-    "acr_tag": "latest",
-    "ecr_repo": "testrepo",
-    "ecr_tag": "latest-1"
-  }
-  {
-    "acr_repo": "helm/duma",
     "acr_tag": "0.1.6",
     "ecr_repo": "testrepo",
     "ecr_tag": "0.1.6"
