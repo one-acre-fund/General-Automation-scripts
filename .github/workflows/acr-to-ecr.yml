@@ -3,8 +3,18 @@ name: Migrate ACR Images to ECR (Mapping File)
 on:
   workflow_dispatch:
     inputs:
+      mapping_file:
+        description: 'Mapping JSON file to use'
+        required: false
+        default: 'acr-ecr-mapping.json'
+        type: string
+      filter_repo:
+        description: 'Migrate only this ACR repo (e.g. openfaas/faas-netes). Leave blank for all.'
+        required: false
+        default: ''
+        type: string
       max_parallel:
-        description: 'Number of repositories to migrate in parallel'
+        description: 'Number of tags to copy in parallel'
         required: false
         default: '10'
         type: string
@@ -55,118 +65,180 @@ jobs:
           ACR="${{ vars.AZURE_ACR_NAME }}.azurecr.io"
           ECR="${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com"
           MAX_PARALLEL="${{ inputs.max_parallel }}"
+          MAPPING_FILE="${{ inputs.mapping_file }}"
+          FILTER_REPO="${{ inputs.filter_repo }}"
 
-          export AZURE_ACR_NAME="${{ vars.AZURE_ACR_NAME }}"
           export AWS_REGION_VAR="${{ vars.AWS_REGION }}"
           export ACR_REG="$ACR"
           export ECR_REG="$ECR"
+          export AZURE_ACR_NAME="${{ vars.AZURE_ACR_NAME }}"
 
-          migrate_repo() {
-            local item="$1"
-            local acr_repo ecr_repo tags tag_count
+          WORK_FILE=$(mktemp)
+          ERROR_FILE=$(mktemp)
+          export ERROR_FILE
 
+          # ── Phase 1: fetch all tags sequentially (avoids ACR rate limiting) ──
+          echo "==> Phase 1: Fetching tags from ACR (mapping: ${MAPPING_FILE})..."
+          repo_count=0
+          skipped_repos=0
+
+          while IFS= read -r item; do
             acr_repo=$(echo "$item" | jq -r '.acr_repo')
             ecr_repo=$(echo "$item" | jq -r '.ecr_repo')
 
-            echo "==> [${acr_repo}] Fetching tags..."
+            # Apply single-repo filter if set
+            if [ -n "$FILTER_REPO" ] && [ "$acr_repo" != "$FILTER_REPO" ]; then
+              continue
+            fi
+
             tags=$(az acr repository show-tags \
               --name "$AZURE_ACR_NAME" \
               --repository "${acr_repo}" \
-              --output tsv 2>/tmp/acr_err_$$.txt) || true
+              --output tsv 2>/tmp/acr_err.txt) || true
 
             if [ -z "$tags" ]; then
-              if grep -qi "not found\|does not exist\|repository.*not found\|No repository" /tmp/acr_err_$$.txt 2>/dev/null; then
-                echo "WARNING: [${acr_repo}] Repository does not exist in ACR, skipping."
+              if grep -qi "not found\|does not exist\|repository.*not found\|No repository" /tmp/acr_err.txt 2>/dev/null; then
+                echo "WARNING: [${acr_repo}] Does not exist in ACR, skipping."
               else
-                echo "WARNING: [${acr_repo}] No tags found (repo exists but is empty), skipping."
+                echo "WARNING: [${acr_repo}] No tags found (empty repo), skipping."
               fi
-              rm -f /tmp/acr_err_$$.txt
-              return 0
+              skipped_repos=$((skipped_repos + 1))
+              continue
             fi
-            rm -f /tmp/acr_err_$$.txt
-
-            # Ensure ECR repository exists
-            aws ecr describe-repositories --repository-names "${ecr_repo}" \
-              --region "$AWS_REGION_VAR" > /dev/null 2>&1 || \
-            aws ecr create-repository --repository-name "${ecr_repo}" \
-              --region "$AWS_REGION_VAR" \
-              --image-scanning-configuration scanOnPush=true > /dev/null
 
             tag_count=0
-            skipped=0
-            failed=0
-            for tag in $tags; do
-              src="${ACR_REG}/${acr_repo}:${tag}"
-              dst="${ECR_REG}/${ecr_repo}:${tag}"
+            while IFS= read -r tag; do
+              [ -z "$tag" ] && continue
+              # Use tab as delimiter — safe for all valid image tag characters
+              printf '%s\t%s\t%s\n' "${acr_repo}" "${ecr_repo}" "${tag}" >> "$WORK_FILE"
+              tag_count=$((tag_count + 1))
+            done <<< "$tags"
+            echo "    [${acr_repo}] ${tag_count} tags queued"
+            repo_count=$((repo_count + 1))
+          done < <(jq -c '.[]' "$MAPPING_FILE")
 
-              # Skip if already in ECR
-              if aws ecr describe-images \
-                  --repository-name "${ecr_repo}" \
-                  --image-ids imageTag="${tag}" \
-                  --region "$AWS_REGION_VAR" > /dev/null 2>&1; then
-                echo "    [${acr_repo}:${tag}] Already in ECR, skipping."
-                skipped=$((skipped + 1))
-                continue
-              fi
+          total=$(wc -l < "$WORK_FILE" | tr -d ' ')
+          echo ""
+          echo "==> Phase 1 complete: ${repo_count} repos, ${total} tags queued, ${skipped_repos} repos skipped."
 
-              echo "    [${acr_repo}] Migrating :${tag}"
-              if oras copy "${src}" "${dst}"; then
-                tag_count=$((tag_count + 1))
+          if [ "$total" -eq 0 ]; then
+            echo "Nothing to migrate. Exiting."
+            rm -f "$WORK_FILE" "$ERROR_FILE"
+            exit 0
+          fi
+
+          # ── Pre-create all ECR repos sequentially to avoid parallel race conditions ──
+          echo ""
+          echo "==> Pre-creating missing ECR repositories..."
+          cut -f2 "$WORK_FILE" | sort -u | while IFS= read -r ecr_repo; do
+            if ! aws ecr describe-repositories --repository-names "${ecr_repo}" \
+                --region "$AWS_REGION_VAR" > /dev/null 2>&1; then
+              if aws ecr create-repository --repository-name "${ecr_repo}" \
+                  --region "$AWS_REGION_VAR" \
+                  --image-scanning-configuration scanOnPush=true > /dev/null 2>&1; then
+                echo "    Created ECR repo: ${ecr_repo}"
               else
-                echo "ERROR: [${acr_repo}:${tag}] oras copy failed."
-                failed=$((failed + 1))
+                echo "WARNING: Could not create ECR repo ${ecr_repo}"
               fi
-            done
+            fi
+          done
 
-            echo "==> Done: ${acr_repo} (${tag_count} migrated, ${skipped} skipped, ${failed} failed)"
+          # ── Phase 2: copy tags in parallel ──
+          echo ""
+          echo "==> Phase 2: Copying tags (parallel=${MAX_PARALLEL})..."
+
+          copy_tag() {
+            local acr_repo ecr_repo tag src dst
+
+            acr_repo=$(printf '%s' "$1" | cut -f1)
+            ecr_repo=$(printf '%s' "$1" | cut -f2)
+            tag=$(printf '%s' "$1" | cut -f3)
+            src="${ACR_REG}/${acr_repo}:${tag}"
+            dst="${ECR_REG}/${ecr_repo}:${tag}"
+
+            # Skip if tag already exists in ECR
+            if aws ecr describe-images \
+                --repository-name "${ecr_repo}" \
+                --image-ids imageTag="${tag}" \
+                --region "$AWS_REGION_VAR" > /dev/null 2>&1; then
+              echo "    [${acr_repo}:${tag}] Already in ECR, skipping."
+              return 0
+            fi
+
+            echo "    [${acr_repo}] Copying :${tag}..."
+            if oras copy "${src}" "${dst}"; then
+              echo "    [${acr_repo}:${tag}] OK"
+            else
+              msg="ERROR: [${acr_repo}:${tag}] oras copy failed."
+              echo "$msg"
+              echo "$msg" >> "$ERROR_FILE"
+            fi
           }
 
-          export -f migrate_repo
+          export -f copy_tag
 
           active=0
-          while IFS= read -r item; do
-            migrate_repo "$item" &
+          while IFS= read -r line; do
+            copy_tag "$line" &
             active=$((active + 1))
             if [ "$active" -ge "$MAX_PARALLEL" ]; then
-              wait -n 2>/dev/null || true
+              wait -n 2>/dev/null || wait
               active=$((active - 1))
             fi
-          done < <(jq -c '.[]' acr-ecr-mapping-test.json)
+          done < "$WORK_FILE"
 
-          # Wait for remaining background jobs
           wait
-          echo "==> All migrations complete."
+          rm -f "$WORK_FILE"
+
+          # ── Final summary ──
+          echo ""
+          echo "========================================"
+          if [ -s "$ERROR_FILE" ]; then
+            fail_count=$(wc -l < "$ERROR_FILE" | tr -d ' ')
+            echo "==> Migration finished with ${fail_count} FAILED tag(s):"
+            cat "$ERROR_FILE"
+            rm -f "$ERROR_FILE"
+            exit 1
+          else
+            echo "==> All tags migrated successfully."
+            rm -f "$ERROR_FILE"
+          fi
+          echo "========================================"
 
       - name: Generate migration summary README
+        if: always() && inputs.filter_repo == ''
         run: |
           ACR="${{ vars.AZURE_ACR_NAME }}.azurecr.io"
           ECR="${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com"
+          MAPPING_FILE="${{ inputs.mapping_file }}"
 
           {
             echo "# ACR → ECR Migration Summary"
             echo ""
             echo "Last updated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+            echo "Mapping file: \`${MAPPING_FILE}\`"
             echo ""
             echo "| Source ACR Repository | Target ECR Repository | Images in ECR |"
             echo "|---|---|---|"
 
-            cat acr-ecr-mapping-test.json | jq -c '.[]' | while read -r item; do
-              acr_repo=$(echo $item | jq -r '.acr_repo')
-              ecr_repo=$(echo $item | jq -r '.ecr_repo')
+            while IFS= read -r item; do
+              acr_repo=$(echo "$item" | jq -r '.acr_repo')
+              ecr_repo=$(echo "$item" | jq -r '.ecr_repo')
 
               image_count=$(aws ecr list-images \
                 --repository-name "${ecr_repo}" \
                 --region ${{ vars.AWS_REGION }} \
                 --filter tagStatus=TAGGED \
                 --output json 2>/dev/null \
-                | jq -r '(.imageIds // []) | length' 2>/dev/null || echo "0")
+                | jq -r '(.imageIds // []) | length' 2>/dev/null)
               image_count=${image_count:-0}
 
               echo "| \`${ACR}/${acr_repo}\` | \`${ECR}/${ecr_repo}\` | ${image_count} |"
-            done
+            done < <(jq -c '.[]' "$MAPPING_FILE")
           } > README.md
 
       - name: Commit and push README
+        if: always() && inputs.filter_repo == ''
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
