@@ -3,8 +3,8 @@
 Last updated: 2026-04-23 19:19:18 UTC
 Mapping file: `acr-ecr-mapping.json`
 
-| Source ACR Repository | Target ECR Repository | Images in ECR |
-|---|---|---|
+| Source ACR Repository | Target ECR Repository | 
+|---|---|
 | `oaftech.azurecr.io/airbyte-ktb` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/airbyte-ktb` |
 | `oaftech.azurecr.io/airflow` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/airflow` |
 | `oaftech.azurecr.io/alertmanager` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/alertmanager` |
