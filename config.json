@@ -1,52 +1,494 @@
 {
   "servers": [
     {
-      "name": "serverA",
+      "name": "postgresdb-02",
       "databases": [
         {
-          "name": "db1",
+          "name": "airflow",
           "password": "abc",
           "source_endpoint": {
-            "host": "test1.example.com",
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
             "port": 5432,
-            "username": "source_user",
+            "username": "dms_migration",
             "engine_name": "postgres",
-            "database_name": "db1",
+            "database_name": "airflow",
             "ssl_mode": "none",
             "extra_connection_attributes": ""
           },
           "target_endpoint": {
-            "host": "test1-host.example.com",
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
             "port": 5432,
-            "username": "target_user",
+            "username": "postgres",
             "engine_name": "postgres",
-            "database_name": "db1",
+            "database_name": "airflow",
             "ssl_mode": "none",
             "extra_connection_attributes": ""
           }
         },
         {
-          "name": "db2",
+          "name": "azure_maintenance",
           "password": "xyz",
           "source_endpoint": {
-            "host": "test2.example.com",
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
             "port": 5432,
-            "username": "source_user2",
+            "username": "dms_migration",
             "engine_name": "postgres",
-            "database_name": "db2",
+            "database_name": "azure_maintenance",
             "ssl_mode": "none",
             "extra_connection_attributes": ""
           },
           "target_endpoint": {
-            "host": "t2.example.com",
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
             "port": 5432,
-            "username": "target_user2",
+            "username": "postgres",
             "engine_name": "postgres",
-            "database_name": "db2",
+            "database_name": "azure_maintenance",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+           {
+          "name": "azure_sys",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "azure_sys",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "azure_sys",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+        {
+          "name": "bitnami_keycloak",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "bitnami_keycloak",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "bitnami_keycloak",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+        {
+          "name": "bytebase",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "bytebase",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "bytebase",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+        {
+          "name": "bytebase-clif",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "bytebase-clif",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "bytebase-clif",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+
+        {
+          "name": "datahub",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "datahub",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "datahub",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+        {
+          "name": "datahub",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "datahub",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "datahub",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+        {
+          "name": "elsa_ocs",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "elsa_ocs",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "elsa_ocs",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+        {
+          "name": "elsa_ocs_reserve",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "elsa_ocs_reserve",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "elsa_ocs_reserve",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+        {
+          "name": "kobocat",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "kobocat",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "kobocat",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+         {
+          "name": "koboform",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "koboform",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "koboform",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+        {
+          "name": "metabase",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "metabase",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "metabase",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+        {
+          "name": "mw_services",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "mw_services",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "mw_services",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+        {
+          "name": "nocodb",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "nocodb",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "nocodb",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+        {
+          "name": "odoo-utilities",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "odoo-utilities",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "odoo-utilities",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+        {
+          "name": "odoo_procurement",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "odoo_procurement",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "odoo_procurement",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+        {
+          "name": "payments",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "payments",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "payments",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+        {
+          "name": "postgres",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "postgres",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "postgres",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+        {
+          "name": "risk_register",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "risk_register",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "risk_register",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+        {
+          "name": "risk_register_integration",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "risk_register_integration",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "risk_register_integration",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+        {
+          "name": "synapse",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
+            "port": 5432,
+            "username": "dms_migration",
+            "engine_name": "postgres",
+            "database_name": "synapse",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "postgres-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "port": 5432,
+            "username": "postgres",
+            "engine_name": "postgres",
+            "database_name": "synapse",
             "ssl_mode": "none",
             "extra_connection_attributes": ""
           }
         }
+        
       ]
     }
   ]
