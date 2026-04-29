@@ -26,7 +26,7 @@
           }
         },
         {
-          "name": "azure_maintenance",
+          "name": "azure-maintenance",
           "password": "xyz",
           "source_endpoint": {
             "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
@@ -48,7 +48,7 @@
           }
         },
            {
-          "name": "azure_sys",
+          "name": "azure-sys",
           "password": "abc",
           "source_endpoint": {
             "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
@@ -70,7 +70,7 @@
           }
         },
         {
-          "name": "bitnami_keycloak",
+          "name": "bitnami-keycloak",
           "password": "abc",
           "source_endpoint": {
             "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
@@ -181,7 +181,7 @@
           }
         },
         {
-          "name": "elsa_ocs",
+          "name": "elsa-ocs",
           "password": "abc",
           "source_endpoint": {
             "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
@@ -203,7 +203,7 @@
           }
         },
         {
-          "name": "elsa_ocs_reserve",
+          "name": "elsa-ocs-reserve",
           "password": "abc",
           "source_endpoint": {
             "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
@@ -291,7 +291,7 @@
           }
         },
         {
-          "name": "mw_services",
+          "name": "mw-services",
           "password": "abc",
           "source_endpoint": {
             "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
@@ -357,7 +357,7 @@
           }
         },
         {
-          "name": "odoo_procurement",
+          "name": "odoo-procurement",
           "password": "abc",
           "source_endpoint": {
             "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
@@ -423,7 +423,7 @@
           }
         },
         {
-          "name": "risk_register",
+          "name": "risk-register",
           "password": "abc",
           "source_endpoint": {
             "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
@@ -445,7 +445,7 @@
           }
         },
         {
-          "name": "risk_register_integration",
+          "name": "risk-register-integration",
           "password": "abc",
           "source_endpoint": {
             "host": "oaf-postgresdb02-prd.postgres.database.azure.com",
