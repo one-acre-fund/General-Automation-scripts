@@ -1,0 +1,53 @@
+{
+  "servers": [
+    {
+      "name": "serverA",
+      "databases": [
+        {
+          "name": "db1",
+          "password": "abc",
+          "source_endpoint": {
+            "host": "test1.example.com",
+            "port": 5432,
+            "username": "source_user",
+            "engine_name": "postgres",
+            "database_name": "db1",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "test1-host.example.com",
+            "port": 5432,
+            "username": "target_user",
+            "engine_name": "postgres",
+            "database_name": "db1",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        },
+        {
+          "name": "db2",
+          "password": "xyz",
+          "source_endpoint": {
+            "host": "test2.example.com",
+            "port": 5432,
+            "username": "source_user2",
+            "engine_name": "postgres",
+            "database_name": "db2",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          },
+          "target_endpoint": {
+            "host": "t2.example.com",
+            "port": 5432,
+            "username": "target_user2",
+            "engine_name": "postgres",
+            "database_name": "db2",
+            "ssl_mode": "none",
+            "extra_connection_attributes": ""
+          }
+        }
+      ]
+    }
+  ]
+}
