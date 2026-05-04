@@ -1,13 +1,13 @@
 ﻿{
   "servers": [
     {
-      "source_server_name": "postresdb-odoo-prd",
-      "target_server_name": "odoo-prod-01",
+      "source_server_name": "postresdb-fineract-prd",
+      "target_server_name": "fineract-prod-01",
       "databases": [
         {
           "name": "azure-maintenance",
           "source_endpoint": {
-            "host": "postresdb-odoo-prd.postgres.database.azure.com",
+            "host": "postresdb-fineract-prd.postgres.database.azure.com",
             "port": 5432,
             "username": "dms_migration",
             "engine_name": "postgres",
@@ -16,7 +16,7 @@
             "extra_connection_attributes": ""
           },
           "target_endpoint": {
-            "host": "odoo-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "host": "fineract-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
             "port": 5432,
             "username": "postgres",
             "engine_name": "postgres",
@@ -28,7 +28,7 @@
         {
           "name": "azure-sys",
           "source_endpoint": {
-            "host": "postresdb-odoo-prd.postgres.database.azure.com",
+            "host": "postresdb-fineract-prd.postgres.database.azure.com",
             "port": 5432,
             "username": "dms_migration",
             "engine_name": "postgres",
@@ -37,7 +37,7 @@
             "extra_connection_attributes": ""
           },
           "target_endpoint": {
-            "host": "odoo-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "host": "fineract-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
             "port": 5432,
             "username": "postgres",
             "engine_name": "postgres",
@@ -47,64 +47,64 @@
           }
         },
         {
-          "name": "oaf-odoopostgres",
+          "name": "fineract-default",
           "source_endpoint": {
-            "host": "postresdb-odoo-prd.postgres.database.azure.com",
+            "host": "postresdb-fineract-prd.postgres.database.azure.com",
             "port": 5432,
             "username": "dms_migration",
             "engine_name": "postgres",
-            "database_name": "oaf_odoopostgres",
+            "database_name": "fineract_default",
             "ssl_mode": "require",
             "extra_connection_attributes": ""
           },
           "target_endpoint": {
-            "host": "odoo-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "host": "fineract-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
             "port": 5432,
             "username": "postgres",
             "engine_name": "postgres",
-            "database_name": "oaf_odoopostgres",
+            "database_name": "fineract_default",
             "ssl_mode": "require",
             "extra_connection_attributes": ""
           }
         },
         {
-          "name": "temp-restore-db",
+          "name": "fineract-tenants",
           "source_endpoint": {
-            "host": "postresdb-odoo-prd.postgres.database.azure.com",
+            "host": "postresdb-fineract-prd.postgres.database.azure.com",
             "port": 5432,
             "username": "dms_migration",
             "engine_name": "postgres",
-            "database_name": "temp_restore_db",
+            "database_name": "fineract_tenants",
             "ssl_mode": "require",
             "extra_connection_attributes": ""
           },
           "target_endpoint": {
-            "host": "odoo-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "host": "fineract-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
             "port": 5432,
             "username": "postgres",
             "engine_name": "postgres",
-            "database_name": "temp_restore_db",
+            "database_name": "fineract_tenants",
             "ssl_mode": "require",
             "extra_connection_attributes": ""
           }
         },
         {
-          "name": "your-database-name",
+          "name": "postgres",
           "source_endpoint": {
-            "host": "postresdb-odoo-prd.postgres.database.azure.com",
+            "host": "postresdb-fineract-prd.postgres.database.azure.com",
             "port": 5432,
             "username": "dms_migration",
             "engine_name": "postgres",
-            "database_name": "your_database_name",
+            "database_name": "postgres",
             "ssl_mode": "require",
             "extra_connection_attributes": ""
           },
           "target_endpoint": {
-            "host": "odoo-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
+            "host": "fineract-prod-01.cfg84w04uyc4.eu-west-1.rds.amazonaws.com",
             "port": 5432,
             "username": "postgres",
             "engine_name": "postgres",
-            "database_name": "your_database_name",
+            "database_name": "postgres",
             "ssl_mode": "require",
             "extra_connection_attributes": ""
           }
