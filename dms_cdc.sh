@@ -73,9 +73,14 @@ jq -c '.servers[]' "$CONFIG_FILE" | while read -r server; do
 
   echo "$server" | jq -c '.databases[]' | while read -r db; do
     DB_NAME=$(echo "$db" | jq -r '.name')
-    PASSWORD=$(jq -r --arg srv "$SRC_SERVER_NAME" '.[$srv]' "$PASSWORDS_FILE")
-    if [ -z "$PASSWORD" ] || [ "$PASSWORD" = "null" ]; then
-      echo "ERROR: No password found for server '$SRC_SERVER_NAME' in $PASSWORDS_FILE. Skipping."
+    SOURCE_PASSWORD=$(jq -r --arg srv "$SRC_SERVER_NAME" '.[$srv]' "$PASSWORDS_FILE")
+    TARGET_PASSWORD=$(jq -r --arg srv "$TGT_SERVER_NAME" '.[$srv]' "$PASSWORDS_FILE")
+    if [ -z "$SOURCE_PASSWORD" ] || [ "$SOURCE_PASSWORD" = "null" ]; then
+      echo "ERROR: No password found for '$SRC_SERVER_NAME' in $PASSWORDS_FILE. Skipping."
+      continue
+    fi
+    if [ -z "$TARGET_PASSWORD" ] || [ "$TARGET_PASSWORD" = "null" ]; then
+      echo "ERROR: No password found for '$TGT_SERVER_NAME' in $PASSWORDS_FILE. Skipping."
       continue
     fi
 
@@ -112,7 +117,7 @@ jq -c '.servers[]' "$CONFIG_FILE" | while read -r server; do
         --endpoint-type source \
         --engine-name "$SRC_ENGINE" \
         --username "$SRC_USER" \
-        --password "$PASSWORD" \
+        --password "$SOURCE_PASSWORD" \
         --server-name "$SRC_HOST" \
         --port "$SRC_PORT" \
         --database-name "$SRC_DBNAME" \
@@ -133,7 +138,7 @@ jq -c '.servers[]' "$CONFIG_FILE" | while read -r server; do
         --endpoint-type target \
         --engine-name "$TGT_ENGINE" \
         --username "$TGT_USER" \
-        --password "$PASSWORD" \
+        --password "$TARGET_PASSWORD" \
         --server-name "$TGT_HOST" \
         --port "$TGT_PORT" \
         --database-name "$TGT_DBNAME" \
