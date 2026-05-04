@@ -103,9 +103,9 @@ jq -c '.servers[]' "$CONFIG_FILE" | while read -r server; do
     TGT_EXTRA=$(echo "$db" | jq -r '.target_endpoint.extra_connection_attributes // empty')
 
     # Naming convention
-    SOURCE_ENDPOINT_NAME="Azure-${SRC_SERVER_NAME}-AWS-${TGT_SERVER_NAME}-DB-${DB_NAME}-source"
-    TARGET_ENDPOINT_NAME="Azure-${SRC_SERVER_NAME}-AWS-${TGT_SERVER_NAME}-DB-${DB_NAME}-target"
-    TASK_NAME="Azure-${SRC_SERVER_NAME}-AWS-${TGT_SERVER_NAME}-DB-${DB_NAME}-task"
+    SOURCE_ENDPOINT_NAME="azure-${SRC_SERVER_NAME}-db-${DB_NAME}-source"
+    TARGET_ENDPOINT_NAME="aws-${TGT_SERVER_NAME}-db-${DB_NAME}-target"
+    TASK_NAME="azure-${SRC_SERVER_NAME}-aws-${TGT_SERVER_NAME}-db-${DB_NAME}-task"
 
     # Create source endpoint if not exists
     if endpoint_exists "$SOURCE_ENDPOINT_NAME"; then
