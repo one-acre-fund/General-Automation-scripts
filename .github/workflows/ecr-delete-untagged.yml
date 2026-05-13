@@ -1,0 +1,159 @@
+name: ECR - Delete Untagged Images
+
+on:
+  workflow_dispatch:
+    inputs:
+      mapping_file:
+        description: 'Mapping JSON file to use'
+        required: false
+        default: 'total-acr-ecr-mapping.json'
+        type: string
+      dry_run:
+        description: 'Dry run (list images to delete without actually deleting)'
+        required: false
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  delete-untagged:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Delete untagged images from ECR repos
+        run: |
+          MAPPING_FILE="${{ inputs.mapping_file }}"
+          DRY_RUN="${{ inputs.dry_run }}"
+          AWS_REGION_VAR="${{ vars.AWS_REGION }}"
+
+          total_repos=0
+          total_deleted=0
+          total_skipped=0
+
+          echo "==> Scanning ECR repos for untagged images..."
+          echo "    Mapping file : ${MAPPING_FILE}"
+          echo "    Dry run      : ${DRY_RUN}"
+          echo ""
+
+          while IFS= read -r item; do
+            ecr_repo=$(echo "$item" | jq -r '.ecr_repo')
+
+            # Check if repo exists in ECR
+            if ! aws ecr describe-repositories \
+                --repository-names "${ecr_repo}" \
+                --region "${AWS_REGION_VAR}" > /dev/null 2>&1; then
+              echo "    [${ecr_repo}] Repo not found in ECR, skipping."
+              continue
+            fi
+
+            # List all untagged images (paginated)
+            image_digests=()
+            next_token=""
+
+            while true; do
+              if [ -n "$next_token" ]; then
+                result=$(aws ecr list-images \
+                  --repository-name "${ecr_repo}" \
+                  --region "${AWS_REGION_VAR}" \
+                  --filter tagStatus=UNTAGGED \
+                  --starting-token "${next_token}" \
+                  --output json 2>/dev/null)
+              else
+                result=$(aws ecr list-images \
+                  --repository-name "${ecr_repo}" \
+                  --region "${AWS_REGION_VAR}" \
+                  --filter tagStatus=UNTAGGED \
+                  --output json 2>/dev/null)
+              fi
+
+              count=$(echo "$result" | jq '.imageIds | length')
+              if [ "$count" -eq 0 ]; then
+                break
+              fi
+
+              # Collect digests
+              while IFS= read -r digest; do
+                image_digests+=("$digest")
+              done < <(echo "$result" | jq -r '.imageIds[].imageDigest')
+
+              next_token=$(echo "$result" | jq -r '.nextToken // empty')
+              [ -z "$next_token" ] && break
+            done
+
+            repo_count=${#image_digests[@]}
+            if [ "$repo_count" -eq 0 ]; then
+              total_skipped=$((total_skipped + 1))
+              continue
+            fi
+
+            echo "    [${ecr_repo}] Found ${repo_count} untagged image(s)."
+            total_repos=$((total_repos + 1))
+
+            if [ "$DRY_RUN" = "true" ]; then
+              total_deleted=$((total_deleted + repo_count))
+              continue
+            fi
+
+            # Delete in batches of 100 (ECR API limit)
+            i=0
+            while [ "$i" -lt "$repo_count" ]; do
+              batch=("${image_digests[@]:$i:100}")
+
+              # Build imageIds JSON array
+              ids_json=$(printf '%s\n' "${batch[@]}" | \
+                jq -R '{imageDigest: .}' | jq -s '.')
+
+              if aws ecr batch-delete-image \
+                  --repository-name "${ecr_repo}" \
+                  --region "${AWS_REGION_VAR}" \
+                  --image-ids "${ids_json}" \
+                  --output json > /tmp/delete_result.json 2>&1; then
+                deleted=$(jq '.imageIds | length' /tmp/delete_result.json)
+                failed=$(jq '.failures | length' /tmp/delete_result.json)
+                echo "      Deleted ${deleted}, failed ${failed} in this batch."
+                total_deleted=$((total_deleted + deleted))
+                if [ "$failed" -gt 0 ]; then
+                  echo "      Failures:"
+                  jq -r '.failures[] | "        \(.imageId.imageDigest): \(.failureReason)"' \
+                    /tmp/delete_result.json
+                fi
+              else
+                echo "      ERROR: batch-delete-image failed for [${ecr_repo}]"
+                cat /tmp/delete_result.json
+              fi
+
+              i=$((i + 100))
+            done
+
+          done < <(jq -c '.[]' "$MAPPING_FILE")
+
+          echo ""
+          echo "========================================"
+          if [ "$DRY_RUN" = "true" ]; then
+            echo "==> DRY RUN complete."
+            echo "    Repos with untagged images : ${total_repos}"
+            echo "    Repos with no untagged     : ${total_skipped}"
+            echo "    Untagged images to delete  : ${total_deleted}"
+            echo ""
+            echo "    Re-run with dry_run=false to actually delete."
+          else
+            echo "==> Cleanup complete."
+            echo "    Repos processed            : ${total_repos}"
+            echo "    Total untagged deleted     : ${total_deleted}"
+          fi
+          echo "========================================"
