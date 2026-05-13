@@ -1,258 +1,258 @@
 # ACR → ECR Migration Summary
 
-Last updated: 2026-04-23 19:19:18 UTC
+Last updated: 2026-05-13 15:17:09 UTC
 Mapping file: `acr-ecr-mapping.json`
 
-| Source ACR Repository | Target ECR Repository | 
-|---|---|
-| `oaftech.azurecr.io/airbyte-ktb` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/airbyte-ktb` |
-| `oaftech.azurecr.io/airflow` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/airflow` |
-| `oaftech.azurecr.io/alertmanager` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/alertmanager` |
-| `oaftech.azurecr.io/alpine` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/alpine` |
-| `oaftech.azurecr.io/backstage` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/backstage` |
-| `oaftech.azurecr.io/bitnami/rabbitmq` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/bitnami/rabbitmq` |
-| `oaftech.azurecr.io/busybox` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/busybox` |
-| `oaftech.azurecr.io/camunda/zeebe` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/camunda/zeebe` |
-| `oaftech.azurecr.io/helm/baobab-backend` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/baobab-backend` |
-| `oaftech.azurecr.io/helm/client-management` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/client-management` |
-| `oaftech.azurecr.io/helm/couchbase-dependencies` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/couchbase-dependencies` |
-| `oaftech.azurecr.io/helm/duma` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/duma` |
-| `oaftech.azurecr.io/helm/fineract-backend` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/fineract-backend` |
-| `oaftech.azurecr.io/helm/fineract-frontend` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/fineract-frontend` |
-| `oaftech.azurecr.io/helm/log-app` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/log-app` |
-| `oaftech.azurecr.io/helm/msgateway-2` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/msgateway-2` |
-| `oaftech.azurecr.io/helm/oaf-odoo-data-migration` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/oaf-odoo-data-migration` |
-| `oaftech.azurecr.io/helm/offline-writes` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/offline-writes` |
-| `oaftech.azurecr.io/helm/otpgateway` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/otpgateway` |
-| `oaftech.azurecr.io/helm/ou-api-service` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/ou-api-service` |
-| `oaftech.azurecr.io/helm/pesa` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/pesa` |
-| `oaftech.azurecr.io/helm/ph-ee-engine` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/ph-ee-engine` |
-| `oaftech.azurecr.io/helm/shs` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/shs` |
-| `oaftech.azurecr.io/helm/tax-signature` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/tax-signature` |
-| `oaftech.azurecr.io/helm/timiza` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/timiza` |
-| `oaftech.azurecr.io/infra/defaultbackend-amd64` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/defaultbackend-amd64` |
-| `oaftech.azurecr.io/infra/ghcr.io/dexidp/dex` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/ghcr.io/dexidp/dex` |
-| `oaftech.azurecr.io/infra/http-base` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/http-base` |
-| `oaftech.azurecr.io/infra/ingress-nginx/controller` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/ingress-nginx/controller` |
-| `oaftech.azurecr.io/infra/ingress-nginx/custom-error-pages` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/ingress-nginx/custom-error-pages` |
-| `oaftech.azurecr.io/infra/ingress-nginx/kube-webhook-certgen` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/ingress-nginx/kube-webhook-certgen` |
-| `oaftech.azurecr.io/infra/ito-cluster06` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/ito-cluster06` |
-| `oaftech.azurecr.io/infra/ito-kubeclient` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/ito-kubeclient` |
-| `oaftech.azurecr.io/infra/k8s-zabbix` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/k8s-zabbix` |
-| `oaftech.azurecr.io/infra/kiwigrid/k8s-sidecar` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/kiwigrid/k8s-sidecar` |
-| `oaftech.azurecr.io/infra/konga` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/konga` |
-| `oaftech.azurecr.io/infra/kube-state-metrics/kube-state-metrics` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/kube-state-metrics/kube-state-metrics` |
-| `oaftech.azurecr.io/infra/mcr.microsoft.com/hello-world` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/mcr.microsoft.com/hello-world` |
-| `oaftech.azurecr.io/infra/mcr.microsoft.com/oss/kubernetes-csi/azuredisk-csi` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/mcr.microsoft.com/oss/kubernetes-csi/azuredisk-csi` |
-| `oaftech.azurecr.io/infra/nginx-base` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/nginx-base` |
-| `oaftech.azurecr.io/infra/oaf-certbot-godaddy` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-certbot-godaddy` |
-| `oaftech.azurecr.io/infra/oaf-ipsec-1sbnk` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-ipsec-1sbnk` |
-| `oaftech.azurecr.io/infra/oaf-ipsec-server` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-ipsec-server` |
-| `oaftech.azurecr.io/infra/oaf-kong-ingress-controller` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-kong-ingress-controller` |
-| `oaftech.azurecr.io/infra/oaf-kong-proxy` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-kong-proxy` |
-| `oaftech.azurecr.io/infra/oaf-nc-listener` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-nc-listener` |
-| `oaftech.azurecr.io/infra/oaf-oauth-receipts` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-oauth-receipts` |
-| `oaftech.azurecr.io/infra/oaf-postgres` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-postgres` |
-| `oaftech.azurecr.io/infra/oaf-stunnel` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-stunnel` |
-| `oaftech.azurecr.io/infra/oaf-zabbix-apache` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-zabbix-apache` |
-| `oaftech.azurecr.io/infra/oaf-zabbix-api` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-zabbix-api` |
-| `oaftech.azurecr.io/infra/oaf-zabbix-grafana` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-zabbix-grafana` |
-| `oaftech.azurecr.io/infra/oaf-zabbix-index` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-zabbix-index` |
-| `oaftech.azurecr.io/infra/oaf-zabbix-influx` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-zabbix-influx` |
-| `oaftech.azurecr.io/infra/oaf-zabbix-monitor` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-zabbix-monitor` |
-| `oaftech.azurecr.io/infra/oaf-zabbix-mysql` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-zabbix-mysql` |
-| `oaftech.azurecr.io/infra/oaf-zabbix-prep` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-zabbix-prep` |
-| `oaftech.azurecr.io/infra/oaf-zabbix-web` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-zabbix-web` |
-| `oaftech.azurecr.io/infra/oafoauth-proxy` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oafoauth-proxy` |
-| `oaftech.azurecr.io/infra/ocs-integrated` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/ocs-integrated` |
-| `oaftech.azurecr.io/infra/quay.io/kiwigrid/k8s-sidecar` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/quay.io/kiwigrid/k8s-sidecar` |
-| `oaftech.azurecr.io/infra/zabbix/zabbix-agent2` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/zabbix/zabbix-agent2` |
-| `oaftech.azurecr.io/infra/zabbix-apache` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/zabbix-apache` |
-| `oaftech.azurecr.io/infra/zabbix-influxpush` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/zabbix-influxpush` |
-| `oaftech.azurecr.io/infra/zabbix-monitor` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/zabbix-monitor` |
-| `oaftech.azurecr.io/infra/zabbix-proxy-sqlite3` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/zabbix-proxy-sqlite3` |
-| `oaftech.azurecr.io/ingress-nginx/opentelemetry-1.25.3` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/ingress-nginx/opentelemetry-1.25.3` |
-| `oaftech.azurecr.io/jetstack/cert-manager-cainjector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/jetstack/cert-manager-cainjector` |
-| `oaftech.azurecr.io/jetstack/cert-manager-controller` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/jetstack/cert-manager-controller` |
-| `oaftech.azurecr.io/jetstack/cert-manager-webhook` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/jetstack/cert-manager-webhook` |
-| `oaftech.azurecr.io/jiralert` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/jiralert` |
-| `oaftech.azurecr.io/matomo-redis` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/matomo-redis` |
-| `oaftech.azurecr.io/micro` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/micro` |
-| `oaftech.azurecr.io/nats-streaming` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/nats-streaming` |
-| `oaftech.azurecr.io/oaf-logstash` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oaf-logstash` |
-| `oaftech.azurecr.io/one-acre-fund/tupande-mobile-admin` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/one-acre-fund/tupande-mobile-admin` |
-| `oaftech.azurecr.io/oneacrefund/adminer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/adminer` |
-| `oaftech.azurecr.io/oneacrefund/airbyte-custom` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/airbyte-custom` |
-| `oaftech.azurecr.io/oneacrefund/airbyte-firestore` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/airbyte-firestore` |
-| `oaftech.azurecr.io/oneacrefund/airbyte-kobo` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/airbyte-kobo` |
-| `oaftech.azurecr.io/oneacrefund/airbyte-source-telerivet` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/airbyte-source-telerivet` |
-| `oaftech.azurecr.io/oneacrefund/airtel-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/airtel-connector` |
-| `oaftech.azurecr.io/oneacrefund/api` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/api` |
-| `oaftech.azurecr.io/oneacrefund/auth` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/auth` |
-| `oaftech.azurecr.io/oneacrefund/autosaveconsumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/autosaveconsumer` |
-| `oaftech.azurecr.io/oneacrefund/azure-blob-logstash` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/azure-blob-logstash` |
-| `oaftech.azurecr.io/oneacrefund/baobab-backend` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/baobab-backend` |
-| `oaftech.azurecr.io/oneacrefund/cbes-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/cbes-connector` |
-| `oaftech.azurecr.io/oneacrefund/channel-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/channel-connector` |
-| `oaftech.azurecr.io/oneacrefund/client-management` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/client-management` |
-| `oaftech.azurecr.io/oneacrefund/clientconsumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/clientconsumer` |
-| `oaftech.azurecr.io/oneacrefund/clientmanagement` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/clientmanagement` |
-| `oaftech.azurecr.io/oneacrefund/clif-cache` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/clif-cache` |
-| `oaftech.azurecr.io/oneacrefund/connector-template` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/connector-template` |
-| `oaftech.azurecr.io/oneacrefund/couchbase-duma` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/couchbase-duma` |
-| `oaftech.azurecr.io/oneacrefund/dbt` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/dbt` |
-| `oaftech.azurecr.io/oneacrefund/dumaapi` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/dumaapi` |
-| `oaftech.azurecr.io/oneacrefund/elasticsearch` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/elasticsearch` |
-| `oaftech.azurecr.io/oneacrefund/erply-cache` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/erply-cache` |
-| `oaftech.azurecr.io/oneacrefund/erply-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/erply-connector` |
-| `oaftech.azurecr.io/oneacrefund/erply-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/erply-consumer` |
-| `oaftech.azurecr.io/oneacrefund/erply-create-payment` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/erply-create-payment` |
-| `oaftech.azurecr.io/oneacrefund/erply-payment` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/erply-payment` |
-| `oaftech.azurecr.io/oneacrefund/event-publisher` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/event-publisher` |
-| `oaftech.azurecr.io/oneacrefund/fds-api` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/fds-api` |
-| `oaftech.azurecr.io/oneacrefund/fds-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/fds-consumer` |
-| `oaftech.azurecr.io/oneacrefund/ffp-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ffp-consumer` |
-| `oaftech.azurecr.io/oneacrefund/fineract-backend` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/fineract-backend` |
-| `oaftech.azurecr.io/oneacrefund/fineract-frontend` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/fineract-frontend` |
-| `oaftech.azurecr.io/oneacrefund/fineract-frontend-v2` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/fineract-frontend-v2` |
-| `oaftech.azurecr.io/oneacrefund/fleet` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/fleet` |
-| `oaftech.azurecr.io/oneacrefund/flink` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/flink` |
-| `oaftech.azurecr.io/oneacrefund/jenkins` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/jenkins` |
-| `oaftech.azurecr.io/oneacrefund/k8s-elastalert` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/k8s-elastalert` |
-| `oaftech.azurecr.io/oneacrefund/k8s-kibana` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/k8s-kibana` |
-| `oaftech.azurecr.io/oneacrefund/k8s-logstash` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/k8s-logstash` |
-| `oaftech.azurecr.io/oneacrefund/k8s-logstash-polling` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/k8s-logstash-polling` |
-| `oaftech.azurecr.io/oneacrefund/keycloak-api` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/keycloak-api` |
-| `oaftech.azurecr.io/oneacrefund/keycloak-themes` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/keycloak-themes` |
-| `oaftech.azurecr.io/oneacrefund/kibana` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/kibana` |
-| `oaftech.azurecr.io/oneacrefund/knowi-agent` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/knowi-agent` |
-| `oaftech.azurecr.io/oneacrefund/logistics-app` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/logistics-app` |
-| `oaftech.azurecr.io/oneacrefund/logstash` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/logstash` |
-| `oaftech.azurecr.io/oneacrefund/master-data-odoo-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/master-data-odoo-consumer` |
-| `oaftech.azurecr.io/oneacrefund/message-gateway` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/message-gateway` |
-| `oaftech.azurecr.io/oneacrefund/metabase` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/metabase` |
-| `oaftech.azurecr.io/oneacrefund/mpesa-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/mpesa-connector` |
-| `oaftech.azurecr.io/oneacrefund/msg-refresh-v3` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/msg-refresh-v3` |
-| `oaftech.azurecr.io/oneacrefund/mtn-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/mtn-connector` |
-| `oaftech.azurecr.io/oneacrefund/mw-ai-services` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/mw-ai-services` |
-| `oaftech.azurecr.io/oneacrefund/my-project-api` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/my-project-api` |
-| `oaftech.azurecr.io/oneacrefund/my-project-worker` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/my-project-worker` |
-| `oaftech.azurecr.io/oneacrefund/n8n` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/n8n` |
-| `oaftech.azurecr.io/oneacrefund/notificationapi` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/notificationapi` |
-| `oaftech.azurecr.io/oneacrefund/oaf-client-update` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/oaf-client-update` |
-| `oaftech.azurecr.io/oneacrefund/oaf-dbt` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/oaf-dbt` |
-| `oaftech.azurecr.io/oneacrefund/oaf-jenkins` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/oaf-jenkins` |
-| `oaftech.azurecr.io/oneacrefund/oaf-logstash` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/oaf-logstash` |
-| `oaftech.azurecr.io/oneacrefund/oaf-moodle` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/oaf-moodle` |
-| `oaftech.azurecr.io/oneacrefund/oaf-odoo-data-migration` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/oaf-odoo-data-migration` |
-| `oaftech.azurecr.io/oneacrefund/oaf-toolbox` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/oaf-toolbox` |
-| `oaftech.azurecr.io/oneacrefund/ocs-fulfillment-plan` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ocs-fulfillment-plan` |
-| `oaftech.azurecr.io/oneacrefund/ocs-reserve-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ocs-reserve-consumer` |
-| `oaftech.azurecr.io/oneacrefund/odoo` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/odoo` |
-| `oaftech.azurecr.io/oneacrefund/odoo-cache` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/odoo-cache` |
-| `oaftech.azurecr.io/oneacrefund/odoo-locust` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/odoo-locust` |
-| `oaftech.azurecr.io/oneacrefund/odoo-procurement` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/odoo-procurement` |
-| `oaftech.azurecr.io/oneacrefund/odoo-producer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/odoo-producer` |
-| `oaftech.azurecr.io/oneacrefund/odoo-sapb1-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/odoo-sapb1-consumer` |
-| `oaftech.azurecr.io/oneacrefund/odoo-sapb1-sales-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/odoo-sapb1-sales-consumer` |
-| `oaftech.azurecr.io/oneacrefund/odoo-service` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/odoo-service` |
-| `oaftech.azurecr.io/oneacrefund/odoo-utilities` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/odoo-utilities` |
-| `oaftech.azurecr.io/oneacrefund/offlinewritesserviceapi` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/offlinewritesserviceapi` |
-| `oaftech.azurecr.io/oneacrefund/oneacrefund` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/oneacrefund` |
-| `oaftech.azurecr.io/oneacrefund/operations-app` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/operations-app` |
-| `oaftech.azurecr.io/oneacrefund/orderingservice` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/orderingservice` |
-| `oaftech.azurecr.io/oneacrefund/paygops-ams-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/paygops-ams-connector` |
-| `oaftech.azurecr.io/oneacrefund/payment-gateway-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/payment-gateway-consumer` |
-| `oaftech.azurecr.io/oneacrefund/payment-gateway-wrapper` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/payment-gateway-wrapper` |
-| `oaftech.azurecr.io/oneacrefund/paymentconsumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/paymentconsumer` |
-| `oaftech.azurecr.io/oneacrefund/payments_pesa_autosave_consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/payments_pesa_autosave_consumer` |
-| `oaftech.azurecr.io/oneacrefund/payments_pesa_core` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/payments_pesa_core` |
-| `oaftech.azurecr.io/oneacrefund/payments_pesa_equity_bank` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/payments_pesa_equity_bank` |
-| `oaftech.azurecr.io/oneacrefund/payments_pesa_payment_consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/payments_pesa_payment_consumer` |
-| `oaftech.azurecr.io/oneacrefund/pesa_autosave_consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_autosave_consumer` |
-| `oaftech.azurecr.io/oneacrefund/pesa_bancobu` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_bancobu` |
-| `oaftech.azurecr.io/oneacrefund/pesa_bank_of_kigali` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_bank_of_kigali` |
-| `oaftech.azurecr.io/oneacrefund/pesa_bc` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_bc` |
-| `oaftech.azurecr.io/oneacrefund/pesa_beyonic` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_beyonic` |
-| `oaftech.azurecr.io/oneacrefund/pesa_bk` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_bk` |
-| `oaftech.azurecr.io/oneacrefund/pesa_core` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_core` |
-| `oaftech.azurecr.io/oneacrefund/pesa_equity_bank` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_equity_bank` |
-| `oaftech.azurecr.io/oneacrefund/pesa_fbn` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_fbn` |
-| `oaftech.azurecr.io/oneacrefund/pesa_first_bank` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_first_bank` |
-| `oaftech.azurecr.io/oneacrefund/pesa_payment_consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_payment_consumer` |
-| `oaftech.azurecr.io/oneacrefund/ph-ee-connector-ams-fineract` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-connector-ams-fineract` |
-| `oaftech.azurecr.io/oneacrefund/ph-ee-connector-ams-odoo` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-connector-ams-odoo` |
-| `oaftech.azurecr.io/oneacrefund/ph-ee-connector-ams-pesa` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-connector-ams-pesa` |
-| `oaftech.azurecr.io/oneacrefund/ph-ee-connector-bancobu` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-connector-bancobu` |
-| `oaftech.azurecr.io/oneacrefund/ph-ee-connector-channel` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-connector-channel` |
-| `oaftech.azurecr.io/oneacrefund/ph-ee-connector-mpesa` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-connector-mpesa` |
-| `oaftech.azurecr.io/oneacrefund/ph-ee-connector-nbs` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-connector-nbs` |
-| `oaftech.azurecr.io/oneacrefund/ph-ee-importer-es` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-importer-es` |
-| `oaftech.azurecr.io/oneacrefund/ph-ee-importer-rdbms` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-importer-rdbms` |
-| `oaftech.azurecr.io/oneacrefund/ph-ee-operations-web` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-operations-web` |
-| `oaftech.azurecr.io/oneacrefund/rabbitmq-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/rabbitmq-connector` |
-| `oaftech.azurecr.io/oneacrefund/rabbitmq-external-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/rabbitmq-external-connector` |
-| `oaftech.azurecr.io/oneacrefund/redis-service` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/redis-service` |
-| `oaftech.azurecr.io/oneacrefund/refresh` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/refresh` |
-| `oaftech.azurecr.io/oneacrefund/retry-service` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/retry-service` |
-| `oaftech.azurecr.io/oneacrefund/roster-dataset` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/roster-dataset` |
-| `oaftech.azurecr.io/oneacrefund/rts-api` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/rts-api` |
-| `oaftech.azurecr.io/oneacrefund/rts-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/rts-consumer` |
-| `oaftech.azurecr.io/oneacrefund/rts-ui` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/rts-ui` |
-| `oaftech.azurecr.io/oneacrefund/sage-300-core` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sage-300-core` |
-| `oaftech.azurecr.io/oneacrefund/sage-300-cron-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sage-300-cron-connector` |
-| `oaftech.azurecr.io/oneacrefund/sage-300-cron-proxy` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sage-300-cron-proxy` |
-| `oaftech.azurecr.io/oneacrefund/sage-300-rabbitmq-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sage-300-rabbitmq-connector` |
-| `oaftech.azurecr.io/oneacrefund/sage-300-rabbitmq-proxy` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sage-300-rabbitmq-proxy` |
-| `oaftech.azurecr.io/oneacrefund/sanction-screen-api` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sanction-screen-api` |
-| `oaftech.azurecr.io/oneacrefund/sapb1-cache` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sapb1-cache` |
-| `oaftech.azurecr.io/oneacrefund/sapb1-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sapb1-consumer` |
-| `oaftech.azurecr.io/oneacrefund/sapb1-erply-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sapb1-erply-consumer` |
-| `oaftech.azurecr.io/oneacrefund/sapb1-erply-producer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sapb1-erply-producer` |
-| `oaftech.azurecr.io/oneacrefund/sapb1-master-data-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sapb1-master-data-consumer` |
-| `oaftech.azurecr.io/oneacrefund/sapb1-odoo-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sapb1-odoo-consumer` |
-| `oaftech.azurecr.io/oneacrefund/sapb1-producer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sapb1-producer` |
-| `oaftech.azurecr.io/oneacrefund/scheduler` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/scheduler` |
-| `oaftech.azurecr.io/oneacrefund/sf-cache` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sf-cache` |
-| `oaftech.azurecr.io/oneacrefund/sf-cache-etl` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sf-cache-etl` |
-| `oaftech.azurecr.io/oneacrefund/sf-fetch-employee-data` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sf-fetch-employee-data` |
-| `oaftech.azurecr.io/oneacrefund/sf-producer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sf-producer` |
-| `oaftech.azurecr.io/oneacrefund/sf-sync` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sf-sync` |
-| `oaftech.azurecr.io/oneacrefund/shopxp-backend` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/shopxp-backend` |
-| `oaftech.azurecr.io/oneacrefund/shs-migrator` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/shs-migrator` |
-| `oaftech.azurecr.io/oneacrefund/sns` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sns` |
-| `oaftech.azurecr.io/oneacrefund/superset` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/superset` |
-| `oaftech.azurecr.io/oneacrefund/sydent` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sydent` |
-| `oaftech.azurecr.io/oneacrefund/sync-gw-dataset` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sync-gw-dataset` |
-| `oaftech.azurecr.io/oneacrefund/tnm-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/tnm-connector` |
-| `oaftech.azurecr.io/oneacrefund/tupande-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/tupande-connector` |
-| `oaftech.azurecr.io/oneacrefund/tupande_timiza` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/tupande_timiza` |
-| `oaftech.azurecr.io/oneacrefund/uptime-kuma-wrapper` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/uptime-kuma-wrapper` |
-| `oaftech.azurecr.io/oneacrefund/uptime-wrapper-api` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/uptime-wrapper-api` |
-| `oaftech.azurecr.io/openfaas/faas-netes` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/openfaas/faas-netes` |
-| `oaftech.azurecr.io/openfaas/gateway` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/openfaas/gateway` |
-| `oaftech.azurecr.io/openfaas/of-watchdog` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/openfaas/of-watchdog` |
-| `oaftech.azurecr.io/openfaas/queue-worker` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/openfaas/queue-worker` |
-| `oaftech.azurecr.io/phee-ns/message-gateway` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/message-gateway` |
-| `oaftech.azurecr.io/phee-ns/ops-web` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ops-web` |
-| `oaftech.azurecr.io/phee-ns/ph-ee-connector-ams-paygops` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-connector-ams-paygops` |
-| `oaftech.azurecr.io/phee-ns/ph-ee-connector-ams-pesa` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-connector-ams-pesa` |
-| `oaftech.azurecr.io/phee-ns/ph-ee-connector-channel` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-connector-channel` |
-| `oaftech.azurecr.io/phee-ns/ph-ee-connector-mpesa` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-connector-mpesa` |
-| `oaftech.azurecr.io/phee-ns/ph-ee-connector-slcb` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-connector-slcb` |
-| `oaftech.azurecr.io/phee-ns/ph-ee-importer-es` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-importer-es` |
-| `oaftech.azurecr.io/phee-ns/ph-ee-importer-rdbms` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-importer-rdbms` |
-| `oaftech.azurecr.io/phee-ns/ph-ee-notifications` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-notifications` |
-| `oaftech.azurecr.io/phee-ns/ph-ee-operations-app` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-operations-app` |
-| `oaftech.azurecr.io/phee-ns/ph-ee-operations-web` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-operations-web` |
-| `oaftech.azurecr.io/phee-ns/ph-ee-ops-web` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-ops-web` |
-| `oaftech.azurecr.io/phee-ns/phee-bulk-processor` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/phee-bulk-processor` |
-| `oaftech.azurecr.io/phee-ns/phee-zeebe-ops` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/phee-zeebe-ops` |
-| `oaftech.azurecr.io/prom/alertmanager` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/prom/alertmanager` |
-| `oaftech.azurecr.io/prom/prometheus` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/prom/prometheus` |
-| `oaftech.azurecr.io/rabbitmq` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/rabbitmq` |
-| `oaftech.azurecr.io/rclone-image` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/rclone-image` |
-| `oaftech.azurecr.io/risk-register` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/risk-register` |
-| `oaftech.azurecr.io/shs-service` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/shs-service` |
-| `oaftech.azurecr.io/tools/pg-restore` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/tools/pg-restore` |
-| `oaftech.azurecr.io/us.icr.io/phee-ns/ph-ee-notifications` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/us.icr.io/phee-ns/ph-ee-notifications` |
+| Source ACR Repository | Target ECR Repository | Images in ECR |
+|---|---|---|
+| `oaftech.azurecr.io/airbyte-ktb` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/airbyte-ktb` | 1 |
+| `oaftech.azurecr.io/airflow` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/airflow` | 71 |
+| `oaftech.azurecr.io/alertmanager` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/alertmanager` | 1 |
+| `oaftech.azurecr.io/alpine` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/alpine` | 1 |
+| `oaftech.azurecr.io/backstage` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/backstage` | 61 |
+| `oaftech.azurecr.io/bitnami/rabbitmq` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/bitnami/rabbitmq` | 1 |
+| `oaftech.azurecr.io/busybox` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/busybox` | 1 |
+| `oaftech.azurecr.io/camunda/zeebe` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/camunda/zeebe` | 1 |
+| `oaftech.azurecr.io/helm/baobab-backend` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/baobab-backend` | 4 |
+| `oaftech.azurecr.io/helm/client-management` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/client-management` | 2 |
+| `oaftech.azurecr.io/helm/couchbase-dependencies` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/couchbase-dependencies` | 5 |
+| `oaftech.azurecr.io/helm/duma` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/duma` | 3 |
+| `oaftech.azurecr.io/helm/fineract-backend` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/fineract-backend` | 21 |
+| `oaftech.azurecr.io/helm/fineract-frontend` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/fineract-frontend` | 6 |
+| `oaftech.azurecr.io/helm/log-app` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/log-app` | 4 |
+| `oaftech.azurecr.io/helm/msgateway-2` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/msgateway-2` | 29 |
+| `oaftech.azurecr.io/helm/oaf-odoo-data-migration` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/oaf-odoo-data-migration` | 3 |
+| `oaftech.azurecr.io/helm/offline-writes` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/offline-writes` | 6 |
+| `oaftech.azurecr.io/helm/otpgateway` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/otpgateway` | 4 |
+| `oaftech.azurecr.io/helm/ou-api-service` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/ou-api-service` | 3 |
+| `oaftech.azurecr.io/helm/pesa` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/pesa` | 5 |
+| `oaftech.azurecr.io/helm/ph-ee-engine` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/ph-ee-engine` | 3 |
+| `oaftech.azurecr.io/helm/shs` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/shs` | 7 |
+| `oaftech.azurecr.io/helm/tax-signature` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/tax-signature` | 3 |
+| `oaftech.azurecr.io/helm/timiza` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/helm/timiza` | 4 |
+| `oaftech.azurecr.io/infra/defaultbackend-amd64` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/defaultbackend-amd64` | 1 |
+| `oaftech.azurecr.io/infra/ghcr.io/dexidp/dex` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/ghcr.io/dexidp/dex` | 1 |
+| `oaftech.azurecr.io/infra/http-base` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/http-base` | 1 |
+| `oaftech.azurecr.io/infra/ingress-nginx/controller` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/ingress-nginx/controller` | 2 |
+| `oaftech.azurecr.io/infra/ingress-nginx/custom-error-pages` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/ingress-nginx/custom-error-pages` | 1 |
+| `oaftech.azurecr.io/infra/ingress-nginx/kube-webhook-certgen` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/ingress-nginx/kube-webhook-certgen` | 2 |
+| `oaftech.azurecr.io/infra/ito-cluster06` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/ito-cluster06` | 2 |
+| `oaftech.azurecr.io/infra/ito-kubeclient` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/ito-kubeclient` | 1 |
+| `oaftech.azurecr.io/infra/k8s-zabbix` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/k8s-zabbix` | 1 |
+| `oaftech.azurecr.io/infra/kiwigrid/k8s-sidecar` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/kiwigrid/k8s-sidecar` | 1 |
+| `oaftech.azurecr.io/infra/konga` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/konga` | 1 |
+| `oaftech.azurecr.io/infra/kube-state-metrics/kube-state-metrics` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/kube-state-metrics/kube-state-metrics` | 1 |
+| `oaftech.azurecr.io/infra/mcr.microsoft.com/hello-world` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/mcr.microsoft.com/hello-world` | 1 |
+| `oaftech.azurecr.io/infra/mcr.microsoft.com/oss/kubernetes-csi/azuredisk-csi` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/mcr.microsoft.com/oss/kubernetes-csi/azuredisk-csi` | 1 |
+| `oaftech.azurecr.io/infra/nginx-base` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/nginx-base` | 1 |
+| `oaftech.azurecr.io/infra/oaf-certbot-godaddy` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-certbot-godaddy` | 1 |
+| `oaftech.azurecr.io/infra/oaf-ipsec-1sbnk` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-ipsec-1sbnk` | 1 |
+| `oaftech.azurecr.io/infra/oaf-ipsec-server` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-ipsec-server` | 2 |
+| `oaftech.azurecr.io/infra/oaf-kong-ingress-controller` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-kong-ingress-controller` | 1 |
+| `oaftech.azurecr.io/infra/oaf-kong-proxy` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-kong-proxy` | 1 |
+| `oaftech.azurecr.io/infra/oaf-nc-listener` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-nc-listener` | 1 |
+| `oaftech.azurecr.io/infra/oaf-oauth-receipts` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-oauth-receipts` | 1 |
+| `oaftech.azurecr.io/infra/oaf-postgres` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-postgres` | 2 |
+| `oaftech.azurecr.io/infra/oaf-stunnel` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-stunnel` | 1 |
+| `oaftech.azurecr.io/infra/oaf-zabbix-apache` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-zabbix-apache` | 1 |
+| `oaftech.azurecr.io/infra/oaf-zabbix-api` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-zabbix-api` | 60 |
+| `oaftech.azurecr.io/infra/oaf-zabbix-grafana` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-zabbix-grafana` | 40 |
+| `oaftech.azurecr.io/infra/oaf-zabbix-index` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-zabbix-index` | 1 |
+| `oaftech.azurecr.io/infra/oaf-zabbix-influx` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-zabbix-influx` | 40 |
+| `oaftech.azurecr.io/infra/oaf-zabbix-monitor` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-zabbix-monitor` | 42 |
+| `oaftech.azurecr.io/infra/oaf-zabbix-mysql` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-zabbix-mysql` | 1 |
+| `oaftech.azurecr.io/infra/oaf-zabbix-prep` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-zabbix-prep` | 40 |
+| `oaftech.azurecr.io/infra/oaf-zabbix-web` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oaf-zabbix-web` | 40 |
+| `oaftech.azurecr.io/infra/oafoauth-proxy` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/oafoauth-proxy` | 1 |
+| `oaftech.azurecr.io/infra/ocs-integrated` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/ocs-integrated` | 1 |
+| `oaftech.azurecr.io/infra/quay.io/kiwigrid/k8s-sidecar` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/quay.io/kiwigrid/k8s-sidecar` | 1 |
+| `oaftech.azurecr.io/infra/zabbix/zabbix-agent2` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/zabbix/zabbix-agent2` | 1 |
+| `oaftech.azurecr.io/infra/zabbix-apache` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/zabbix-apache` | 1 |
+| `oaftech.azurecr.io/infra/zabbix-influxpush` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/zabbix-influxpush` | 1 |
+| `oaftech.azurecr.io/infra/zabbix-monitor` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/zabbix-monitor` | 1 |
+| `oaftech.azurecr.io/infra/zabbix-proxy-sqlite3` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/infra/zabbix-proxy-sqlite3` | 1 |
+| `oaftech.azurecr.io/ingress-nginx/opentelemetry-1.25.3` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/ingress-nginx/opentelemetry-1.25.3` | 1 |
+| `oaftech.azurecr.io/jetstack/cert-manager-cainjector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/jetstack/cert-manager-cainjector` | 1 |
+| `oaftech.azurecr.io/jetstack/cert-manager-controller` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/jetstack/cert-manager-controller` | 1 |
+| `oaftech.azurecr.io/jetstack/cert-manager-webhook` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/jetstack/cert-manager-webhook` | 1 |
+| `oaftech.azurecr.io/jiralert` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/jiralert` | 1 |
+| `oaftech.azurecr.io/matomo-redis` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/matomo-redis` | 15 |
+| `oaftech.azurecr.io/micro` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/micro` | 1 |
+| `oaftech.azurecr.io/nats-streaming` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/nats-streaming` | 1 |
+| `oaftech.azurecr.io/oaf-logstash` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oaf-logstash` | 1 |
+| `oaftech.azurecr.io/one-acre-fund/tupande-mobile-admin` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/one-acre-fund/tupande-mobile-admin` | 1 |
+| `oaftech.azurecr.io/oneacrefund/adminer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/adminer` | 1 |
+| `oaftech.azurecr.io/oneacrefund/airbyte-custom` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/airbyte-custom` | 1 |
+| `oaftech.azurecr.io/oneacrefund/airbyte-firestore` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/airbyte-firestore` | 40 |
+| `oaftech.azurecr.io/oneacrefund/airbyte-kobo` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/airbyte-kobo` | 43 |
+| `oaftech.azurecr.io/oneacrefund/airbyte-source-telerivet` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/airbyte-source-telerivet` | 3 |
+| `oaftech.azurecr.io/oneacrefund/airtel-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/airtel-connector` | 31 |
+| `oaftech.azurecr.io/oneacrefund/api` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/api` | 70 |
+| `oaftech.azurecr.io/oneacrefund/auth` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/auth` | 70 |
+| `oaftech.azurecr.io/oneacrefund/autosaveconsumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/autosaveconsumer` | 1 |
+| `oaftech.azurecr.io/oneacrefund/azure-blob-logstash` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/azure-blob-logstash` | 2 |
+| `oaftech.azurecr.io/oneacrefund/baobab-backend` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/baobab-backend` | 75 |
+| `oaftech.azurecr.io/oneacrefund/cbes-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/cbes-connector` | 2 |
+| `oaftech.azurecr.io/oneacrefund/channel-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/channel-connector` | 55 |
+| `oaftech.azurecr.io/oneacrefund/client-management` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/client-management` | 1 |
+| `oaftech.azurecr.io/oneacrefund/clientconsumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/clientconsumer` | 40 |
+| `oaftech.azurecr.io/oneacrefund/clientmanagement` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/clientmanagement` | 15 |
+| `oaftech.azurecr.io/oneacrefund/clif-cache` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/clif-cache` | 68 |
+| `oaftech.azurecr.io/oneacrefund/connector-template` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/connector-template` | 2 |
+| `oaftech.azurecr.io/oneacrefund/couchbase-duma` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/couchbase-duma` | 1 |
+| `oaftech.azurecr.io/oneacrefund/dbt` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/dbt` | 6 |
+| `oaftech.azurecr.io/oneacrefund/dumaapi` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/dumaapi` | 5 |
+| `oaftech.azurecr.io/oneacrefund/elasticsearch` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/elasticsearch` | 32 |
+| `oaftech.azurecr.io/oneacrefund/erply-cache` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/erply-cache` | 40 |
+| `oaftech.azurecr.io/oneacrefund/erply-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/erply-connector` | 31 |
+| `oaftech.azurecr.io/oneacrefund/erply-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/erply-consumer` | 60 |
+| `oaftech.azurecr.io/oneacrefund/erply-create-payment` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/erply-create-payment` | 1 |
+| `oaftech.azurecr.io/oneacrefund/erply-payment` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/erply-payment` | 40 |
+| `oaftech.azurecr.io/oneacrefund/event-publisher` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/event-publisher` | 4 |
+| `oaftech.azurecr.io/oneacrefund/fds-api` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/fds-api` | 94 |
+| `oaftech.azurecr.io/oneacrefund/fds-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/fds-consumer` | 66 |
+| `oaftech.azurecr.io/oneacrefund/ffp-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ffp-consumer` | 1 |
+| `oaftech.azurecr.io/oneacrefund/fineract-backend` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/fineract-backend` | 105 |
+| `oaftech.azurecr.io/oneacrefund/fineract-frontend` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/fineract-frontend` | 60 |
+| `oaftech.azurecr.io/oneacrefund/fineract-frontend-v2` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/fineract-frontend-v2` | 77 |
+| `oaftech.azurecr.io/oneacrefund/fleet` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/fleet` | 3 |
+| `oaftech.azurecr.io/oneacrefund/flink` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/flink` | 1 |
+| `oaftech.azurecr.io/oneacrefund/jenkins` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/jenkins` | 1 |
+| `oaftech.azurecr.io/oneacrefund/k8s-elastalert` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/k8s-elastalert` | 7 |
+| `oaftech.azurecr.io/oneacrefund/k8s-kibana` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/k8s-kibana` | 83 |
+| `oaftech.azurecr.io/oneacrefund/k8s-logstash` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/k8s-logstash` | 57 |
+| `oaftech.azurecr.io/oneacrefund/k8s-logstash-polling` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/k8s-logstash-polling` | 57 |
+| `oaftech.azurecr.io/oneacrefund/keycloak-api` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/keycloak-api` | 70 |
+| `oaftech.azurecr.io/oneacrefund/keycloak-themes` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/keycloak-themes` | 60 |
+| `oaftech.azurecr.io/oneacrefund/kibana` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/kibana` | 32 |
+| `oaftech.azurecr.io/oneacrefund/knowi-agent` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/knowi-agent` | 2 |
+| `oaftech.azurecr.io/oneacrefund/logistics-app` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/logistics-app` | 40 |
+| `oaftech.azurecr.io/oneacrefund/logstash` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/logstash` | 8 |
+| `oaftech.azurecr.io/oneacrefund/master-data-odoo-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/master-data-odoo-consumer` | 1 |
+| `oaftech.azurecr.io/oneacrefund/message-gateway` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/message-gateway` | 60 |
+| `oaftech.azurecr.io/oneacrefund/metabase` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/metabase` | 1 |
+| `oaftech.azurecr.io/oneacrefund/mpesa-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/mpesa-connector` | 31 |
+| `oaftech.azurecr.io/oneacrefund/msg-refresh-v3` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/msg-refresh-v3` | 1 |
+| `oaftech.azurecr.io/oneacrefund/mtn-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/mtn-connector` | 39 |
+| `oaftech.azurecr.io/oneacrefund/mw-ai-services` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/mw-ai-services` | 37 |
+| `oaftech.azurecr.io/oneacrefund/my-project-api` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/my-project-api` | 11 |
+| `oaftech.azurecr.io/oneacrefund/my-project-worker` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/my-project-worker` | 8 |
+| `oaftech.azurecr.io/oneacrefund/n8n` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/n8n` | 45 |
+| `oaftech.azurecr.io/oneacrefund/notificationapi` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/notificationapi` | 1 |
+| `oaftech.azurecr.io/oneacrefund/oaf-client-update` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/oaf-client-update` | 2 |
+| `oaftech.azurecr.io/oneacrefund/oaf-dbt` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/oaf-dbt` | 1 |
+| `oaftech.azurecr.io/oneacrefund/oaf-jenkins` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/oaf-jenkins` | 89 |
+| `oaftech.azurecr.io/oneacrefund/oaf-logstash` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/oaf-logstash` | 8 |
+| `oaftech.azurecr.io/oneacrefund/oaf-moodle` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/oaf-moodle` | 36 |
+| `oaftech.azurecr.io/oneacrefund/oaf-odoo-data-migration` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/oaf-odoo-data-migration` | 2 |
+| `oaftech.azurecr.io/oneacrefund/oaf-toolbox` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/oaf-toolbox` | 8 |
+| `oaftech.azurecr.io/oneacrefund/ocs-fulfillment-plan` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ocs-fulfillment-plan` | 60 |
+| `oaftech.azurecr.io/oneacrefund/ocs-reserve-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ocs-reserve-consumer` | 60 |
+| `oaftech.azurecr.io/oneacrefund/odoo` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/odoo` | 240 |
+| `oaftech.azurecr.io/oneacrefund/odoo-cache` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/odoo-cache` | 40 |
+| `oaftech.azurecr.io/oneacrefund/odoo-locust` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/odoo-locust` | 46 |
+| `oaftech.azurecr.io/oneacrefund/odoo-procurement` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/odoo-procurement` | 13 |
+| `oaftech.azurecr.io/oneacrefund/odoo-producer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/odoo-producer` | 62 |
+| `oaftech.azurecr.io/oneacrefund/odoo-sapb1-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/odoo-sapb1-consumer` | 101 |
+| `oaftech.azurecr.io/oneacrefund/odoo-sapb1-sales-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/odoo-sapb1-sales-consumer` | 82 |
+| `oaftech.azurecr.io/oneacrefund/odoo-service` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/odoo-service` | 1 |
+| `oaftech.azurecr.io/oneacrefund/odoo-utilities` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/odoo-utilities` | 96 |
+| `oaftech.azurecr.io/oneacrefund/offlinewritesserviceapi` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/offlinewritesserviceapi` | 71 |
+| `oaftech.azurecr.io/oneacrefund/oneacrefund` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/oneacrefund` | 4 |
+| `oaftech.azurecr.io/oneacrefund/operations-app` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/operations-app` | 29 |
+| `oaftech.azurecr.io/oneacrefund/orderingservice` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/orderingservice` | 7 |
+| `oaftech.azurecr.io/oneacrefund/paygops-ams-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/paygops-ams-connector` | 14 |
+| `oaftech.azurecr.io/oneacrefund/payment-gateway-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/payment-gateway-consumer` | 63 |
+| `oaftech.azurecr.io/oneacrefund/payment-gateway-wrapper` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/payment-gateway-wrapper` | 69 |
+| `oaftech.azurecr.io/oneacrefund/paymentconsumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/paymentconsumer` | 1 |
+| `oaftech.azurecr.io/oneacrefund/payments_pesa_autosave_consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/payments_pesa_autosave_consumer` | 16 |
+| `oaftech.azurecr.io/oneacrefund/payments_pesa_core` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/payments_pesa_core` | 14 |
+| `oaftech.azurecr.io/oneacrefund/payments_pesa_equity_bank` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/payments_pesa_equity_bank` | 16 |
+| `oaftech.azurecr.io/oneacrefund/payments_pesa_payment_consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/payments_pesa_payment_consumer` | 16 |
+| `oaftech.azurecr.io/oneacrefund/pesa_autosave_consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_autosave_consumer` | 60 |
+| `oaftech.azurecr.io/oneacrefund/pesa_bancobu` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_bancobu` | 40 |
+| `oaftech.azurecr.io/oneacrefund/pesa_bank_of_kigali` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_bank_of_kigali` | 13 |
+| `oaftech.azurecr.io/oneacrefund/pesa_bc` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_bc` | 3 |
+| `oaftech.azurecr.io/oneacrefund/pesa_beyonic` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_beyonic` | 41 |
+| `oaftech.azurecr.io/oneacrefund/pesa_bk` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_bk` | 40 |
+| `oaftech.azurecr.io/oneacrefund/pesa_core` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_core` | 40 |
+| `oaftech.azurecr.io/oneacrefund/pesa_equity_bank` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_equity_bank` | 40 |
+| `oaftech.azurecr.io/oneacrefund/pesa_fbn` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_fbn` | 51 |
+| `oaftech.azurecr.io/oneacrefund/pesa_first_bank` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_first_bank` | 13 |
+| `oaftech.azurecr.io/oneacrefund/pesa_payment_consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/pesa_payment_consumer` | 60 |
+| `oaftech.azurecr.io/oneacrefund/ph-ee-connector-ams-fineract` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-connector-ams-fineract` | 42 |
+| `oaftech.azurecr.io/oneacrefund/ph-ee-connector-ams-odoo` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-connector-ams-odoo` | 13 |
+| `oaftech.azurecr.io/oneacrefund/ph-ee-connector-ams-pesa` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-connector-ams-pesa` | 5 |
+| `oaftech.azurecr.io/oneacrefund/ph-ee-connector-bancobu` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-connector-bancobu` | 8 |
+| `oaftech.azurecr.io/oneacrefund/ph-ee-connector-channel` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-connector-channel` | 1 |
+| `oaftech.azurecr.io/oneacrefund/ph-ee-connector-mpesa` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-connector-mpesa` | 7 |
+| `oaftech.azurecr.io/oneacrefund/ph-ee-connector-nbs` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-connector-nbs` | 6 |
+| `oaftech.azurecr.io/oneacrefund/ph-ee-importer-es` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-importer-es` | 3 |
+| `oaftech.azurecr.io/oneacrefund/ph-ee-importer-rdbms` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-importer-rdbms` | 12 |
+| `oaftech.azurecr.io/oneacrefund/ph-ee-operations-web` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/ph-ee-operations-web` | 43 |
+| `oaftech.azurecr.io/oneacrefund/rabbitmq-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/rabbitmq-connector` | 3 |
+| `oaftech.azurecr.io/oneacrefund/rabbitmq-external-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/rabbitmq-external-connector` | 60 |
+| `oaftech.azurecr.io/oneacrefund/redis-service` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/redis-service` | 60 |
+| `oaftech.azurecr.io/oneacrefund/refresh` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/refresh` | 70 |
+| `oaftech.azurecr.io/oneacrefund/retry-service` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/retry-service` | 84 |
+| `oaftech.azurecr.io/oneacrefund/roster-dataset` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/roster-dataset` | 70 |
+| `oaftech.azurecr.io/oneacrefund/rts-api` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/rts-api` | 60 |
+| `oaftech.azurecr.io/oneacrefund/rts-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/rts-consumer` | 80 |
+| `oaftech.azurecr.io/oneacrefund/rts-ui` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/rts-ui` | 40 |
+| `oaftech.azurecr.io/oneacrefund/sage-300-core` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sage-300-core` | 40 |
+| `oaftech.azurecr.io/oneacrefund/sage-300-cron-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sage-300-cron-connector` | 1 |
+| `oaftech.azurecr.io/oneacrefund/sage-300-cron-proxy` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sage-300-cron-proxy` | 1 |
+| `oaftech.azurecr.io/oneacrefund/sage-300-rabbitmq-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sage-300-rabbitmq-connector` | 1 |
+| `oaftech.azurecr.io/oneacrefund/sage-300-rabbitmq-proxy` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sage-300-rabbitmq-proxy` | 1 |
+| `oaftech.azurecr.io/oneacrefund/sanction-screen-api` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sanction-screen-api` | 60 |
+| `oaftech.azurecr.io/oneacrefund/sapb1-cache` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sapb1-cache` | 40 |
+| `oaftech.azurecr.io/oneacrefund/sapb1-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sapb1-consumer` | 60 |
+| `oaftech.azurecr.io/oneacrefund/sapb1-erply-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sapb1-erply-consumer` | 1 |
+| `oaftech.azurecr.io/oneacrefund/sapb1-erply-producer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sapb1-erply-producer` | 60 |
+| `oaftech.azurecr.io/oneacrefund/sapb1-master-data-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sapb1-master-data-consumer` | 60 |
+| `oaftech.azurecr.io/oneacrefund/sapb1-odoo-consumer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sapb1-odoo-consumer` | 99 |
+| `oaftech.azurecr.io/oneacrefund/sapb1-producer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sapb1-producer` | 75 |
+| `oaftech.azurecr.io/oneacrefund/scheduler` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/scheduler` | 70 |
+| `oaftech.azurecr.io/oneacrefund/sf-cache` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sf-cache` | 40 |
+| `oaftech.azurecr.io/oneacrefund/sf-cache-etl` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sf-cache-etl` | 1 |
+| `oaftech.azurecr.io/oneacrefund/sf-fetch-employee-data` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sf-fetch-employee-data` | 40 |
+| `oaftech.azurecr.io/oneacrefund/sf-producer` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sf-producer` | 1 |
+| `oaftech.azurecr.io/oneacrefund/sf-sync` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sf-sync` | 1 |
+| `oaftech.azurecr.io/oneacrefund/shopxp-backend` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/shopxp-backend` | 6 |
+| `oaftech.azurecr.io/oneacrefund/shs-migrator` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/shs-migrator` | 1 |
+| `oaftech.azurecr.io/oneacrefund/sns` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sns` | 62 |
+| `oaftech.azurecr.io/oneacrefund/superset` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/superset` | 57 |
+| `oaftech.azurecr.io/oneacrefund/sydent` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sydent` | 1 |
+| `oaftech.azurecr.io/oneacrefund/sync-gw-dataset` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/sync-gw-dataset` | 70 |
+| `oaftech.azurecr.io/oneacrefund/tnm-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/tnm-connector` | 13 |
+| `oaftech.azurecr.io/oneacrefund/tupande-connector` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/tupande-connector` | 6 |
+| `oaftech.azurecr.io/oneacrefund/tupande_timiza` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/tupande_timiza` | 70 |
+| `oaftech.azurecr.io/oneacrefund/uptime-kuma-wrapper` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/uptime-kuma-wrapper` | 1 |
+| `oaftech.azurecr.io/oneacrefund/uptime-wrapper-api` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/oneacrefund/uptime-wrapper-api` | 3 |
+| `oaftech.azurecr.io/openfaas/faas-netes` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/openfaas/faas-netes` | 1 |
+| `oaftech.azurecr.io/openfaas/gateway` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/openfaas/gateway` | 1 |
+| `oaftech.azurecr.io/openfaas/of-watchdog` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/openfaas/of-watchdog` | 1 |
+| `oaftech.azurecr.io/openfaas/queue-worker` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/openfaas/queue-worker` | 1 |
+| `oaftech.azurecr.io/phee-ns/message-gateway` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/message-gateway` | 5 |
+| `oaftech.azurecr.io/phee-ns/ops-web` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ops-web` | 5 |
+| `oaftech.azurecr.io/phee-ns/ph-ee-connector-ams-paygops` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-connector-ams-paygops` | 5 |
+| `oaftech.azurecr.io/phee-ns/ph-ee-connector-ams-pesa` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-connector-ams-pesa` | 5 |
+| `oaftech.azurecr.io/phee-ns/ph-ee-connector-channel` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-connector-channel` | 5 |
+| `oaftech.azurecr.io/phee-ns/ph-ee-connector-mpesa` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-connector-mpesa` | 5 |
+| `oaftech.azurecr.io/phee-ns/ph-ee-connector-slcb` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-connector-slcb` | 4 |
+| `oaftech.azurecr.io/phee-ns/ph-ee-importer-es` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-importer-es` | 5 |
+| `oaftech.azurecr.io/phee-ns/ph-ee-importer-rdbms` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-importer-rdbms` | 5 |
+| `oaftech.azurecr.io/phee-ns/ph-ee-notifications` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-notifications` | 5 |
+| `oaftech.azurecr.io/phee-ns/ph-ee-operations-app` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-operations-app` | 5 |
+| `oaftech.azurecr.io/phee-ns/ph-ee-operations-web` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-operations-web` | 1 |
+| `oaftech.azurecr.io/phee-ns/ph-ee-ops-web` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/ph-ee-ops-web` | 1 |
+| `oaftech.azurecr.io/phee-ns/phee-bulk-processor` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/phee-bulk-processor` | 5 |
+| `oaftech.azurecr.io/phee-ns/phee-zeebe-ops` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/phee-ns/phee-zeebe-ops` | 5 |
+| `oaftech.azurecr.io/prom/alertmanager` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/prom/alertmanager` | 1 |
+| `oaftech.azurecr.io/prom/prometheus` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/prom/prometheus` | 1 |
+| `oaftech.azurecr.io/rabbitmq` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/rabbitmq` | 1 |
+| `oaftech.azurecr.io/rclone-image` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/rclone-image` | 1 |
+| `oaftech.azurecr.io/risk-register` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/risk-register` | 21 |
+| `oaftech.azurecr.io/shs-service` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/shs-service` | 23 |
+| `oaftech.azurecr.io/tools/pg-restore` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/tools/pg-restore` | 2 |
+| `oaftech.azurecr.io/us.icr.io/phee-ns/ph-ee-notifications` | `952409747009.dkr.ecr.eu-west-1.amazonaws.com/us.icr.io/phee-ns/ph-ee-notifications` | 3 |
