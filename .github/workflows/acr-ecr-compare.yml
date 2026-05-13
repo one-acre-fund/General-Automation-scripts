@@ -155,9 +155,7 @@ jobs:
             ecr_count=${#ecr_tag_list[@]}
             total_ecr_tags=$((total_ecr_tags + ecr_count))
 
-            echo "    [${acr_repo}] ACR=${acr_count} tags | ECR=${ecr_count} tags"
-
-            # ── Build lookup set for ECR tags ────────────────────────────────
+            # ── Build lookup sets ─────────────────────────────────────────────
             declare -A ecr_tag_set
             for t in "${ecr_tag_list[@]}"; do
               ecr_tag_set["$t"]=1
@@ -168,16 +166,22 @@ jobs:
               acr_tag_set["$t"]=1
             done
 
+            # ── Per-repo counters ─────────────────────────────────────────────
+            repo_matched=0
+            repo_missing_in_ecr=0
+            repo_ecr_only=0
+
             # ── Row: for every ACR tag ────────────────────────────────────────
             for tag in "${acr_tag_list[@]}"; do
-              # Escape any commas in tag names (safety)
               safe_tag="${tag//,/_}"
               if [ -n "${ecr_tag_set[$tag]+_}" ]; then
                 status="MATCH"
                 total_matched=$((total_matched + 1))
+                repo_matched=$((repo_matched + 1))
               else
                 status="MISSING_IN_ECR"
                 total_missing_in_ecr=$((total_missing_in_ecr + 1))
+                repo_missing_in_ecr=$((repo_missing_in_ecr + 1))
               fi
               echo "\"${acr_repo}\",\"${ecr_repo}\",\"${safe_tag}\",true,$( [ "$ecr_repo_exists" = true ] && echo true || echo false ),${status}" >> "$REPORT_FILE"
             done
@@ -188,8 +192,19 @@ jobs:
                 safe_tag="${tag//,/_}"
                 echo "\"${acr_repo}\",\"${ecr_repo}\",\"${safe_tag}\",false,true,ECR_ONLY" >> "$REPORT_FILE"
                 total_missing_in_acr=$((total_missing_in_acr + 1))
+                repo_ecr_only=$((repo_ecr_only + 1))
               fi
             done
+
+            # ── Per-repo log line ─────────────────────────────────────────────
+            status_flag="OK"
+            [ "$repo_missing_in_ecr" -gt 0 ] && status_flag="MISSING_IN_ECR"
+            [ "$repo_ecr_only" -gt 0 ] && status_flag="${status_flag}+ECR_ONLY"
+            [ "$repo_missing_in_ecr" -gt 0 ] && [ "$repo_ecr_only" -gt 0 ] && status_flag="DRIFT"
+            echo "    [${acr_repo}] ACR=${acr_count} | ECR=${ecr_count} | MATCH=${repo_matched} | MISSING_IN_ECR=${repo_missing_in_ecr} | ECR_ONLY=${repo_ecr_only} | ${status_flag}"
+
+            # ── Per-repo summary row in CSV ──────────────────────────────────
+            echo "\"[SUMMARY]\",\"${acr_repo}\",\"${ecr_repo}\",\"ACR=${acr_count}\",\"ECR=${ecr_count}\",\"MATCH=${repo_matched} | MISSING_IN_ECR=${repo_missing_in_ecr} | ECR_ONLY=${repo_ecr_only}\"" >> "$REPORT_FILE"
 
             # ── Row: ECR untagged manifests (optional) ────────────────────────
             if [ "$INCLUDE_UNTAGGED" = "true" ] && [ "$ecr_repo_exists" = true ]; then
