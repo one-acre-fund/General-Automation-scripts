@@ -1,0 +1,217 @@
+name: ECR - Delete Tags Not in ACR
+
+on:
+  workflow_dispatch:
+    inputs:
+      mapping_file:
+        description: 'Mapping JSON file to use'
+        required: false
+        default: 'total-acr-ecr-mapping.json'
+        type: string
+      filter_repo:
+        description: 'Process only this ACR repo (e.g. airflow). Leave blank for all.'
+        required: false
+        default: ''
+        type: string
+      dry_run:
+        description: 'Dry run — list tags to delete without actually deleting'
+        required: false
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+# ACR is READ-ONLY — only az acr repository show-tags is used, no writes to ACR.
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  sync-ecr-to-acr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── ACR Login (read-only) ──────────────────────────────────────────────
+      - name: Azure Login with OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Docker Login to Azure Container Registry (read-only)
+        run: |
+          az acr login --name ${{ vars.AZURE_ACR_NAME }}
+
+      # ── ECR Login ─────────────────────────────────────────────────────────
+      - name: Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      # ── Compare and delete ECR-only tags ──────────────────────────────────
+      - name: Delete ECR tags not present in ACR
+        run: |
+          MAPPING_FILE="${{ inputs.mapping_file }}"
+          FILTER_REPO="${{ inputs.filter_repo }}"
+          DRY_RUN="${{ inputs.dry_run }}"
+          AWS_REGION_VAR="${{ vars.AWS_REGION }}"
+          AZURE_ACR_NAME="${{ vars.AZURE_ACR_NAME }}"
+
+          total_repos=0
+          total_deleted=0
+          total_skipped_repos=0
+          total_ecr_only_tags=0
+
+          echo "==> ECR tag cleanup — delete tags not in ACR"
+          echo "    Mapping file : ${MAPPING_FILE}"
+          echo "    Filter repo  : ${FILTER_REPO:-<all>}"
+          echo "    Dry run      : ${DRY_RUN}"
+          echo ""
+
+          while IFS= read -r item; do
+            acr_repo=$(echo "$item" | jq -r '.acr_repo')
+            ecr_repo=$(echo "$item" | jq -r '.ecr_repo')
+
+            # Apply single-repo filter if set
+            if [ -n "$FILTER_REPO" ] && [ "$acr_repo" != "$FILTER_REPO" ]; then
+              continue
+            fi
+
+            # Check ECR repo exists
+            if ! aws ecr describe-repositories \
+                --repository-names "${ecr_repo}" \
+                --region "${AWS_REGION_VAR}" > /dev/null 2>&1; then
+              echo "    [${ecr_repo}] Not found in ECR, skipping."
+              total_skipped_repos=$((total_skipped_repos + 1))
+              continue
+            fi
+
+            # ── Fetch ACR tags (READ-ONLY) ────────────────────────────────────
+            acr_tags_raw=$(az acr repository show-tags \
+              --name "$AZURE_ACR_NAME" \
+              --repository "${acr_repo}" \
+              --output tsv 2>/tmp/acr_err.txt) || true
+
+            declare -A acr_tag_set
+            if [ -n "$acr_tags_raw" ]; then
+              while IFS= read -r t; do
+                [ -z "$t" ] && continue
+                acr_tag_set["$t"]=1
+              done <<< "$acr_tags_raw"
+            fi
+            acr_count=${#acr_tag_set[@]}
+
+            # ── Fetch ECR tagged images (paginated) ───────────────────────────
+            ecr_tags=()
+            next_token=""
+            while true; do
+              if [ -n "$next_token" ]; then
+                result=$(aws ecr list-images \
+                  --repository-name "${ecr_repo}" \
+                  --region "${AWS_REGION_VAR}" \
+                  --filter tagStatus=TAGGED \
+                  --starting-token "${next_token}" \
+                  --output json 2>/dev/null)
+              else
+                result=$(aws ecr list-images \
+                  --repository-name "${ecr_repo}" \
+                  --region "${AWS_REGION_VAR}" \
+                  --filter tagStatus=TAGGED \
+                  --output json 2>/dev/null)
+              fi
+              while IFS= read -r t; do
+                [ -z "$t" ] && continue
+                ecr_tags+=("$t")
+              done < <(echo "$result" | jq -r '.imageIds[].imageTag // empty')
+              next_token=$(echo "$result" | jq -r '.nextToken // empty')
+              [ -z "$next_token" ] && break
+            done
+            ecr_count=${#ecr_tags[@]}
+
+            # ── Find ECR-only tags ────────────────────────────────────────────
+            ecr_only_tags=()
+            for tag in "${ecr_tags[@]}"; do
+              if [ -z "${acr_tag_set[$tag]+_}" ]; then
+                ecr_only_tags+=("$tag")
+              fi
+            done
+
+            ecr_only_count=${#ecr_only_tags[@]}
+            total_ecr_only_tags=$((total_ecr_only_tags + ecr_only_count))
+
+            if [ "$ecr_only_count" -eq 0 ]; then
+              echo "    [${acr_repo}] ACR=${acr_count} | ECR=${ecr_count} | ECR_ONLY=0 — no action needed"
+              total_skipped_repos=$((total_skipped_repos + 1))
+              unset acr_tag_set
+              continue
+            fi
+
+            total_repos=$((total_repos + 1))
+            echo "    [${acr_repo}] ACR=${acr_count} | ECR=${ecr_count} | ECR_ONLY=${ecr_only_count} — tags to delete:"
+            for tag in "${ecr_only_tags[@]}"; do
+              echo "        - ${tag}"
+            done
+
+            if [ "$DRY_RUN" = "true" ]; then
+              unset acr_tag_set
+              continue
+            fi
+
+            # ── Delete ECR-only tags in batches of 100 ────────────────────────
+            i=0
+            while [ "$i" -lt "$ecr_only_count" ]; do
+              batch=("${ecr_only_tags[@]:$i:100}")
+
+              ids_json=$(printf '%s\n' "${batch[@]}" | \
+                jq -R '{imageTag: .}' | jq -s '.')
+
+              if aws ecr batch-delete-image \
+                  --repository-name "${ecr_repo}" \
+                  --region "${AWS_REGION_VAR}" \
+                  --image-ids "$ids_json" \
+                  --output json > /tmp/delete_result.json 2>&1; then
+                deleted=$(jq '.imageIds | length' /tmp/delete_result.json)
+                failed=$(jq '.failures | length' /tmp/delete_result.json)
+                echo "      Deleted ${deleted}, failed ${failed} in this batch."
+                total_deleted=$((total_deleted + deleted))
+                if [ "$failed" -gt 0 ]; then
+                  echo "      Failures:"
+                  jq -r '.failures[] | "        \(.imageId.imageTag // .imageId.imageDigest): \(.failureReason)"' \
+                    /tmp/delete_result.json
+                fi
+              else
+                echo "      ERROR: batch-delete-image failed for [${ecr_repo}]"
+                cat /tmp/delete_result.json
+              fi
+
+              i=$((i + 100))
+            done
+
+            unset acr_tag_set
+
+          done < <(jq -c '.[]' "$MAPPING_FILE")
+
+          echo ""
+          echo "========================================"
+          if [ "$DRY_RUN" = "true" ]; then
+            echo "==> DRY RUN complete."
+            echo "    Repos with ECR-only tags       : ${total_repos}"
+            echo "    Repos with no diff             : ${total_skipped_repos}"
+            echo "    Total ECR-only tags found      : ${total_ecr_only_tags}"
+            echo ""
+            echo "    Re-run with dry_run=false to actually delete."
+          else
+            echo "==> Cleanup complete."
+            echo "    Repos processed                : ${total_repos}"
+            echo "    Total ECR-only tags deleted    : ${total_deleted}"
+            echo ""
+            echo "    TIP: Run 'ECR - Delete Untagged Images' next to clean up"
+            echo "         any orphaned child manifests left behind."
+          fi
+          echo "========================================"
