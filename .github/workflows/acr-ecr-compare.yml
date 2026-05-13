@@ -1,0 +1,271 @@
+name: Compare ACR vs ECR Images
+
+on:
+  workflow_dispatch:
+    inputs:
+      mapping_file:
+        description: 'Mapping JSON file to use'
+        required: false
+        default: 'total-acr-ecr-mapping.json'
+        type: string
+      filter_repo:
+        description: 'Compare only this ACR repo (e.g. airflow). Leave blank for all.'
+        required: false
+        default: ''
+        type: string
+      include_ecr_only_untagged:
+        description: 'Include untagged ECR images in the report (rows marked ECR_ONLY_UNTAGGED)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+      commit_report:
+        description: 'Commit the CSV report back to the repository'
+        required: false
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+# ACR is READ-ONLY throughout this workflow — no push, delete, or write to ACR.
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── ACR Login (read-only: list tags only) ──────────────────────────────
+      - name: Azure Login with OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Docker Login to Azure Container Registry (read-only)
+        run: |
+          az acr login --name ${{ vars.AZURE_ACR_NAME }}
+
+      # ── ECR Login (read-only: list images only) ────────────────────────────
+      - name: Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      # ── Generate comparison report ─────────────────────────────────────────
+      - name: Compare ACR vs ECR per repo and tag
+        run: |
+          MAPPING_FILE="${{ inputs.mapping_file }}"
+          FILTER_REPO="${{ inputs.filter_repo }}"
+          INCLUDE_UNTAGGED="${{ inputs.include_ecr_only_untagged }}"
+          AWS_REGION_VAR="${{ vars.AWS_REGION }}"
+          AZURE_ACR_NAME="${{ vars.AZURE_ACR_NAME }}"
+
+          REPORT_FILE="acr-ecr-comparison-$(date -u +%Y%m%d-%H%M%S).csv"
+          SUMMARY_FILE="/tmp/summary.txt"
+
+          # ── totals ──
+          total_repos=0
+          total_acr_tags=0
+          total_ecr_tags=0
+          total_matched=0
+          total_missing_in_ecr=0
+          total_missing_in_acr=0
+          total_ecr_untagged=0
+
+          # ── CSV header ──
+          echo "acr_repo,ecr_repo,tag,in_acr,in_ecr,status" > "$REPORT_FILE"
+
+          echo "==> Starting ACR vs ECR comparison..."
+          echo "    Mapping file : ${MAPPING_FILE}"
+          echo "    Filter repo  : ${FILTER_REPO:-<all>}"
+          echo ""
+
+          while IFS= read -r item; do
+            acr_repo=$(echo "$item" | jq -r '.acr_repo')
+            ecr_repo=$(echo "$item" | jq -r '.ecr_repo')
+
+            # Apply single-repo filter if set
+            if [ -n "$FILTER_REPO" ] && [ "$acr_repo" != "$FILTER_REPO" ]; then
+              continue
+            fi
+
+            total_repos=$((total_repos + 1))
+
+            # ── Fetch ACR tags (READ-ONLY — no write/delete to ACR) ──────────
+            acr_tags_raw=$(az acr repository show-tags \
+              --name "$AZURE_ACR_NAME" \
+              --repository "${acr_repo}" \
+              --output tsv 2>/tmp/acr_err.txt) || true
+
+            acr_tag_list=()
+            if [ -n "$acr_tags_raw" ]; then
+              while IFS= read -r t; do
+                [ -z "$t" ] && continue
+                acr_tag_list+=("$t")
+              done <<< "$acr_tags_raw"
+            fi
+            acr_count=${#acr_tag_list[@]}
+            total_acr_tags=$((total_acr_tags + acr_count))
+
+            # ── Fetch ECR tagged images ──────────────────────────────────────
+            ecr_tag_list=()
+            ecr_repo_exists=false
+
+            if aws ecr describe-repositories \
+                --repository-names "${ecr_repo}" \
+                --region "${AWS_REGION_VAR}" > /dev/null 2>&1; then
+              ecr_repo_exists=true
+
+              next_token=""
+              while true; do
+                if [ -n "$next_token" ]; then
+                  result=$(aws ecr list-images \
+                    --repository-name "${ecr_repo}" \
+                    --region "${AWS_REGION_VAR}" \
+                    --filter tagStatus=TAGGED \
+                    --starting-token "${next_token}" \
+                    --output json 2>/dev/null)
+                else
+                  result=$(aws ecr list-images \
+                    --repository-name "${ecr_repo}" \
+                    --region "${AWS_REGION_VAR}" \
+                    --filter tagStatus=TAGGED \
+                    --output json 2>/dev/null)
+                fi
+                while IFS= read -r t; do
+                  [ -z "$t" ] && continue
+                  ecr_tag_list+=("$t")
+                done < <(echo "$result" | jq -r '.imageIds[].imageTag // empty')
+                next_token=$(echo "$result" | jq -r '.nextToken // empty')
+                [ -z "$next_token" ] && break
+              done
+            fi
+
+            ecr_count=${#ecr_tag_list[@]}
+            total_ecr_tags=$((total_ecr_tags + ecr_count))
+
+            echo "    [${acr_repo}] ACR=${acr_count} tags | ECR=${ecr_count} tags"
+
+            # ── Build lookup set for ECR tags ────────────────────────────────
+            declare -A ecr_tag_set
+            for t in "${ecr_tag_list[@]}"; do
+              ecr_tag_set["$t"]=1
+            done
+
+            declare -A acr_tag_set
+            for t in "${acr_tag_list[@]}"; do
+              acr_tag_set["$t"]=1
+            done
+
+            # ── Row: for every ACR tag ────────────────────────────────────────
+            for tag in "${acr_tag_list[@]}"; do
+              # Escape any commas in tag names (safety)
+              safe_tag="${tag//,/_}"
+              if [ -n "${ecr_tag_set[$tag]+_}" ]; then
+                status="MATCH"
+                total_matched=$((total_matched + 1))
+              else
+                status="MISSING_IN_ECR"
+                total_missing_in_ecr=$((total_missing_in_ecr + 1))
+              fi
+              echo "\"${acr_repo}\",\"${ecr_repo}\",\"${safe_tag}\",true,$( [ "$ecr_repo_exists" = true ] && echo true || echo false ),${status}" >> "$REPORT_FILE"
+            done
+
+            # ── Row: ECR tags NOT in ACR ──────────────────────────────────────
+            for tag in "${ecr_tag_list[@]}"; do
+              if [ -z "${acr_tag_set[$tag]+_}" ]; then
+                safe_tag="${tag//,/_}"
+                echo "\"${acr_repo}\",\"${ecr_repo}\",\"${safe_tag}\",false,true,ECR_ONLY" >> "$REPORT_FILE"
+                total_missing_in_acr=$((total_missing_in_acr + 1))
+              fi
+            done
+
+            # ── Row: ECR untagged manifests (optional) ────────────────────────
+            if [ "$INCLUDE_UNTAGGED" = "true" ] && [ "$ecr_repo_exists" = true ]; then
+              untagged_count=0
+              next_token=""
+              while true; do
+                if [ -n "$next_token" ]; then
+                  result=$(aws ecr list-images \
+                    --repository-name "${ecr_repo}" \
+                    --region "${AWS_REGION_VAR}" \
+                    --filter tagStatus=UNTAGGED \
+                    --starting-token "${next_token}" \
+                    --output json 2>/dev/null)
+                else
+                  result=$(aws ecr list-images \
+                    --repository-name "${ecr_repo}" \
+                    --region "${AWS_REGION_VAR}" \
+                    --filter tagStatus=UNTAGGED \
+                    --output json 2>/dev/null)
+                fi
+                while IFS= read -r digest; do
+                  [ -z "$digest" ] && continue
+                  echo "\"${acr_repo}\",\"${ecr_repo}\",\"${digest}\",false,true,ECR_ONLY_UNTAGGED" >> "$REPORT_FILE"
+                  untagged_count=$((untagged_count + 1))
+                done < <(echo "$result" | jq -r '.imageIds[].imageDigest // empty')
+                next_token=$(echo "$result" | jq -r '.nextToken // empty')
+                [ -z "$next_token" ] && break
+              done
+              total_ecr_untagged=$((total_ecr_untagged + untagged_count))
+            fi
+
+            unset ecr_tag_set
+            unset acr_tag_set
+
+          done < <(jq -c '.[]' "$MAPPING_FILE")
+
+          # ── Summary ──────────────────────────────────────────────────────────
+          {
+            echo ""
+            echo "========================================"
+            echo "        ACR vs ECR COMPARISON SUMMARY"
+            echo "========================================"
+            echo ""
+            printf "  %-35s %s\n" "Repos compared:"         "${total_repos}"
+            echo ""
+            printf "  %-35s %s\n" "Total ACR tagged images:" "${total_acr_tags}"
+            printf "  %-35s %s\n" "Total ECR tagged images:" "${total_ecr_tags}"
+            echo ""
+            printf "  %-35s %s\n" "Matching (same tag both sides):" "${total_matched}"
+            printf "  %-35s %s\n" "Missing in ECR (ACR only):"      "${total_missing_in_ecr}"
+            printf "  %-35s %s\n" "Extra in ECR (not in ACR):"      "${total_missing_in_acr}"
+            if [ "$INCLUDE_UNTAGGED" = "true" ]; then
+              printf "  %-35s %s\n" "Untagged in ECR:"               "${total_ecr_untagged}"
+            fi
+            echo ""
+            echo "  Report file: ${REPORT_FILE}"
+            echo "========================================"
+          } | tee "$SUMMARY_FILE"
+
+          # Save report filename for later steps
+          echo "REPORT_FILE=${REPORT_FILE}" >> "$GITHUB_ENV"
+
+      # ── Upload CSV as workflow artifact (always available) ─────────────────
+      - name: Upload comparison report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: acr-ecr-comparison-report
+          path: "acr-ecr-comparison-*.csv"
+          retention-days: 90
+
+      # ── Optionally commit the CSV back to the repo ─────────────────────────
+      - name: Commit comparison report to repository
+        if: inputs.commit_report == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add acr-ecr-comparison-*.csv
+          git diff --cached --quiet || git commit -m "report: ACR vs ECR comparison $(date -u +%Y-%m-%d)"
+          git push
