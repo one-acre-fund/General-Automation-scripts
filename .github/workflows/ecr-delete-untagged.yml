@@ -44,10 +44,14 @@ jobs:
           total_repos=0
           total_deleted=0
           total_skipped=0
+          total_protected=0
 
           echo "==> Scanning ECR repos for untagged images..."
           echo "    Mapping file : ${MAPPING_FILE}"
           echo "    Dry run      : ${DRY_RUN}"
+          echo ""
+          echo "    NOTE: Child manifests referenced by tagged multi-arch"
+          echo "          manifest lists are PROTECTED and will not be deleted."
           echo ""
 
           while IFS= read -r item; do
@@ -61,10 +65,63 @@ jobs:
               continue
             fi
 
-            # List all untagged images (paginated)
+            # ── Step 1: build protected set from tagged manifest lists ────────
+            # Fetch all tagged image digests (paginated)
+            tagged_digests=()
+            next_token=""
+            while true; do
+              if [ -n "$next_token" ]; then
+                result=$(aws ecr list-images \
+                  --repository-name "${ecr_repo}" \
+                  --region "${AWS_REGION_VAR}" \
+                  --filter tagStatus=TAGGED \
+                  --starting-token "${next_token}" \
+                  --output json 2>/dev/null)
+              else
+                result=$(aws ecr list-images \
+                  --repository-name "${ecr_repo}" \
+                  --region "${AWS_REGION_VAR}" \
+                  --filter tagStatus=TAGGED \
+                  --output json 2>/dev/null)
+              fi
+              while IFS= read -r d; do
+                [ -z "$d" ] && continue
+                tagged_digests+=("$d")
+              done < <(echo "$result" | jq -r '.imageIds[].imageDigest // empty')
+              next_token=$(echo "$result" | jq -r '.nextToken // empty')
+              [ -z "$next_token" ] && break
+            done
+
+            # For each tagged image, fetch its manifest and extract child digests
+            # (only manifest lists / OCI index have a "manifests" array)
+            declare -A protected_digests
+            batch_size=100
+            i=0
+            while [ "$i" -lt "${#tagged_digests[@]}" ]; do
+              batch=("${tagged_digests[@]:$i:$batch_size}")
+              ids_json=$(printf '%s\n' "${batch[@]}" | jq -R '{imageDigest: .}' | jq -s '.')
+              manifests_raw=$(aws ecr batch-get-image \
+                --repository-name "${ecr_repo}" \
+                --region "${AWS_REGION_VAR}" \
+                --image-ids "$ids_json" \
+                --output json 2>/dev/null)
+
+              # Parse child digests from manifest lists
+              while IFS= read -r child_digest; do
+                [ -z "$child_digest" ] && continue
+                protected_digests["$child_digest"]=1
+              done < <(echo "$manifests_raw" | \
+                jq -r '.images[].imageManifest | fromjson? |
+                  select(.mediaType == "application/vnd.docker.distribution.manifest.list.v2+json"
+                      or .mediaType == "application/vnd.oci.image.index.v1+json") |
+                  .manifests[].digest' 2>/dev/null)
+
+              i=$((i + batch_size))
+            done
+
+            # ── Step 2: collect untagged images ───────────────────────────────
             image_digests=()
             next_token=""
-
             while true; do
               if [ -n "$next_token" ]; then
                 result=$(aws ecr list-images \
@@ -80,48 +137,61 @@ jobs:
                   --filter tagStatus=UNTAGGED \
                   --output json 2>/dev/null)
               fi
-
               count=$(echo "$result" | jq '.imageIds | length')
-              if [ "$count" -eq 0 ]; then
-                break
-              fi
-
-              # Collect digests
+              [ "$count" -eq 0 ] && break
               while IFS= read -r digest; do
+                [ -z "$digest" ] && continue
                 image_digests+=("$digest")
               done < <(echo "$result" | jq -r '.imageIds[].imageDigest')
-
               next_token=$(echo "$result" | jq -r '.nextToken // empty')
               [ -z "$next_token" ] && break
             done
 
-            repo_count=${#image_digests[@]}
-            if [ "$repo_count" -eq 0 ]; then
+            # ── Step 3: separate orphaned from protected ──────────────────────
+            orphaned=()
+            repo_protected=0
+            for digest in "${image_digests[@]}"; do
+              if [ -n "${protected_digests[$digest]+_}" ]; then
+                repo_protected=$((repo_protected + 1))
+              else
+                orphaned+=("$digest")
+              fi
+            done
+
+            total_protected=$((total_protected + repo_protected))
+            orphan_count=${#orphaned[@]}
+
+            if [ "${#image_digests[@]}" -eq 0 ]; then
               total_skipped=$((total_skipped + 1))
+              unset protected_digests
               continue
             fi
 
-            echo "    [${ecr_repo}] Found ${repo_count} untagged image(s)."
+            echo "    [${ecr_repo}] Untagged=${#image_digests[@]} | Protected(multi-arch children)=${repo_protected} | Orphaned(to delete)=${orphan_count}"
+
+            if [ "$orphan_count" -eq 0 ]; then
+              unset protected_digests
+              continue
+            fi
+
             total_repos=$((total_repos + 1))
 
             if [ "$DRY_RUN" = "true" ]; then
-              total_deleted=$((total_deleted + repo_count))
+              total_deleted=$((total_deleted + orphan_count))
+              unset protected_digests
               continue
             fi
 
-            # Delete in batches of 100 (ECR API limit)
+            # ── Step 4: delete orphaned untagged images in batches of 100 ─────
             i=0
-            while [ "$i" -lt "$repo_count" ]; do
-              batch=("${image_digests[@]:$i:100}")
-
-              # Build imageIds JSON array
-              ids_json=$(printf '%s\n' "${batch[@]}" | \
-                jq -R '{imageDigest: .}' | jq -s '.')
+            while [ "$i" -lt "$orphan_count" ]; do
+              batch=("${orphaned[@]:$i:100}")
+              ids_json=$(printf '%s\n' "${batch[@]}" | jq -R '{imageDigest: .}' | jq -s '.')
 
               if aws ecr batch-delete-image \
                   --repository-name "${ecr_repo}" \
                   --region "${AWS_REGION_VAR}" \
-                  --image-ids "${ids_json}" \
+                  --image-ids "$ids_json" \
                   --output json > /tmp/delete_result.json 2>&1; then
                 deleted=$(jq '.imageIds | length' /tmp/delete_result.json)
                 failed=$(jq '.failures | length' /tmp/delete_result.json)
@@ -140,20 +210,24 @@ jobs:
               i=$((i + 100))
             done
 
+            unset protected_digests
+
           done < <(jq -c '.[]' "$MAPPING_FILE")
 
           echo ""
           echo "========================================"
           if [ "$DRY_RUN" = "true" ]; then
             echo "==> DRY RUN complete."
-            echo "    Repos with untagged images : ${total_repos}"
-            echo "    Repos with no untagged     : ${total_skipped}"
-            echo "    Untagged images to delete  : ${total_deleted}"
+            echo "    Repos with orphaned untagged   : ${total_repos}"
+            echo "    Repos with no untagged         : ${total_skipped}"
+            echo "    Protected (multi-arch children): ${total_protected}"
+            echo "    Orphaned images to delete      : ${total_deleted}"
             echo ""
             echo "    Re-run with dry_run=false to actually delete."
           else
             echo "==> Cleanup complete."
-            echo "    Repos processed            : ${total_repos}"
-            echo "    Total untagged deleted     : ${total_deleted}"
+            echo "    Repos processed                : ${total_repos}"
+            echo "    Protected (multi-arch children): ${total_protected}"
+            echo "    Total orphaned deleted         : ${total_deleted}"
           fi
           echo "========================================"
