@@ -8,6 +8,11 @@ on:
         required: false
         default: 'total-acr-ecr-mapping.json'
         type: string
+      filter_repo:
+        description: 'Process only this ECR repo (e.g. airflow). Leave blank for all.'
+        required: false
+        default: ''
+        type: string
       dry_run:
         description: 'Dry run (list images to delete without actually deleting)'
         required: false
@@ -38,6 +43,7 @@ jobs:
       - name: Delete untagged images from ECR repos
         run: |
           MAPPING_FILE="${{ inputs.mapping_file }}"
+          FILTER_REPO="${{ inputs.filter_repo }}"
           DRY_RUN="${{ inputs.dry_run }}"
           AWS_REGION_VAR="${{ vars.AWS_REGION }}"
 
@@ -48,6 +54,7 @@ jobs:
 
           echo "==> Scanning ECR repos for untagged images..."
           echo "    Mapping file : ${MAPPING_FILE}"
+          echo "    Filter repo  : ${FILTER_REPO:-<all>}"
           echo "    Dry run      : ${DRY_RUN}"
           echo ""
           echo "    NOTE: Child manifests referenced by tagged multi-arch"
@@ -56,6 +63,11 @@ jobs:
 
           while IFS= read -r item; do
             ecr_repo=$(echo "$item" | jq -r '.ecr_repo')
+
+            # Apply single-repo filter if set
+            if [ -n "$FILTER_REPO" ] && [ "$ecr_repo" != "$FILTER_REPO" ]; then
+              continue
+            fi
 
             # Check if repo exists in ECR
             if ! aws ecr describe-repositories \

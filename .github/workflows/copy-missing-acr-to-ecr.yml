@@ -1,0 +1,372 @@
+name: Copy Missing ACR Tags to ECR (No Deletion)
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SAFETY CONTRACT
+# ─────────────────────────────────────────────────────────────────────────────
+# This workflow ONLY copies images that are in ACR but missing in ECR.
+#   • Nothing is deleted from ACR.
+#   • Nothing is deleted from ECR.
+#   • Tags already present in ECR are never overwritten.
+#   • ECR-only tags are left untouched.
+#
+# Two operating modes (controlled by the 'comparison_csv' input):
+#   1. CSV mode   — reads a pre-generated comparison report from the repo
+#                   (produced by the "Compare ACR vs ECR" workflow) and copies
+#                   every row whose status == MISSING_IN_ECR.
+#   2. Live mode  — fetches tags from ACR + ECR at runtime, diffs them, and
+#                   copies only the tags that are missing in ECR.
+# ─────────────────────────────────────────────────────────────────────────────
+
+on:
+  workflow_dispatch:
+    inputs:
+      mapping_file:
+        description: 'Mapping JSON file — used for live compare when no CSV is given'
+        required: false
+        default: 'total-acr-ecr-mapping.json'
+        type: string
+      comparison_csv:
+        description: |
+          (Optional) Path to an existing comparison CSV in the repo
+          e.g. acr-ecr-comparison-20260513-152449.csv
+          Leave blank to perform a live compare instead.
+        required: false
+        default: ''
+        type: string
+      filter_repo:
+        description: 'Copy only this ACR repo (e.g. airflow). Leave blank for all repos.'
+        required: false
+        default: ''
+        type: string
+      max_parallel:
+        description: 'Max number of tags to copy in parallel'
+        required: false
+        default: '10'
+        type: string
+      dry_run:
+        description: 'Dry run — list what would be copied without actually copying'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+permissions:
+  id-token: write
+  contents: read   # read-only — this workflow never commits anything
+
+jobs:
+  copy-missing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── ACR login (read-only: pull tags and images) ────────────────────────
+      - name: Azure Login with OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Docker Login to Azure Container Registry (read-only)
+        run: |
+          az acr login --name ${{ vars.AZURE_ACR_NAME }}
+
+      # ── ECR login (read + push for copy target) ────────────────────────────
+      - name: Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Docker Login to AWS ECR
+        run: |
+          aws ecr get-login-password --region ${{ vars.AWS_REGION }} | \
+          docker login --username AWS --password-stdin \
+            ${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com
+
+      # ── oras: used for manifest-level copy (no full layer re-download) ─────
+      - name: Install oras
+        run: |
+          ORAS_VERSION="1.2.3"
+          curl -sSLo oras.tar.gz \
+            https://github.com/oras-project/oras/releases/download/v${ORAS_VERSION}/oras_${ORAS_VERSION}_linux_amd64.tar.gz
+          tar -xzf oras.tar.gz oras
+          sudo mv oras /usr/local/bin/
+          oras version
+
+      # ── Main: identify missing tags and copy them ─────────────────────────
+      - name: Identify missing tagged images and copy ACR → ECR
+        run: |
+          # ── SAFETY REMINDER ──────────────────────────────────────────────────
+          # No delete commands are used anywhere in this script.
+          # Only: az acr repository show-tags (read), aws ecr list-images (read),
+          #        oras copy (write to ECR only).
+          # ────────────────────────────────────────────────────────────────────
+
+          ACR="${{ vars.AZURE_ACR_NAME }}.azurecr.io"
+          ECR="${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com"
+          MAX_PARALLEL="${{ inputs.max_parallel }}"
+          MAPPING_FILE="${{ inputs.mapping_file }}"
+          COMPARISON_CSV="${{ inputs.comparison_csv }}"
+          FILTER_REPO="${{ inputs.filter_repo }}"
+          DRY_RUN="${{ inputs.dry_run }}"
+
+          export AWS_REGION_VAR="${{ vars.AWS_REGION }}"
+          export ACR_REG="$ACR"
+          export ECR_REG="$ECR"
+          export AZURE_ACR_NAME="${{ vars.AZURE_ACR_NAME }}"
+          export DRY_RUN
+
+          WORK_FILE=$(mktemp)   # tab-delimited: acr_repo <TAB> ecr_repo <TAB> tag
+          ERROR_FILE=$(mktemp)
+          export ERROR_FILE
+
+          # ══════════════════════════════════════════════════════════════════════
+          # PHASE 1 — Build the list of MISSING_IN_ECR tagged images
+          # ══════════════════════════════════════════════════════════════════════
+
+          if [ -n "$COMPARISON_CSV" ] && [ -f "$COMPARISON_CSV" ]; then
+            # ── CSV Mode ──────────────────────────────────────────────────────
+            echo "==> Phase 1 [CSV mode]: Reading from: ${COMPARISON_CSV}"
+            echo "    Only rows with status=MISSING_IN_ECR will be queued."
+            echo ""
+
+            missing_count=0
+            skipped_count=0
+
+            while IFS=, read -r acr_repo ecr_repo tag in_acr in_ecr status; do
+              # Strip surrounding double-quotes from each field
+              acr_repo="${acr_repo//\"/}"
+              ecr_repo="${ecr_repo//\"/}"
+              tag="${tag//\"/}"
+              status="${status//\"/}"
+
+              # Skip the CSV header row
+              [ "$status" = "status" ] && continue
+
+              # Only queue rows that are missing in ECR
+              if [ "$status" != "MISSING_IN_ECR" ]; then
+                skipped_count=$((skipped_count + 1))
+                continue
+              fi
+
+              # Apply repo filter if specified
+              if [ -n "$FILTER_REPO" ] && [ "$acr_repo" != "$FILTER_REPO" ]; then
+                skipped_count=$((skipped_count + 1))
+                continue
+              fi
+
+              printf '%s\t%s\t%s\n' "${acr_repo}" "${ecr_repo}" "${tag}" >> "$WORK_FILE"
+              missing_count=$((missing_count + 1))
+            done < "$COMPARISON_CSV"
+
+            echo "    Queued  : ${missing_count} missing tag(s)"
+            echo "    Skipped : ${skipped_count} row(s) (MATCH / ECR_ONLY / filtered)"
+
+          elif [ -n "$COMPARISON_CSV" ] && [ ! -f "$COMPARISON_CSV" ]; then
+            # CSV was specified but not found — warn and fall back to live compare
+            echo "WARNING: Comparison CSV '${COMPARISON_CSV}' not found in the checkout."
+            echo "         Falling back to live compare."
+            echo ""
+            COMPARISON_CSV=""
+          fi
+
+          if [ -z "$COMPARISON_CSV" ]; then
+            # ── Live Mode ─────────────────────────────────────────────────────
+            echo "==> Phase 1 [live mode]: Comparing ACR vs ECR using mapping: ${MAPPING_FILE}"
+            echo "    (ACR read-only — no writes or deletes to ACR)"
+            echo ""
+
+            repo_count=0
+            total_missing=0
+
+            while IFS= read -r item; do
+              acr_repo=$(echo "$item" | jq -r '.acr_repo')
+              ecr_repo=$(echo "$item" | jq -r '.ecr_repo')
+
+              # Apply repo filter
+              if [ -n "$FILTER_REPO" ] && [ "$acr_repo" != "$FILTER_REPO" ]; then
+                continue
+              fi
+
+              # ── Fetch all tags in ACR repo (READ-ONLY) ─────────────────────
+              acr_tags=$(az acr repository show-tags \
+                --name "$AZURE_ACR_NAME" \
+                --repository "${acr_repo}" \
+                --output tsv 2>/tmp/acr_err.txt) || true
+
+              if [ -z "$acr_tags" ]; then
+                if grep -qi "not found\|does not exist\|No repository" /tmp/acr_err.txt 2>/dev/null; then
+                  echo "    SKIP [${acr_repo}]: repo not found in ACR"
+                else
+                  echo "    SKIP [${acr_repo}]: no tags in ACR"
+                fi
+                continue
+              fi
+
+              # ── Fetch all TAGGED images in ECR repo (READ-ONLY) ────────────
+              ECR_TAGS_FILE=$(mktemp)
+
+              if aws ecr describe-repositories \
+                  --repository-names "${ecr_repo}" \
+                  --region "$AWS_REGION_VAR" > /dev/null 2>&1; then
+
+                next_token=""
+                while true; do
+                  if [ -n "$next_token" ]; then
+                    result=$(aws ecr list-images \
+                      --repository-name "${ecr_repo}" \
+                      --region "$AWS_REGION_VAR" \
+                      --filter tagStatus=TAGGED \
+                      --starting-token "${next_token}" \
+                      --output json 2>/dev/null)
+                  else
+                    result=$(aws ecr list-images \
+                      --repository-name "${ecr_repo}" \
+                      --region "$AWS_REGION_VAR" \
+                      --filter tagStatus=TAGGED \
+                      --output json 2>/dev/null)
+                  fi
+                  echo "$result" | jq -r '.imageIds[].imageTag // empty' >> "$ECR_TAGS_FILE"
+                  next_token=$(echo "$result" | jq -r '.nextToken // empty')
+                  [ -z "$next_token" ] && break
+                done
+              fi
+              # ECR_TAGS_FILE now contains one tag per line (empty file = repo missing or empty)
+
+              # ── Diff: queue tags that are in ACR but NOT in ECR ────────────
+              missing=0
+              while IFS= read -r tag; do
+                [ -z "$tag" ] && continue
+                if ! grep -qxF "$tag" "$ECR_TAGS_FILE"; then
+                  printf '%s\t%s\t%s\n' "${acr_repo}" "${ecr_repo}" "${tag}" >> "$WORK_FILE"
+                  missing=$((missing + 1))
+                fi
+              done <<< "$acr_tags"
+
+              rm -f "$ECR_TAGS_FILE"
+
+              echo "    [${acr_repo}] ${missing} missing tag(s) queued"
+              repo_count=$((repo_count + 1))
+              total_missing=$((total_missing + missing))
+            done < <(jq -c '.[]' "$MAPPING_FILE")
+
+            echo ""
+            echo "    Scanned : ${repo_count} repo(s)"
+            echo "    Queued  : ${total_missing} missing tag(s)"
+          fi
+
+          # ══════════════════════════════════════════════════════════════════════
+          # PHASE 2 — Copy missing tags (or dry-run report)
+          # ══════════════════════════════════════════════════════════════════════
+
+          total=$(wc -l < "$WORK_FILE" | tr -d ' ')
+          echo ""
+          echo "==> Phase 1 complete: ${total} missing tagged image(s) identified."
+
+          if [ "$total" -eq 0 ]; then
+            echo "==> ECR is already up-to-date — nothing to copy. Exiting."
+            rm -f "$WORK_FILE" "$ERROR_FILE"
+            exit 0
+          fi
+
+          # ── Dry run: print the plan and exit ──────────────────────────────
+          if [ "$DRY_RUN" = "true" ]; then
+            echo ""
+            echo "==> DRY RUN — the following ${total} image(s) WOULD be copied (no actual copy):"
+            while IFS=$'\t' read -r acr_repo ecr_repo tag; do
+              echo "    ${ACR_REG}/${acr_repo}:${tag}"
+              echo "      → ${ECR_REG}/${ecr_repo}:${tag}"
+            done < "$WORK_FILE"
+            rm -f "$WORK_FILE" "$ERROR_FILE"
+            exit 0
+          fi
+
+          # ── Pre-create any missing ECR repos (sequential, avoids race) ────
+          echo ""
+          echo "==> Pre-creating any missing ECR repositories..."
+          cut -f2 "$WORK_FILE" | sort -u | while IFS= read -r ecr_repo; do
+            if ! aws ecr describe-repositories \
+                --repository-names "${ecr_repo}" \
+                --region "$AWS_REGION_VAR" > /dev/null 2>&1; then
+              if aws ecr create-repository \
+                  --repository-name "${ecr_repo}" \
+                  --region "$AWS_REGION_VAR" \
+                  --image-scanning-configuration scanOnPush=true > /dev/null 2>&1; then
+                echo "    Created ECR repo: ${ecr_repo}"
+              else
+                echo "WARNING: Could not create ECR repo: ${ecr_repo}"
+              fi
+            fi
+          done
+
+          # ── Copy tags in parallel ──────────────────────────────────────────
+          echo ""
+          echo "==> Phase 2: Copying ${total} missing tag(s) to ECR (parallel=${MAX_PARALLEL})..."
+          echo "    SAFETY: No images are deleted from ACR or ECR."
+          echo ""
+
+          copy_tag() {
+            local acr_repo ecr_repo tag src dst
+            acr_repo=$(printf '%s' "$1" | cut -f1)
+            ecr_repo=$(printf '%s' "$1" | cut -f2)
+            tag=$(printf '%s' "$1" | cut -f3)
+            src="${ACR_REG}/${acr_repo}:${tag}"
+            dst="${ECR_REG}/${ecr_repo}:${tag}"
+
+            # Final guard: double-check the tag is still missing before copying.
+            # (Handles cases where the same tag appears twice in the CSV or was
+            # pushed to ECR between the compare and now.)
+            if aws ecr describe-images \
+                --repository-name "${ecr_repo}" \
+                --image-ids imageTag="${tag}" \
+                --region "$AWS_REGION_VAR" > /dev/null 2>&1; then
+              echo "    [${acr_repo}:${tag}] Already in ECR — skipped."
+              return 0
+            fi
+
+            echo "    Copying ${acr_repo}:${tag} → ECR..."
+            if oras copy "${src}" "${dst}" 2>&1; then
+              echo "    OK: ${acr_repo}:${tag}"
+            else
+              local msg="ERROR: [${acr_repo}:${tag}] oras copy failed"
+              echo "$msg"
+              echo "$msg" >> "$ERROR_FILE"
+            fi
+          }
+
+          export -f copy_tag
+
+          active=0
+          while IFS= read -r line; do
+            copy_tag "$line" &
+            active=$((active + 1))
+            if [ "$active" -ge "$MAX_PARALLEL" ]; then
+              wait -n 2>/dev/null || wait
+              active=$((active - 1))
+            fi
+          done < "$WORK_FILE"
+
+          wait
+          rm -f "$WORK_FILE"
+
+          # ── Final summary ──────────────────────────────────────────────────
+          echo ""
+          echo "========================================"
+          if [ -s "$ERROR_FILE" ]; then
+            fail_count=$(wc -l < "$ERROR_FILE" | tr -d ' ')
+            echo "==> Copy finished with ${fail_count} FAILED tag(s):"
+            cat "$ERROR_FILE"
+            rm -f "$ERROR_FILE"
+            exit 1
+          else
+            echo "==> SUCCESS: All ${total} missing tag(s) copied from ACR to ECR."
+            echo "==> No images were deleted from ACR or ECR."
+            rm -f "$ERROR_FILE"
+            exit 0
+          fi
