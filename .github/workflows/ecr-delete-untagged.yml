@@ -22,6 +22,9 @@ on:
           - 'true'
           - 'false'
 
+# ACR is NOT accessed by this workflow at all.
+# All operations are ECR-side only: list untagged digests, batch-delete from ECR.
+# No az acr login, az acr repository delete, or any ACR command is present.
 permissions:
   id-token: write
   contents: read

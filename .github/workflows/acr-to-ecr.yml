@@ -19,9 +19,12 @@ on:
         default: '10'
         type: string
 
+# ACR is READ-ONLY (source) throughout this workflow.
+# Only az acr repository show-tags (list) and oras copy SOURCE pull are used.
+# No az acr repository delete, docker push to ACR, or any ACR write command is present.
 permissions:
   id-token: write
-  contents: write
+  contents: write   # needed only to commit the README summary — not related to ACR
 
 jobs:
   migrate-images:
@@ -38,7 +41,9 @@ jobs:
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Docker Login to Azure Container Registry
+      - name: Docker Login to Azure Container Registry (read-only — pull source images only)
+        # ACR is the source. This login is used exclusively for oras copy SOURCE pull.
+        # No docker push, az acr repository delete, or any write operation is performed on ACR.
         run: |
           az acr login --name ${{ vars.AZURE_ACR_NAME }}
 
