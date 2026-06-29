@@ -228,7 +228,7 @@ jobs:
           echo "========================================"
 
       - name: Generate ACR vs ECR comparison CSV
-        if: always()
+        if: always() && inputs.filter_repo == ''
         run: |
           MAPPING_FILE="${{ inputs.mapping_file }}"
           AZURE_ACR_NAME_VAR="${{ vars.AZURE_ACR_NAME }}"
@@ -260,7 +260,7 @@ jobs:
             fi
 
             # ACR: total manifest count (tagged + untagged child manifests from image indexes)
-            acr_manifest_count=$(az acr manifest list-metadata \
+            acr_manifest_count=$(az acr repository show-manifests \
               --name "$AZURE_ACR_NAME_VAR" \
               --repository "${acr_repo}" \
               --output json 2>/dev/null \
@@ -323,7 +323,7 @@ jobs:
           fi
 
       - name: Commit and push comparison report
-        if: always()
+        if: always() && inputs.filter_repo == ''
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
