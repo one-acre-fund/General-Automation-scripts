@@ -260,11 +260,13 @@ jobs:
             fi
 
             # ACR: total manifest count (tagged + untagged child manifests from image indexes)
+            # --detail is required to enumerate ALL manifests including untagged children of image indexes
             acr_manifest_count=$(az acr repository show-manifests \
               --name "$AZURE_ACR_NAME_VAR" \
               --repository "${acr_repo}" \
+              --detail \
               --output json 2>/dev/null \
-              | jq 'length' 2>/dev/null || echo 0)
+              | jq 'length // 0' 2>/dev/null || echo 0)
             acr_manifest_count=${acr_manifest_count:-0}
 
             # ECR: tagged count
@@ -277,11 +279,13 @@ jobs:
             ecr_tag_count=${ecr_tag_count:-0}
 
             # ECR: total manifest count (tagged + untagged child manifests)
-            ecr_manifest_count=$(aws ecr describe-images \
+            # AWS CLI v2 auto-paginates; list-images with tagStatus=ALL counts every manifest
+            ecr_manifest_count=$(aws ecr list-images \
               --repository-name "${ecr_repo}" \
               --region "$AWS_REGION_VAR" \
+              --filter tagStatus=ANY \
               --output json 2>/dev/null \
-              | jq '.imageDetails | length' 2>/dev/null || echo 0)
+              | jq '.imageIds | length // 0' 2>/dev/null || echo 0)
             ecr_manifest_count=${ecr_manifest_count:-0}
 
             if [ "$acr_tag_count" -eq "$ecr_tag_count" ]; then
@@ -325,8 +329,14 @@ jobs:
       - name: Commit and push comparison report
         if: always() && inputs.filter_repo == ''
         run: |
+          if [ -z "${REPORT_FILE}" ] || [ ! -f "${REPORT_FILE}" ]; then
+            echo "No report file found, skipping commit."
+            exit 0
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "${REPORT_FILE}"
-          git diff --cached --quiet || git commit -m "chore: add ACR→ECR comparison report ${REPORT_FILE} [skip ci]"
+          git diff --cached --quiet && echo "Nothing to commit." && exit 0
+          git commit -m "chore: add ACR→ECR comparison report ${REPORT_FILE} [skip ci]"
+          git pull --rebase
           git push
