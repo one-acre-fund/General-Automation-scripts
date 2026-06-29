@@ -63,12 +63,11 @@ jobs:
           aws ecr get-login-password --region ${{ vars.AWS_REGION }} | \
           docker login --username AWS --password-stdin ${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com
 
-      - name: Install oras
+      - name: Install skopeo (ensure latest)
         run: |
-          ORAS_VERSION="1.2.3"
-          curl -sSLo oras.tar.gz https://github.com/oras-project/oras/releases/download/v${ORAS_VERSION}/oras_${ORAS_VERSION}_linux_amd64.tar.gz
-          tar -xzf oras.tar.gz oras
-          sudo mv oras /usr/local/bin/
+          # skopeo is pre-installed on ubuntu-latest; upgrade if needed
+          skopeo --version
+          echo "skopeo ready."
 
       - name: Migrate images using mapping file
         run: |
@@ -162,7 +161,7 @@ jobs:
           echo "==> Phase 2: Copying tags (parallel=${MAX_PARALLEL})..."
 
           copy_tag() {
-            local acr_repo ecr_repo tag src dst oras_err
+            local acr_repo ecr_repo tag src dst
 
             acr_repo=$(printf '%s' "$1" | cut -f1)
             ecr_repo=$(printf '%s' "$1" | cut -f2)
@@ -171,8 +170,8 @@ jobs:
             dst="${ECR_REG}/${ecr_repo}:${tag}"
 
             # Skip if tag already exists in ECR — unless force_recopy is set.
-            # force_recopy=true is needed to fix tags previously copied as a single
-            # leaf manifest (no image index) rather than a full multi-arch index.
+            # force_recopy=true re-copies tags previously stored as leaf manifests
+            # (missing child platform manifests) to restore full multi-arch indexes.
             if [ "${FORCE_RECOPY}" != "true" ]; then
               if aws ecr describe-images \
                   --repository-name "${ecr_repo}" \
@@ -184,17 +183,19 @@ jobs:
             fi
 
             echo "    [${acr_repo}] Copying :${tag}..."
-            # Full copy: preserves the complete image index (all platforms + OCI artifacts).
-            # Each job uses its own temp file to avoid race conditions under parallel execution.
-            oras_err=$(mktemp)
-            if oras copy "${src}" "${dst}" 2>"$oras_err"; then
+            # skopeo copy --all copies the full manifest list / image index including
+            # every child platform manifest (amd64, arm64, etc.) and OCI artifacts.
+            # This is the correct tool for Docker multi-arch images — oras does not
+            # push child manifests as separate ECR entries for Docker manifest lists.
+            if skopeo copy --all \
+                "docker://${src}" \
+                "docker://${dst}" 2>&1; then
               echo "    [${acr_repo}:${tag}] OK"
             else
-              msg="ERROR: [${acr_repo}:${tag}] oras copy failed."
-              echo "$msg"; cat "$oras_err"
+              msg="ERROR: [${acr_repo}:${tag}] skopeo copy failed."
+              echo "$msg"
               echo "$msg" >> "$ERROR_FILE"
             fi
-            rm -f "$oras_err"
           }
 
           export -f copy_tag
