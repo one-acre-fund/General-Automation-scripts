@@ -213,6 +213,59 @@ jobs:
           wait
           rm -f "$WORK_FILE"
 
+          # ── Phase 3: copy any untagged/orphaned ACR manifests by digest ──
+          # ACR stores child platform manifests and orphaned blobs as untagged manifests.
+          # Phase 2 (tag-based copy) does not reach these. We enumerate every manifest
+          # digest in ACR and copy any that are missing from ECR.
+          echo ""
+          echo "==> Phase 3: Syncing untagged/orphaned ACR manifests by digest..."
+
+          while IFS= read -r item; do
+            acr_repo=$(echo "$item" | jq -r '.acr_repo')
+            ecr_repo=$(echo "$item" | jq -r '.ecr_repo')
+
+            # Apply single-repo filter if set
+            if [ -n "$FILTER_REPO" ] && [ "$acr_repo" != "$FILTER_REPO" ]; then
+              continue
+            fi
+
+            acr_digests=$(az acr repository show-manifests \
+              --name "$AZURE_ACR_NAME" \
+              --repository "${acr_repo}" \
+              --detail \
+              --output json 2>/dev/null \
+              | jq -r '.[].digest' 2>/dev/null || true)
+
+            [ -z "$acr_digests" ] && continue
+
+            while IFS= read -r digest; do
+              [ -z "$digest" ] && continue
+
+              # Check if digest already exists in ECR
+              exists=$(aws ecr batch-get-image \
+                --repository-name "${ecr_repo}" \
+                --image-ids imageDigest="${digest}" \
+                --region "$AWS_REGION_VAR" \
+                --output json 2>/dev/null \
+                | jq '.images | length' 2>/dev/null || echo 0)
+
+              if [ "${exists:-0}" -gt 0 ]; then
+                continue
+              fi
+
+              echo "    [${acr_repo}@${digest:7:12}] Copying untagged manifest..."
+              if skopeo copy --all \
+                  "docker://${ACR_REG}/${acr_repo}@${digest}" \
+                  "docker://${ECR_REG}/${ecr_repo}@${digest}" 2>&1; then
+                echo "    [${acr_repo}@${digest:7:12}] OK"
+              else
+                echo "WARNING: [${acr_repo}@${digest:7:12}] skopeo copy failed (orphaned manifest may have missing layers, skipping)."
+              fi
+            done <<< "$acr_digests"
+          done < <(jq -c '.[]' "$MAPPING_FILE")
+
+          echo "==> Phase 3 complete."
+
           # ── Final summary ──
           echo ""
           echo "========================================"
