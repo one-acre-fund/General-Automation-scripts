@@ -15,7 +15,7 @@ on:
         type: string
 
 # Read-only: no writes to ACR or ECR.
-# Only az acr repository show-tags / show-manifests (list) and aws ecr list-images (list) are used.
+# Uses: az acr repository show (manifestCount + tagCount), aws ecr list-images (tag lists)
 permissions:
   id-token: write
   contents: write   # needed only to commit the CSV report
@@ -49,7 +49,14 @@ jobs:
           FILTER_REPO="${{ inputs.filter_repo }}"
           REPORT_FILE="acr-ecr-comparison-$(date -u '+%Y%m%d-%H%M%S').csv"
 
-          echo "acr_repo,ecr_repo,acr_tags,acr_manifests,ecr_tags,ecr_manifests,tags_match,manifests_match" > "$REPORT_FILE"
+          # CSV columns:
+          # acr_repo, ecr_repo,
+          # acr_tag_count, acr_manifest_count,
+          # ecr_tag_count, ecr_manifest_count,
+          # acr_only_tags  (tags in ACR but NOT in ECR — not yet copied)
+          # ecr_only_tags  (tags in ECR but NOT in ACR — extra in ECR)
+          # tags_match, manifests_match
+          echo "acr_repo,ecr_repo,acr_tags,acr_manifests,ecr_tags,ecr_manifests,acr_only_tags,ecr_only_tags,tags_match,manifests_match" > "$REPORT_FILE"
 
           total_repos=0
           mismatch_count=0
@@ -57,10 +64,12 @@ jobs:
           total_acr_manifests=0
           total_ecr_tags=0
           total_ecr_manifests=0
+          total_acr_only=0
+          total_ecr_only=0
 
-          printf '\n%-50s %9s %13s %9s %14s %11s %16s\n' \
-            "REPO" "ACR_TAGS" "ACR_MANIFESTS" "ECR_TAGS" "ECR_MANIFESTS" "TAGS_MATCH" "MANIFESTS_MATCH"
-          printf '%0.s-' {1..125}; echo
+          printf '\n%-45s %9s %13s %9s %14s %10s %10s %11s %16s\n' \
+            "REPO" "ACR_TAGS" "ACR_MANIFESTS" "ECR_TAGS" "ECR_MANIFESTS" "ACR_ONLY" "ECR_ONLY" "TAGS_MATCH" "MANIFESTS_MATCH"
+          printf '%0.s-' {1..145}; echo
 
           while IFS= read -r item; do
             acr_repo=$(echo "$item" | jq -r '.acr_repo')
@@ -71,45 +80,58 @@ jobs:
               continue
             fi
 
-            # ACR: tagged count
-            acr_tags=$(az acr repository show-tags \
+            # ── ACR: tag count + manifest count via az acr repository show ──
+            # This single call returns both tagCount and manifestCount reliably.
+            acr_info=$(az acr repository show \
               --name "$AZURE_ACR_NAME_VAR" \
               --repository "${acr_repo}" \
-              --output tsv 2>&1) || acr_tags=""
-            if [ -n "$acr_tags" ]; then
-              acr_tag_count=$(echo "$acr_tags" | grep -c . || true)
-            else
-              acr_tag_count=0
-            fi
-
-            # ACR: total manifest count (tagged + untagged child manifests from image indexes)
-            acr_manifest_count=$(az acr repository show-manifests \
-              --name "$AZURE_ACR_NAME_VAR" \
-              --repository "${acr_repo}" \
-              --detail \
-              --output json 2>&1 \
-              | jq 'length // 0' 2>/dev/null || echo 0)
+              --output json 2>/dev/null || echo '{}')
+            acr_tag_count=$(echo "$acr_info" | jq -r '.tagCount // 0')
+            acr_manifest_count=$(echo "$acr_info" | jq -r '.manifestCount // 0')
+            acr_tag_count=${acr_tag_count:-0}
             acr_manifest_count=${acr_manifest_count:-0}
 
-            # ECR: tagged count
-            ecr_tag_count=$(aws ecr list-images \
-              --repository-name "${ecr_repo}" \
-              --region "$AWS_REGION_VAR" \
-              --filter tagStatus=TAGGED \
-              --output json 2>/dev/null \
-              | jq -r '(.imageIds // []) | length' 2>/dev/null || echo 0)
-            ecr_tag_count=${ecr_tag_count:-0}
+            # ACR tag list (for diff)
+            acr_tags_list=$(az acr repository show-tags \
+              --name "$AZURE_ACR_NAME_VAR" \
+              --repository "${acr_repo}" \
+              --output tsv 2>/dev/null | sort || true)
 
-            # ECR: total manifest count (tagged + untagged — AWS CLI v2 auto-paginates)
-            ecr_manifest_count=$(aws ecr list-images \
+            # ── ECR: tag count + manifest count ──
+            ecr_images=$(aws ecr list-images \
               --repository-name "${ecr_repo}" \
               --region "$AWS_REGION_VAR" \
               --filter tagStatus=ANY \
-              --output json 2>/dev/null \
-              | jq '.imageIds | length // 0' 2>/dev/null || echo 0)
+              --output json 2>/dev/null || echo '{"imageIds":[]}')
+
+            ecr_tag_count=$(echo "$ecr_images" \
+              | jq '[.imageIds[] | select(.imageTag != null)] | length // 0')
+            ecr_manifest_count=$(echo "$ecr_images" \
+              | jq '.imageIds | length // 0')
+            ecr_tag_count=${ecr_tag_count:-0}
             ecr_manifest_count=${ecr_manifest_count:-0}
 
-            if [ "$acr_tag_count" -eq "$ecr_tag_count" ]; then
+            # ECR tag list (for diff)
+            ecr_tags_list=$(echo "$ecr_images" \
+              | jq -r '.imageIds[] | select(.imageTag != null) | .imageTag' \
+              | sort 2>/dev/null || true)
+
+            # ── Tag diff: ACR-only and ECR-only ──
+            acr_only_count=0
+            ecr_only_count=0
+            if [ -n "$acr_tags_list" ] || [ -n "$ecr_tags_list" ]; then
+              acr_only_count=$(comm -23 \
+                <(echo "$acr_tags_list") \
+                <(echo "$ecr_tags_list") \
+                | grep -c . || true)
+              ecr_only_count=$(comm -13 \
+                <(echo "$acr_tags_list") \
+                <(echo "$ecr_tags_list") \
+                | grep -c . || true)
+            fi
+
+            # ── Match checks ──
+            if [ "$acr_tag_count" -eq "$ecr_tag_count" ] && [ "$acr_only_count" -eq 0 ] && [ "$ecr_only_count" -eq 0 ]; then
               tags_match="YES"
             else
               tags_match="NO"
@@ -123,26 +145,33 @@ jobs:
 
             if [ "$tags_match" != "YES" ] || [ "$manifests_match" != "YES" ]; then
               mismatch_count=$((mismatch_count + 1))
-              echo "::warning::MISMATCH [${acr_repo}] ACR tags=${acr_tag_count} manifests=${acr_manifest_count} | ECR tags=${ecr_tag_count} manifests=${ecr_manifest_count}"
+              echo "::warning::MISMATCH [${acr_repo}] ACR tags=${acr_tag_count} manifests=${acr_manifest_count} acr_only=${acr_only_count} | ECR tags=${ecr_tag_count} manifests=${ecr_manifest_count} ecr_only=${ecr_only_count}"
             fi
 
-            echo "${acr_repo},${ecr_repo},${acr_tag_count},${acr_manifest_count},${ecr_tag_count},${ecr_manifest_count},${tags_match},${manifests_match}" >> "$REPORT_FILE"
-            printf '%-50s %9s %13s %9s %14s %11s %16s\n' \
-              "${acr_repo}" "${acr_tag_count}" "${acr_manifest_count}" "${ecr_tag_count}" "${ecr_manifest_count}" "${tags_match}" "${manifests_match}"
+            echo "${acr_repo},${ecr_repo},${acr_tag_count},${acr_manifest_count},${ecr_tag_count},${ecr_manifest_count},${acr_only_count},${ecr_only_count},${tags_match},${manifests_match}" >> "$REPORT_FILE"
+            printf '%-45s %9s %13s %9s %14s %10s %10s %11s %16s\n' \
+              "${acr_repo}" "${acr_tag_count}" "${acr_manifest_count}" \
+              "${ecr_tag_count}" "${ecr_manifest_count}" \
+              "${acr_only_count}" "${ecr_only_count}" \
+              "${tags_match}" "${manifests_match}"
 
             total_repos=$((total_repos + 1))
             total_acr_tags=$((total_acr_tags + acr_tag_count))
             total_acr_manifests=$((total_acr_manifests + acr_manifest_count))
             total_ecr_tags=$((total_ecr_tags + ecr_tag_count))
             total_ecr_manifests=$((total_ecr_manifests + ecr_manifest_count))
+            total_acr_only=$((total_acr_only + acr_only_count))
+            total_ecr_only=$((total_ecr_only + ecr_only_count))
           done < <(jq -c '.[]' "$MAPPING_FILE")
 
-          # Summary row in CSV
-          echo "TOTAL,,${total_acr_tags},${total_acr_manifests},${total_ecr_tags},${total_ecr_manifests},," >> "$REPORT_FILE"
+          # TOTAL summary row
+          echo "TOTAL,,${total_acr_tags},${total_acr_manifests},${total_ecr_tags},${total_ecr_manifests},${total_acr_only},${total_ecr_only},," >> "$REPORT_FILE"
 
-          printf '%0.s-' {1..125}; echo
-          printf '%-50s %9s %13s %9s %14s\n' \
-            "TOTAL" "${total_acr_tags}" "${total_acr_manifests}" "${total_ecr_tags}" "${total_ecr_manifests}"
+          printf '%0.s-' {1..145}; echo
+          printf '%-45s %9s %13s %9s %14s %10s %10s\n' \
+            "TOTAL" "${total_acr_tags}" "${total_acr_manifests}" \
+            "${total_ecr_tags}" "${total_ecr_manifests}" \
+            "${total_acr_only}" "${total_ecr_only}"
 
           echo ""
           echo "========================================"
@@ -153,6 +182,8 @@ jobs:
           echo "Total ACR manifests  : ${total_acr_manifests}"
           echo "Total ECR tags       : ${total_ecr_tags}"
           echo "Total ECR manifests  : ${total_ecr_manifests}"
+          echo "Tags in ACR only     : ${total_acr_only}  (not yet in ECR)"
+          echo "Tags in ECR only     : ${total_ecr_only}  (extra in ECR)"
           echo "Report saved to      : ${REPORT_FILE}"
           echo "========================================"
 
