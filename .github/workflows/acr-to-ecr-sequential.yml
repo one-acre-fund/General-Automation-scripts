@@ -1,0 +1,206 @@
+name: Migrate ACR to ECR (Sequential — One by One)
+
+on:
+  workflow_dispatch:
+    inputs:
+      mapping_file:
+        description: 'Mapping JSON file to use'
+        required: false
+        default: 'acr-ecr-mapping.json'
+        type: string
+      filter_repo:
+        description: 'Migrate only this ACR repo (e.g. oneacrefund/odoo). Leave blank for all.'
+        required: false
+        default: ''
+        type: string
+      force_recopy:
+        description: 'Force re-copy even if tag already exists in ECR'
+        required: false
+        default: 'false'
+        type: string
+
+# ACR is READ-ONLY. No deletes on ACR or ECR.
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  migrate-images:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Azure Login with OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Docker Login to Azure Container Registry (read-only)
+        run: |
+          az acr login --name ${{ vars.AZURE_ACR_NAME }}
+
+      - name: Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Docker Login to AWS ECR
+        run: |
+          aws ecr get-login-password --region ${{ vars.AWS_REGION }} | \
+          docker login --username AWS --password-stdin \
+            ${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com
+
+      - name: Install skopeo
+        run: skopeo --version && echo "skopeo ready."
+
+      - name: Migrate images — sequential, one tag at a time
+        run: |
+          ACR="${{ vars.AZURE_ACR_NAME }}.azurecr.io"
+          ECR="${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com"
+          MAPPING_FILE="${{ inputs.mapping_file }}"
+          FILTER_REPO="${{ inputs.filter_repo }}"
+          FORCE_RECOPY="${{ inputs.force_recopy }}"
+          AWS_REGION_VAR="${{ vars.AWS_REGION }}"
+          AZURE_ACR_NAME="${{ vars.AZURE_ACR_NAME }}"
+
+          total_copied=0
+          total_skipped=0
+          total_failed=0
+          failed_list=""
+
+          while IFS= read -r item; do
+            acr_repo=$(echo "$item" | jq -r '.acr_repo')
+            ecr_repo=$(echo "$item" | jq -r '.ecr_repo')
+
+            # Apply single-repo filter if set
+            if [ -n "$FILTER_REPO" ] && [ "$acr_repo" != "$FILTER_REPO" ]; then
+              continue
+            fi
+
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "  Repo: ${acr_repo}"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+            # Fetch tags from ACR
+            acr_err=$(mktemp)
+            tags=$(az acr repository show-tags \
+              --name "$AZURE_ACR_NAME" \
+              --repository "${acr_repo}" \
+              --output tsv 2>"$acr_err") || true
+
+            if [ -z "$tags" ]; then
+              if grep -qi "not found\|does not exist\|repository.*not found\|No repository" "$acr_err" 2>/dev/null; then
+                echo "  SKIP: Does not exist in ACR."
+              else
+                echo "  SKIP: No tags found (empty repo)."
+              fi
+              rm -f "$acr_err"
+              continue
+            fi
+            rm -f "$acr_err"
+
+            tag_count=$(echo "$tags" | grep -c . || true)
+            echo "  Tags found: ${tag_count}"
+
+            # Ensure ECR repo exists
+            if ! aws ecr describe-repositories \
+                --repository-names "${ecr_repo}" \
+                --region "$AWS_REGION_VAR" > /dev/null 2>&1; then
+              echo "  Creating ECR repo: ${ecr_repo}"
+              aws ecr create-repository \
+                --repository-name "${ecr_repo}" \
+                --region "$AWS_REGION_VAR" \
+                --image-scanning-configuration scanOnPush=true > /dev/null
+            fi
+
+            # Copy each tag one by one
+            while IFS= read -r tag; do
+              [ -z "$tag" ] && continue
+
+              src="${ACR}/${acr_repo}:${tag}"
+              dst="${ECR}/${ecr_repo}:${tag}"
+
+              # Skip if already in ECR (unless force_recopy)
+              if [ "$FORCE_RECOPY" != "true" ]; then
+                if aws ecr describe-images \
+                    --repository-name "${ecr_repo}" \
+                    --image-ids imageTag="${tag}" \
+                    --region "$AWS_REGION_VAR" > /dev/null 2>&1; then
+                  echo "  [${tag}] Already in ECR, skipping."
+                  total_skipped=$((total_skipped + 1))
+                  continue
+                fi
+              fi
+
+              echo "  [${tag}] Copying..."
+              if skopeo copy --all \
+                  "docker://${src}" \
+                  "docker://${dst}" 2>&1; then
+                echo "  [${tag}] OK"
+                total_copied=$((total_copied + 1))
+              else
+                echo "  [${tag}] FAILED"
+                total_failed=$((total_failed + 1))
+                failed_list="${failed_list}\n  ${acr_repo}:${tag}"
+              fi
+
+            done <<< "$tags"
+
+            # Phase 2: copy untagged/orphaned manifests by digest
+            echo "  Checking for untagged manifests..."
+            acr_digests=$(az acr repository show-manifests \
+              --name "$AZURE_ACR_NAME" \
+              --repository "${acr_repo}" \
+              --detail \
+              --output json 2>/dev/null \
+              | jq -r '.[].digest' 2>/dev/null || true)
+
+            if [ -n "$acr_digests" ]; then
+              while IFS= read -r digest; do
+                [ -z "$digest" ] && continue
+
+                exists=$(aws ecr batch-get-image \
+                  --repository-name "${ecr_repo}" \
+                  --image-ids imageDigest="${digest}" \
+                  --region "$AWS_REGION_VAR" \
+                  --output json 2>/dev/null \
+                  | jq '.images | length' 2>/dev/null || echo 0)
+
+                if [ "${exists:-0}" -gt 0 ]; then
+                  continue
+                fi
+
+                echo "  [@${digest:7:12}] Copying untagged manifest..."
+                if skopeo copy --all \
+                    "docker://${ACR}/${acr_repo}@${digest}" \
+                    "docker://${ECR}/${ecr_repo}@${digest}" 2>&1; then
+                  echo "  [@${digest:7:12}] OK"
+                  total_copied=$((total_copied + 1))
+                else
+                  echo "  [@${digest:7:12}] WARNING: copy failed (orphaned manifest may have missing layers, skipping)."
+                fi
+              done <<< "$acr_digests"
+            fi
+
+          done < <(jq -c '.[]' "$MAPPING_FILE")
+
+          # ── Final summary ──
+          echo ""
+          echo "========================================"
+          echo "  Tags copied  : ${total_copied}"
+          echo "  Tags skipped : ${total_skipped} (already in ECR)"
+          echo "  Tags failed  : ${total_failed}"
+          echo "========================================"
+
+          if [ "$total_failed" -gt 0 ]; then
+            echo ""
+            echo "Failed tags:"
+            printf "%b\n" "$failed_list"
+            exit 1
+          fi
