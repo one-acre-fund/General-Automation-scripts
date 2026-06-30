@@ -1,0 +1,3 @@
+acr_repo,ecr_repo,acr_tags,acr_manifests,ecr_tags,ecr_manifests,acr_only_tags,acr_synced,tags_equal,manifests_match,ecr_only_tags
+airflow,airflow,77,291,88,291,0,YES,YES,YES,11
+TOTAL,,77,291,88,291,0,,,,11,77
