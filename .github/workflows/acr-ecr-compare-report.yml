@@ -1,0 +1,179 @@
+name: ACR vs ECR Comparison Report
+
+on:
+  workflow_dispatch:
+    inputs:
+      mapping_file:
+        description: 'Mapping JSON file to use'
+        required: false
+        default: 'acr-ecr-mapping.json'
+        type: string
+      filter_repo:
+        description: 'Compare only this repo (e.g. airflow). Leave blank for all.'
+        required: false
+        default: ''
+        type: string
+
+# Read-only: no writes to ACR or ECR.
+# Only az acr repository show-tags / show-manifests (list) and aws ecr list-images (list) are used.
+permissions:
+  id-token: write
+  contents: write   # needed only to commit the CSV report
+
+jobs:
+  compare-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Azure Login with OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Generate ACR vs ECR comparison CSV
+        run: |
+          MAPPING_FILE="${{ inputs.mapping_file }}"
+          AZURE_ACR_NAME_VAR="${{ vars.AZURE_ACR_NAME }}"
+          AWS_REGION_VAR="${{ vars.AWS_REGION }}"
+          FILTER_REPO="${{ inputs.filter_repo }}"
+          REPORT_FILE="acr-ecr-comparison-$(date -u '+%Y%m%d-%H%M%S').csv"
+
+          echo "acr_repo,ecr_repo,acr_tags,acr_manifests,ecr_tags,ecr_manifests,tags_match,manifests_match" > "$REPORT_FILE"
+
+          total_repos=0
+          mismatch_count=0
+          total_acr_tags=0
+          total_acr_manifests=0
+          total_ecr_tags=0
+          total_ecr_manifests=0
+
+          printf '\n%-50s %9s %13s %9s %14s %11s %16s\n' \
+            "REPO" "ACR_TAGS" "ACR_MANIFESTS" "ECR_TAGS" "ECR_MANIFESTS" "TAGS_MATCH" "MANIFESTS_MATCH"
+          printf '%0.s-' {1..125}; echo
+
+          while IFS= read -r item; do
+            acr_repo=$(echo "$item" | jq -r '.acr_repo')
+            ecr_repo=$(echo "$item" | jq -r '.ecr_repo')
+
+            # Apply single-repo filter if set
+            if [ -n "$FILTER_REPO" ] && [ "$acr_repo" != "$FILTER_REPO" ]; then
+              continue
+            fi
+
+            # ACR: tagged count
+            acr_tags=$(az acr repository show-tags \
+              --name "$AZURE_ACR_NAME_VAR" \
+              --repository "${acr_repo}" \
+              --output tsv 2>&1) || acr_tags=""
+            if [ -n "$acr_tags" ]; then
+              acr_tag_count=$(echo "$acr_tags" | grep -c . || true)
+            else
+              acr_tag_count=0
+            fi
+
+            # ACR: total manifest count (tagged + untagged child manifests from image indexes)
+            acr_manifest_count=$(az acr repository show-manifests \
+              --name "$AZURE_ACR_NAME_VAR" \
+              --repository "${acr_repo}" \
+              --detail \
+              --output json 2>&1 \
+              | jq 'length // 0' 2>/dev/null || echo 0)
+            acr_manifest_count=${acr_manifest_count:-0}
+
+            # ECR: tagged count
+            ecr_tag_count=$(aws ecr list-images \
+              --repository-name "${ecr_repo}" \
+              --region "$AWS_REGION_VAR" \
+              --filter tagStatus=TAGGED \
+              --output json 2>/dev/null \
+              | jq -r '(.imageIds // []) | length' 2>/dev/null || echo 0)
+            ecr_tag_count=${ecr_tag_count:-0}
+
+            # ECR: total manifest count (tagged + untagged — AWS CLI v2 auto-paginates)
+            ecr_manifest_count=$(aws ecr list-images \
+              --repository-name "${ecr_repo}" \
+              --region "$AWS_REGION_VAR" \
+              --filter tagStatus=ANY \
+              --output json 2>/dev/null \
+              | jq '.imageIds | length // 0' 2>/dev/null || echo 0)
+            ecr_manifest_count=${ecr_manifest_count:-0}
+
+            if [ "$acr_tag_count" -eq "$ecr_tag_count" ]; then
+              tags_match="YES"
+            else
+              tags_match="NO"
+            fi
+
+            if [ "$acr_manifest_count" -eq "$ecr_manifest_count" ]; then
+              manifests_match="YES"
+            else
+              manifests_match="NO"
+            fi
+
+            if [ "$tags_match" != "YES" ] || [ "$manifests_match" != "YES" ]; then
+              mismatch_count=$((mismatch_count + 1))
+              echo "::warning::MISMATCH [${acr_repo}] ACR tags=${acr_tag_count} manifests=${acr_manifest_count} | ECR tags=${ecr_tag_count} manifests=${ecr_manifest_count}"
+            fi
+
+            echo "${acr_repo},${ecr_repo},${acr_tag_count},${acr_manifest_count},${ecr_tag_count},${ecr_manifest_count},${tags_match},${manifests_match}" >> "$REPORT_FILE"
+            printf '%-50s %9s %13s %9s %14s %11s %16s\n' \
+              "${acr_repo}" "${acr_tag_count}" "${acr_manifest_count}" "${ecr_tag_count}" "${ecr_manifest_count}" "${tags_match}" "${manifests_match}"
+
+            total_repos=$((total_repos + 1))
+            total_acr_tags=$((total_acr_tags + acr_tag_count))
+            total_acr_manifests=$((total_acr_manifests + acr_manifest_count))
+            total_ecr_tags=$((total_ecr_tags + ecr_tag_count))
+            total_ecr_manifests=$((total_ecr_manifests + ecr_manifest_count))
+          done < <(jq -c '.[]' "$MAPPING_FILE")
+
+          # Summary row in CSV
+          echo "TOTAL,,${total_acr_tags},${total_acr_manifests},${total_ecr_tags},${total_ecr_manifests},," >> "$REPORT_FILE"
+
+          printf '%0.s-' {1..125}; echo
+          printf '%-50s %9s %13s %9s %14s\n' \
+            "TOTAL" "${total_acr_tags}" "${total_acr_manifests}" "${total_ecr_tags}" "${total_ecr_manifests}"
+
+          echo ""
+          echo "========================================"
+          echo "Total repos compared : ${total_repos}"
+          echo "Repos in sync        : $((total_repos - mismatch_count))"
+          echo "Repos with mismatch  : ${mismatch_count}"
+          echo "Total ACR tags       : ${total_acr_tags}"
+          echo "Total ACR manifests  : ${total_acr_manifests}"
+          echo "Total ECR tags       : ${total_ecr_tags}"
+          echo "Total ECR manifests  : ${total_ecr_manifests}"
+          echo "Report saved to      : ${REPORT_FILE}"
+          echo "========================================"
+
+          echo "REPORT_FILE=${REPORT_FILE}" >> "$GITHUB_ENV"
+
+          if [ "$mismatch_count" -gt 0 ]; then
+            echo "::error::${mismatch_count} repo(s) have mismatched counts between ACR and ECR."
+            exit 1
+          fi
+
+      - name: Commit and push comparison report
+        if: always()
+        run: |
+          if [ -z "${REPORT_FILE}" ] || [ ! -f "${REPORT_FILE}" ]; then
+            echo "No report file found, skipping commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${REPORT_FILE}"
+          git diff --cached --quiet && echo "Nothing to commit." && exit 0
+          git commit -m "chore: add ACR→ECR comparison report ${REPORT_FILE} [skip ci]"
+          git pull --rebase
+          git push
