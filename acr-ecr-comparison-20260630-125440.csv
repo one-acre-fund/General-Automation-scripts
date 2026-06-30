@@ -1,0 +1,16 @@
+acr_repo,ecr_repo,acr_tags,acr_manifests,ecr_tags,ecr_manifests,acr_only_tags,acr_synced,tags_equal,manifests_match,ecr_only_tags
+oneacrefund/odoo-utilities,oneacrefund/odoo-utilities,77,291,110,330,0,YES,YES,NO,33
+helm/msgateway-2,helm/msgateway-2,29,38,29,38,0,YES,YES,YES,0
+infra/oaf-zabbix-api,infra/oaf-zabbix-api,60,59,60,60,0,YES,YES,NO,0
+infra/oaf-zabbix-grafana,infra/oaf-zabbix-grafana,40,39,40,40,0,YES,YES,NO,0
+infra/oaf-zabbix-influx,infra/oaf-zabbix-influx,40,39,40,40,0,YES,YES,NO,0
+infra/oaf-zabbix-monitor,infra/oaf-zabbix-monitor,42,41,42,42,0,YES,YES,NO,0
+infra/oaf-zabbix-prep,infra/oaf-zabbix-prep,40,39,40,40,0,YES,YES,NO,0
+infra/oaf-zabbix-web,infra/oaf-zabbix-web,40,39,40,40,0,YES,YES,NO,0
+matomo-redis,matomo-redis,15,14,15,15,0,YES,YES,NO,0
+oneacrefund/airbyte-source-telerivet,oneacrefund/airbyte-source-telerivet,3,4,3,5,0,YES,YES,NO,0
+oneacrefund/airtel-connector,oneacrefund/airtel-connector,33,39,33,36,0,YES,YES,NO,0
+oneacrefund/api,oneacrefund/api,77,132,103,103,0,YES,YES,NO,26
+oneacrefund/auth,oneacrefund/auth,77,132,103,103,0,YES,YES,NO,26
+oneacrefund/azure-blob-logstash,oneacrefund/azure-blob-logstash,2,1,2,2,0,YES,YES,NO,0
+TOTAL,,575,907,660,894,0,,,,85,575
