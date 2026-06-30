@@ -54,9 +54,11 @@ jobs:
           # acr_tag_count, acr_manifest_count,
           # ecr_tag_count, ecr_manifest_count,
           # acr_only_tags  (tags in ACR but NOT in ECR — need copying)
-          # tags_match, manifests_match
-          # ecr_only_tags  (tags in ECR but NOT in ACR — extra pushes, informational only)
-          echo "acr_repo,ecr_repo,acr_tags,acr_manifests,ecr_tags,ecr_manifests,acr_only_tags,tags_match,manifests_match,ecr_only_tags" > "$REPORT_FILE"
+          # acr_synced     (YES = all ACR tags exist in ECR, migration complete)
+          # tags_equal     (YES = ACR tag count == ECR tag count exactly)
+          # manifests_match
+          # ecr_only_tags  (tags in ECR but NOT in ACR — extra pushes, informational)
+          echo "acr_repo,ecr_repo,acr_tags,acr_manifests,ecr_tags,ecr_manifests,acr_only_tags,acr_synced,tags_equal,manifests_match,ecr_only_tags" > "$REPORT_FILE"
 
           total_repos=0
           mismatch_count=0
@@ -67,8 +69,8 @@ jobs:
           total_acr_only=0
           total_ecr_only=0
 
-          printf '\n%-45s %9s %13s %9s %14s %10s %11s %16s %10s\n' \
-            "REPO" "ACR_TAGS" "ACR_MANIFESTS" "ECR_TAGS" "ECR_MANIFESTS" "ACR_ONLY" "TAGS_MATCH" "MANIFESTS_MATCH" "ECR_ONLY"
+          printf '\n%-45s %9s %13s %9s %14s %10s %11s %11s %16s %10s\n' \
+            "REPO" "ACR_TAGS" "ACR_MANIFESTS" "ECR_TAGS" "ECR_MANIFESTS" "ACR_ONLY" "ACR_SYNCED" "TAGS_EQUAL" "MANIFESTS_MATCH" "ECR_ONLY"
           printf '%0.s-' {1..145}; echo
 
           while IFS= read -r item; do
@@ -131,12 +133,20 @@ jobs:
             fi
 
             # ── Match checks ──
-            # tags_match=YES if ACR has no tags missing from ECR (acr_only=0).
-            # ECR-only tags (extra pushes) are NOT a mismatch — they are expected.
+            # acr_synced=YES: all ACR tags are present in ECR (migration complete for this repo)
+            # tags_equal=YES:  ACR tag count == ECR tag count (no extras on either side)
+            # Mismatch (warning) only if acr_synced=NO or manifests_match=NO.
+            # ECR-only tags are informational — not a migration failure.
             if [ "$acr_only_count" -eq 0 ]; then
-              tags_match="YES"
+              acr_synced="YES"
             else
-              tags_match="NO"
+              acr_synced="NO"
+            fi
+
+            if [ "$acr_tag_count" -eq "$ecr_tag_count" ]; then
+              tags_equal="YES"
+            else
+              tags_equal="NO"
             fi
 
             if [ "$acr_manifest_count" -eq "$ecr_manifest_count" ]; then
@@ -147,18 +157,17 @@ jobs:
 
             # Only count as mismatch if ACR has tags not yet in ECR, or manifest counts differ.
             # ECR-only tags are informational — not a migration failure.
-            if [ "$tags_match" != "YES" ] || [ "$manifests_match" != "YES" ]; then
+            if [ "$acr_synced" != "YES" ] || [ "$manifests_match" != "YES" ]; then
               mismatch_count=$((mismatch_count + 1))
               echo "::warning::MISMATCH [${acr_repo}] ACR tags=${acr_tag_count} manifests=${acr_manifest_count} acr_only=${acr_only_count} | ECR tags=${ecr_tag_count} manifests=${ecr_manifest_count} ecr_only=${ecr_only_count}"
             fi
 
-            echo "${acr_repo},${ecr_repo},${acr_tag_count},${acr_manifest_count},${ecr_tag_count},${ecr_manifest_count},${acr_only_count},${tags_match},${manifests_match},${ecr_only_count}" >> "$REPORT_FILE"
-            printf '%-45s %9s %13s %9s %14s %10s %11s %16s %10s\n' \
+            echo "${acr_repo},${ecr_repo},${acr_tag_count},${acr_manifest_count},${ecr_tag_count},${ecr_manifest_count},${acr_only_count},${acr_synced},${tags_equal},${manifests_match},${ecr_only_count}" >> "$REPORT_FILE"
+            printf '%-45s %9s %13s %9s %14s %10s %11s %11s %16s %10s\n' \
               "${acr_repo}" "${acr_tag_count}" "${acr_manifest_count}" \
               "${ecr_tag_count}" "${ecr_manifest_count}" \
-              "${acr_only_count}" \
-              "${tags_match}" "${manifests_match}" \
-              "${ecr_only_count}"
+              "${acr_only_count}" "${acr_synced}" "${tags_equal}" \
+              "${manifests_match}" "${ecr_only_count}"
 
             total_repos=$((total_repos + 1))
             total_acr_tags=$((total_acr_tags + acr_tag_count))
@@ -170,7 +179,7 @@ jobs:
           done < <(jq -c '.[]' "$MAPPING_FILE")
 
           # TOTAL summary row
-          echo "TOTAL,,${total_acr_tags},${total_acr_manifests},${total_ecr_tags},${total_ecr_manifests},${total_acr_only},,,${total_ecr_only}" >> "$REPORT_FILE"
+          echo "TOTAL,,${total_acr_tags},${total_acr_manifests},${total_ecr_tags},${total_ecr_manifests},${total_acr_only},,,,${total_ecr_only}" >> "$REPORT_FILE"
 
           printf '%0.s-' {1..145}; echo
           printf '%-45s %9s %13s %9s %14s %10s %10s\n' \
