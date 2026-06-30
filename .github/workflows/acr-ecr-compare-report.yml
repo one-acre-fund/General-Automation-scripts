@@ -134,7 +134,7 @@ jobs:
 
             # ── Match checks ──
             # acr_synced=YES: all ACR tags are present in ECR (migration complete for this repo)
-            # tags_equal=YES:  ACR tag count == ECR tag count (no extras on either side)
+            # tags_equal=YES:  ACR tag count == ECR effective tag count (ECR minus ECR-only extras)
             # Mismatch (warning) only if acr_synced=NO or manifests_match=NO.
             # ECR-only tags are informational — not a migration failure.
             if [ "$acr_only_count" -eq 0 ]; then
@@ -143,7 +143,8 @@ jobs:
               acr_synced="NO"
             fi
 
-            if [ "$acr_tag_count" -eq "$ecr_tag_count" ]; then
+            ecr_effective=$((ecr_tag_count - ecr_only_count))
+            if [ "$acr_tag_count" -eq "$ecr_effective" ]; then
               tags_equal="YES"
             else
               tags_equal="NO"
