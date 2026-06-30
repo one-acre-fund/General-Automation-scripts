@@ -1,17 +1,6 @@
 [
   { "acr_repo": "oneacrefund/odoo-utilities",                              "ecr_repo": "oneacrefund/odoo-utilities" },
   { "acr_repo": "helm/msgateway-2",                                        "ecr_repo": "helm/msgateway-2" },
-  { "acr_repo": "infra/oaf-zabbix-api",                                    "ecr_repo": "infra/oaf-zabbix-api" },
-  { "acr_repo": "infra/oaf-zabbix-grafana",                                "ecr_repo": "infra/oaf-zabbix-grafana" },
-  { "acr_repo": "infra/oaf-zabbix-influx",                                 "ecr_repo": "infra/oaf-zabbix-influx" },
-  { "acr_repo": "infra/oaf-zabbix-monitor",                                "ecr_repo": "infra/oaf-zabbix-monitor" },
-  { "acr_repo": "infra/oaf-zabbix-prep",                                   "ecr_repo": "infra/oaf-zabbix-prep" },
-  { "acr_repo": "infra/oaf-zabbix-web",                                    "ecr_repo": "infra/oaf-zabbix-web" },
-  { "acr_repo": "matomo-redis",                                            "ecr_repo": "matomo-redis" },
-  { "acr_repo": "oneacrefund/airbyte-source-telerivet",                    "ecr_repo": "oneacrefund/airbyte-source-telerivet" },
-  { "acr_repo": "oneacrefund/airtel-connector",                            "ecr_repo": "oneacrefund/airtel-connector" },
-  { "acr_repo": "oneacrefund/api",                                         "ecr_repo": "oneacrefund/api" },
-  { "acr_repo": "oneacrefund/auth",                                        "ecr_repo": "oneacrefund/auth" },
-  { "acr_repo": "oneacrefund/azure-blob-logstash",                         "ecr_repo": "oneacrefund/azure-blob-logstash" }
+  { "acr_repo": "infra/oaf-zabbix-api",                                    "ecr_repo": "infra/oaf-zabbix-api" }
 ]
 
