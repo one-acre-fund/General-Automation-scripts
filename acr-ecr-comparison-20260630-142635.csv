@@ -1,0 +1,5 @@
+acr_repo,ecr_repo,acr_tags,acr_manifests,ecr_tags,ecr_manifests,acr_only_tags,acr_synced,tags_equal,manifests_match,ecr_only_tags
+oneacrefund/odoo-utilities,oneacrefund/odoo-utilities,77,291,110,330,0,YES,YES,NO,33
+helm/msgateway-2,helm/msgateway-2,29,38,29,38,0,YES,YES,YES,0
+infra/oaf-zabbix-api,infra/oaf-zabbix-api,60,59,60,60,0,YES,YES,NO,0
+TOTAL,,166,388,199,428,0,,,,33,166
