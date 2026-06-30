@@ -178,27 +178,40 @@ jobs:
             total_ecr_only=$((total_ecr_only + ecr_only_count))
           done < <(jq -c '.[]' "$MAPPING_FILE")
 
-          # TOTAL summary row
-          echo "TOTAL,,${total_acr_tags},${total_acr_manifests},${total_ecr_tags},${total_ecr_manifests},${total_acr_only},,,,${total_ecr_only}" >> "$REPORT_FILE"
+          # ECR effective = ECR tags minus ECR-only (tags that originated from ACR)
+          # This should equal ACR total tags if migration is complete.
+          total_ecr_effective=$((total_ecr_tags - total_ecr_only))
+
+          # TOTAL summary row in CSV
+          echo "TOTAL,,${total_acr_tags},${total_acr_manifests},${total_ecr_tags},${total_ecr_manifests},${total_acr_only},,,,${total_ecr_only},${total_ecr_effective}" >> "$REPORT_FILE"
 
           printf '%0.s-' {1..145}; echo
           printf '%-45s %9s %13s %9s %14s %10s %10s\n' \
-            "TOTAL" "${total_acr_tags}" "${total_acr_manifests}" \
+            "TOTAL (raw)" "${total_acr_tags}" "${total_acr_manifests}" \
             "${total_ecr_tags}" "${total_ecr_manifests}" \
             "${total_acr_only}" "${total_ecr_only}"
+          printf '%-45s %9s %13s %9s\n' \
+            "TOTAL (ecr excl. ecr-only)" "${total_acr_tags}" "" "${total_ecr_effective}"
+
+          if [ "$total_acr_tags" -eq "$total_ecr_effective" ]; then
+            echo "==> ACR tags (${total_acr_tags}) == ECR effective tags (${total_ecr_effective}) — FULLY SYNCED"
+          else
+            echo "==> ACR tags (${total_acr_tags}) != ECR effective tags (${total_ecr_effective}) — $(( total_acr_tags - total_ecr_effective )) tag(s) still missing in ECR"
+          fi
 
           echo ""
           echo "========================================"
-          echo "Total repos compared : ${total_repos}"
-          echo "Repos in sync        : $((total_repos - mismatch_count))"
-          echo "Repos with mismatch  : ${mismatch_count}"
-          echo "Total ACR tags       : ${total_acr_tags}"
-          echo "Total ACR manifests  : ${total_acr_manifests}"
-          echo "Total ECR tags       : ${total_ecr_tags}"
-          echo "Total ECR manifests  : ${total_ecr_manifests}"
-          echo "Tags in ACR only     : ${total_acr_only}  (not yet in ECR)"
-          echo "Tags in ECR only     : ${total_ecr_only}  (extra in ECR)"
-          echo "Report saved to      : ${REPORT_FILE}"
+          echo "Total repos compared       : ${total_repos}"
+          echo "Repos in sync              : $((total_repos - mismatch_count))"
+          echo "Repos with mismatch        : ${mismatch_count}"
+          echo "Total ACR tags             : ${total_acr_tags}"
+          echo "Total ACR manifests        : ${total_acr_manifests}"
+          echo "Total ECR tags (raw)       : ${total_ecr_tags}"
+          echo "Total ECR tags (excl. ecr-only) : ${total_ecr_effective}  (should equal ACR tags)"
+          echo "Total ECR manifests        : ${total_ecr_manifests}"
+          echo "Tags in ACR only           : ${total_acr_only}  (not yet in ECR)"
+          echo "Tags in ECR only           : ${total_ecr_only}  (extra pushes, not in ACR)"
+          echo "Report saved to            : ${REPORT_FILE}"
           echo "========================================"
 
           echo "REPORT_FILE=${REPORT_FILE}" >> "$GITHUB_ENV"
