@@ -1,0 +1,15 @@
+ACR vs ECR Detailed Comparison
+Generated: 2026-07-01 05:21:42 UTC
+Mapping:   acr-ecr-mapping.json
+============================================================
+
+REPO: helm/fineract-backend
+------------------------------------------------------------
+  ACR tags    : 23   ECR tags    : 23
+  ACR manifests: 25   ECR manifests: 25
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+

@@ -1,0 +1,3 @@
+acr_repo,ecr_repo,acr_tags,ecr_tags,acr_tags_missing_from_ecr,ecr_only_tags,tags_synced,acr_manifests,ecr_manifests,acr_manifests_missing_from_ecr,ecr_only_manifests,manifests_synced
+helm/fineract-backend,helm/fineract-backend,23,23,0,0,YES,25,25,0,0,YES
+TOTAL,,23,23,0,0,,25,25,0,0,
