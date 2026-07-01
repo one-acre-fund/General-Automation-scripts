@@ -48,177 +48,207 @@ jobs:
           AWS_REGION_VAR="${{ vars.AWS_REGION }}"
           FILTER_REPO="${{ inputs.filter_repo }}"
           REPORT_FILE="acr-ecr-comparison-$(date -u '+%Y%m%d-%H%M%S').csv"
+          DETAIL_FILE="acr-ecr-detail-$(date -u '+%Y%m%d-%H%M%S').txt"
 
-          # CSV columns:
-          # acr_repo, ecr_repo,
-          # acr_tag_count, acr_manifest_count,
-          # ecr_tag_count, ecr_manifest_count,
-          # acr_only_tags  (tags in ACR but NOT in ECR — need copying)
-          # acr_synced     (YES = all ACR tags exist in ECR, migration complete)
-          # tags_equal     (YES = ACR tag count == ECR tag count exactly)
-          # manifests_match
-          # ecr_only_tags  (tags in ECR but NOT in ACR — extra pushes, informational)
-          echo "acr_repo,ecr_repo,acr_tags,acr_manifests,ecr_tags,ecr_manifests,acr_only_tags,acr_synced,tags_equal,manifests_match,ecr_only_tags" > "$REPORT_FILE"
+          # ── Summary CSV ──
+          # Per-repo: actual set comparison of tags AND manifest digests
+          # acr_tags_missing_from_ecr = ACR tags not present in ECR  → must be 0 for full sync
+          # ecr_only_tags             = ECR tags not in ACR           → informational
+          # acr_manifests_missing     = ACR digest not in ECR         → must be 0 for full sync
+          # ecr_only_manifests        = ECR digests not in ACR        → informational (ecr-only tag children)
+          echo "acr_repo,ecr_repo,acr_tags,ecr_tags,acr_tags_missing_from_ecr,ecr_only_tags,tags_synced,acr_manifests,ecr_manifests,acr_manifests_missing_from_ecr,ecr_only_manifests,manifests_synced" > "$REPORT_FILE"
+
+          {
+            echo "ACR vs ECR Detailed Comparison"
+            echo "Generated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+            echo "Mapping:   ${MAPPING_FILE}"
+            echo "============================================================"
+          } > "$DETAIL_FILE"
 
           total_repos=0
           mismatch_count=0
-          total_acr_tags=0
-          total_acr_manifests=0
-          total_ecr_tags=0
-          total_ecr_manifests=0
-          total_acr_only=0
-          total_ecr_only=0
+          total_acr_tags=0; total_ecr_tags=0
+          total_acr_manifests=0; total_ecr_manifests=0
+          total_acr_tags_missing=0; total_ecr_only_tags=0
+          total_acr_manifests_missing=0; total_ecr_only_manifests=0
 
-          printf '\n%-45s %9s %13s %9s %14s %10s %11s %11s %16s %10s\n' \
-            "REPO" "ACR_TAGS" "ACR_MANIFESTS" "ECR_TAGS" "ECR_MANIFESTS" "ACR_ONLY" "ACR_SYNCED" "TAGS_EQUAL" "MANIFESTS_MATCH" "ECR_ONLY"
-          printf '%0.s-' {1..145}; echo
+          printf '\n%-40s %9s %9s %12s %10s %11s %13s %13s %16s %18s %16s\n' \
+            "REPO" "ACR_TAGS" "ECR_TAGS" "TAGS_MISSING" "ECR_ONLY_T" \
+            "TAGS_SYNCED" "ACR_MANIFESTS" "ECR_MANIFESTS" "MANIFEST_MISSING" "ECR_ONLY_MANIFESTS" "MANIFEST_SYNCED"
+          printf '%0.s-' {1..180}; echo
 
-          while IFS= read -r item; do
+          while IFS= read -r item <&3; do
             acr_repo=$(echo "$item" | jq -r '.acr_repo')
             ecr_repo=$(echo "$item" | jq -r '.ecr_repo')
 
-            # Apply single-repo filter if set
             if [ -n "$FILTER_REPO" ] && [ "$acr_repo" != "$FILTER_REPO" ]; then
               continue
             fi
 
-            # ── ACR: tag count + manifest count via az acr repository show ──
-            # This single call returns both tagCount and manifestCount reliably.
-            acr_info=$(az acr repository show \
-              --name "$AZURE_ACR_NAME_VAR" \
-              --repository "${acr_repo}" \
-              --output json 2>/dev/null || echo '{}')
-            acr_tag_count=$(echo "$acr_info" | jq -r '.tagCount // 0')
-            acr_manifest_count=$(echo "$acr_info" | jq -r '.manifestCount // 0')
-            acr_tag_count=${acr_tag_count:-0}
-            acr_manifest_count=${acr_manifest_count:-0}
+            {
+              echo ""
+              echo "REPO: ${acr_repo}"
+              echo "------------------------------------------------------------"
+            } >> "$DETAIL_FILE"
 
-            # ACR tag list (for diff)
-            acr_tags_list=$(az acr repository show-tags \
+            # ── ACR: get all tags ──
+            acr_tags_sorted=$(az acr repository show-tags \
               --name "$AZURE_ACR_NAME_VAR" \
               --repository "${acr_repo}" \
               --output tsv 2>/dev/null | sort || true)
+            acr_tag_count=$(echo "$acr_tags_sorted" | grep -c . 2>/dev/null || echo 0)
+            [ -z "$acr_tags_sorted" ] && acr_tag_count=0
 
-            # ── ECR: tag count + manifest count ──
-            ecr_images=$(aws ecr list-images \
+            # ── ACR: get all manifest digests ──
+            acr_digests_sorted=$(az acr repository show-manifests \
+              --name "$AZURE_ACR_NAME_VAR" \
+              --repository "${acr_repo}" \
+              --detail \
+              --output json 2>/dev/null \
+              | jq -r '.[].digest' 2>/dev/null | sort || true)
+            acr_manifest_count=$(echo "$acr_digests_sorted" | grep -c . 2>/dev/null || echo 0)
+            [ -z "$acr_digests_sorted" ] && acr_manifest_count=0
+
+            # ── ECR: get all tags ──
+            ecr_all=$(aws ecr list-images \
               --repository-name "${ecr_repo}" \
               --region "$AWS_REGION_VAR" \
               --filter tagStatus=ANY \
               --output json 2>/dev/null || echo '{"imageIds":[]}')
 
-            ecr_tag_count=$(echo "$ecr_images" \
-              | jq '[.imageIds[] | select(.imageTag != null)] | length // 0')
-            ecr_manifest_count=$(echo "$ecr_images" \
-              | jq '.imageIds | length // 0')
-            ecr_tag_count=${ecr_tag_count:-0}
-            ecr_manifest_count=${ecr_manifest_count:-0}
-
-            # ECR tag list (for diff)
-            ecr_tags_list=$(echo "$ecr_images" \
+            ecr_tags_sorted=$(echo "$ecr_all" \
               | jq -r '.imageIds[] | select(.imageTag != null) | .imageTag' \
-              | sort 2>/dev/null || true)
+              2>/dev/null | sort || true)
+            ecr_tag_count=$(echo "$ecr_tags_sorted" | grep -c . 2>/dev/null || echo 0)
+            [ -z "$ecr_tags_sorted" ] && ecr_tag_count=0
 
-            # ── Tag diff: ACR-only and ECR-only ──
-            acr_only_count=0
-            ecr_only_count=0
-            if [ -n "$acr_tags_list" ] || [ -n "$ecr_tags_list" ]; then
-              acr_only_count=$(comm -23 \
-                <(echo "$acr_tags_list") \
-                <(echo "$ecr_tags_list") \
-                | grep -c . || true)
-              ecr_only_count=$(comm -13 \
-                <(echo "$acr_tags_list") \
-                <(echo "$ecr_tags_list") \
-                | grep -c . || true)
-            fi
+            # ── ECR: get all manifest digests ──
+            ecr_digests_sorted=$(echo "$ecr_all" \
+              | jq -r '.imageIds[] | select(.imageDigest != null) | .imageDigest' \
+              2>/dev/null | sort -u || true)
+            ecr_manifest_count=$(echo "$ecr_digests_sorted" | grep -c . 2>/dev/null || echo 0)
+            [ -z "$ecr_digests_sorted" ] && ecr_manifest_count=0
 
-            # ── Match checks ──
-            # acr_synced=YES: all ACR tags are present in ECR (migration complete for this repo)
-            # tags_equal=YES:  ACR tag count == ECR effective tag count (ECR minus ECR-only extras)
-            # Mismatch (warning) only if acr_synced=NO or manifests_match=NO.
-            # ECR-only tags are informational — not a migration failure.
-            if [ "$acr_only_count" -eq 0 ]; then
-              acr_synced="YES"
-            else
-              acr_synced="NO"
-            fi
+            # ── Tag set diff ──
+            acr_tags_missing=$(comm -23 \
+              <(echo "$acr_tags_sorted") \
+              <(echo "$ecr_tags_sorted") 2>/dev/null || true)
+            ecr_only_tags=$(comm -13 \
+              <(echo "$acr_tags_sorted") \
+              <(echo "$ecr_tags_sorted") 2>/dev/null || true)
+            acr_tags_missing_count=$(echo "$acr_tags_missing" | grep -c . 2>/dev/null || echo 0)
+            ecr_only_tags_count=$(echo "$ecr_only_tags" | grep -c . 2>/dev/null || echo 0)
+            [ -z "$acr_tags_missing" ] && acr_tags_missing_count=0
+            [ -z "$ecr_only_tags" ] && ecr_only_tags_count=0
 
-            ecr_effective=$((ecr_tag_count - ecr_only_count))
-            if [ "$acr_tag_count" -eq "$ecr_effective" ]; then
-              tags_equal="YES"
-            else
-              tags_equal="NO"
-            fi
+            # ── Manifest digest set diff ──
+            acr_manifests_missing=$(comm -23 \
+              <(echo "$acr_digests_sorted") \
+              <(echo "$ecr_digests_sorted") 2>/dev/null || true)
+            ecr_only_manifests=$(comm -13 \
+              <(echo "$acr_digests_sorted") \
+              <(echo "$ecr_digests_sorted") 2>/dev/null || true)
+            acr_manifests_missing_count=$(echo "$acr_manifests_missing" | grep -c . 2>/dev/null || echo 0)
+            ecr_only_manifests_count=$(echo "$ecr_only_manifests" | grep -c . 2>/dev/null || echo 0)
+            [ -z "$acr_manifests_missing" ] && acr_manifests_missing_count=0
+            [ -z "$ecr_only_manifests" ] && ecr_only_manifests_count=0
 
-            if [ "$acr_manifest_count" -eq "$ecr_manifest_count" ]; then
-              manifests_match="YES"
-            else
-              manifests_match="NO"
-            fi
+            # ── Sync status ──
+            [ "$acr_tags_missing_count" -eq 0 ]      && tags_synced="YES"      || tags_synced="NO"
+            [ "$acr_manifests_missing_count" -eq 0 ] && manifests_synced="YES" || manifests_synced="NO"
 
-            # Only count as mismatch if ACR has tags not yet in ECR, or manifest counts differ.
-            # ECR-only tags are informational — not a migration failure.
-            if [ "$acr_synced" != "YES" ] || [ "$manifests_match" != "YES" ]; then
+            # ── Detail file ──
+            {
+              echo "  ACR tags    : ${acr_tag_count}   ECR tags    : ${ecr_tag_count}"
+              echo "  ACR manifests: ${acr_manifest_count}   ECR manifests: ${ecr_manifest_count}"
+              echo ""
+              if [ "$acr_tags_missing_count" -gt 0 ]; then
+                echo "  TAGS IN ACR BUT MISSING FROM ECR (${acr_tags_missing_count}):"
+                echo "$acr_tags_missing" | sed 's/^/    /'
+              else
+                echo "  TAGS: All ACR tags present in ECR ✓"
+              fi
+              echo ""
+              if [ "$ecr_only_tags_count" -gt 0 ]; then
+                echo "  TAGS IN ECR ONLY — not in ACR (${ecr_only_tags_count}):"
+                echo "$ecr_only_tags" | sed 's/^/    /'
+              fi
+              echo ""
+              if [ "$acr_manifests_missing_count" -gt 0 ]; then
+                echo "  MANIFESTS IN ACR BUT MISSING FROM ECR (${acr_manifests_missing_count}):"
+                echo "$acr_manifests_missing" | sed 's/^/    /'
+              else
+                echo "  MANIFESTS: All ACR manifests present in ECR ✓"
+              fi
+              echo ""
+              if [ "$ecr_only_manifests_count" -gt 0 ]; then
+                echo "  MANIFESTS IN ECR ONLY — not in ACR (${ecr_only_manifests_count}):"
+                echo "$ecr_only_manifests" | sed 's/^/    /'
+              fi
+            } >> "$DETAIL_FILE"
+
+            # ── Mismatch warning ──
+            if [ "$tags_synced" != "YES" ] || [ "$manifests_synced" != "YES" ]; then
               mismatch_count=$((mismatch_count + 1))
-              echo "::warning::MISMATCH [${acr_repo}] ACR tags=${acr_tag_count} manifests=${acr_manifest_count} acr_only=${acr_only_count} | ECR tags=${ecr_tag_count} manifests=${ecr_manifest_count} ecr_only=${ecr_only_count}"
+              echo "::warning::MISMATCH [${acr_repo}] tags_missing=${acr_tags_missing_count} manifests_missing=${acr_manifests_missing_count}"
             fi
 
-            echo "${acr_repo},${ecr_repo},${acr_tag_count},${acr_manifest_count},${ecr_tag_count},${ecr_manifest_count},${acr_only_count},${acr_synced},${tags_equal},${manifests_match},${ecr_only_count}" >> "$REPORT_FILE"
-            printf '%-45s %9s %13s %9s %14s %10s %11s %11s %16s %10s\n' \
-              "${acr_repo}" "${acr_tag_count}" "${acr_manifest_count}" \
-              "${ecr_tag_count}" "${ecr_manifest_count}" \
-              "${acr_only_count}" "${acr_synced}" "${tags_equal}" \
-              "${manifests_match}" "${ecr_only_count}"
+            # ── CSV row ──
+            echo "${acr_repo},${ecr_repo},${acr_tag_count},${ecr_tag_count},${acr_tags_missing_count},${ecr_only_tags_count},${tags_synced},${acr_manifest_count},${ecr_manifest_count},${acr_manifests_missing_count},${ecr_only_manifests_count},${manifests_synced}" >> "$REPORT_FILE"
+
+            printf '%-40s %9s %9s %12s %10s %11s %13s %13s %16s %18s %16s\n' \
+              "${acr_repo}" "${acr_tag_count}" "${ecr_tag_count}" \
+              "${acr_tags_missing_count}" "${ecr_only_tags_count}" "${tags_synced}" \
+              "${acr_manifest_count}" "${ecr_manifest_count}" \
+              "${acr_manifests_missing_count}" "${ecr_only_manifests_count}" "${manifests_synced}"
 
             total_repos=$((total_repos + 1))
             total_acr_tags=$((total_acr_tags + acr_tag_count))
-            total_acr_manifests=$((total_acr_manifests + acr_manifest_count))
             total_ecr_tags=$((total_ecr_tags + ecr_tag_count))
+            total_acr_manifests=$((total_acr_manifests + acr_manifest_count))
             total_ecr_manifests=$((total_ecr_manifests + ecr_manifest_count))
-            total_acr_only=$((total_acr_only + acr_only_count))
-            total_ecr_only=$((total_ecr_only + ecr_only_count))
-          done < <(jq -c '.[]' "$MAPPING_FILE")
+            total_acr_tags_missing=$((total_acr_tags_missing + acr_tags_missing_count))
+            total_ecr_only_tags=$((total_ecr_only_tags + ecr_only_tags_count))
+            total_acr_manifests_missing=$((total_acr_manifests_missing + acr_manifests_missing_count))
+            total_ecr_only_manifests=$((total_ecr_only_manifests + ecr_only_manifests_count))
 
-          # ECR effective = ECR tags minus ECR-only (tags that originated from ACR)
-          # This should equal ACR total tags if migration is complete.
-          total_ecr_effective=$((total_ecr_tags - total_ecr_only))
+          done 3< <(jq -c '.[]' "$MAPPING_FILE")
 
-          # TOTAL summary row in CSV
-          echo "TOTAL,,${total_acr_tags},${total_acr_manifests},${total_ecr_tags},${total_ecr_manifests},${total_acr_only},,,,${total_ecr_only},${total_ecr_effective}" >> "$REPORT_FILE"
+          # TOTAL summary row
+          echo "TOTAL,,${total_acr_tags},${total_ecr_tags},${total_acr_tags_missing},${total_ecr_only_tags},,${total_acr_manifests},${total_ecr_manifests},${total_acr_manifests_missing},${total_ecr_only_manifests}," >> "$REPORT_FILE"
 
-          printf '%0.s-' {1..145}; echo
-          printf '%-45s %9s %13s %9s %14s %10s %10s\n' \
-            "TOTAL (raw)" "${total_acr_tags}" "${total_acr_manifests}" \
-            "${total_ecr_tags}" "${total_ecr_manifests}" \
-            "${total_acr_only}" "${total_ecr_only}"
-          printf '%-45s %9s %13s %9s\n' \
-            "TOTAL (ecr excl. ecr-only)" "${total_acr_tags}" "" "${total_ecr_effective}"
-
-          if [ "$total_acr_tags" -eq "$total_ecr_effective" ]; then
-            echo "==> ACR tags (${total_acr_tags}) == ECR effective tags (${total_ecr_effective}) — FULLY SYNCED"
-          else
-            echo "==> ACR tags (${total_acr_tags}) != ECR effective tags (${total_ecr_effective}) — $(( total_acr_tags - total_ecr_effective )) tag(s) still missing in ECR"
-          fi
+          printf '%0.s-' {1..180}; echo
+          printf '%-40s %9s %9s %12s %10s %13s %13s %16s %18s\n' \
+            "TOTAL" "${total_acr_tags}" "${total_ecr_tags}" \
+            "${total_acr_tags_missing}" "${total_ecr_only_tags}" \
+            "${total_acr_manifests}" "${total_ecr_manifests}" \
+            "${total_acr_manifests_missing}" "${total_ecr_only_manifests}"
 
           echo ""
           echo "========================================"
-          echo "Total repos compared       : ${total_repos}"
-          echo "Repos in sync              : $((total_repos - mismatch_count))"
-          echo "Repos with mismatch        : ${mismatch_count}"
-          echo "Total ACR tags             : ${total_acr_tags}"
-          echo "Total ACR manifests        : ${total_acr_manifests}"
-          echo "Total ECR tags (raw)       : ${total_ecr_tags}"
-          echo "Total ECR tags (excl. ecr-only) : ${total_ecr_effective}  (should equal ACR tags)"
-          echo "Total ECR manifests        : ${total_ecr_manifests}"
-          echo "Tags in ACR only           : ${total_acr_only}  (not yet in ECR)"
-          echo "Tags in ECR only           : ${total_ecr_only}  (extra pushes, not in ACR)"
-          echo "Report saved to            : ${REPORT_FILE}"
+          echo "Total repos compared         : ${total_repos}"
+          echo "Repos fully synced           : $((total_repos - mismatch_count))"
+          echo "Repos with missing content   : ${mismatch_count}"
+          echo ""
+          echo "ACR tags total               : ${total_acr_tags}"
+          echo "ECR tags total               : ${total_ecr_tags}"
+          echo "ACR tags MISSING from ECR    : ${total_acr_tags_missing}  ← must be 0"
+          echo "ECR-only tags (not in ACR)   : ${total_ecr_only_tags}   (extra pushes)"
+          echo ""
+          echo "ACR manifests total          : ${total_acr_manifests}"
+          echo "ECR manifests total          : ${total_ecr_manifests}"
+          echo "ACR manifests MISSING in ECR : ${total_acr_manifests_missing}  ← must be 0"
+          echo "ECR-only manifests (not ACR) : ${total_ecr_only_manifests}   (children of ecr-only tags)"
+          echo ""
+          echo "Summary CSV  : ${REPORT_FILE}"
+          echo "Detail file  : ${DETAIL_FILE}"
           echo "========================================"
 
           echo "REPORT_FILE=${REPORT_FILE}" >> "$GITHUB_ENV"
+          echo "DETAIL_FILE=${DETAIL_FILE}" >> "$GITHUB_ENV"
 
           if [ "$mismatch_count" -gt 0 ]; then
-            echo "::error::${mismatch_count} repo(s) have mismatched counts between ACR and ECR."
+            echo "::error::${mismatch_count} repo(s) have ACR content missing from ECR."
             exit 1
           fi
 
@@ -232,6 +262,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "${REPORT_FILE}"
+          [ -f "${DETAIL_FILE}" ] && git add "${DETAIL_FILE}"
           git diff --cached --quiet && echo "Nothing to commit." && exit 0
           git commit -m "chore: add ACR→ECR comparison report ${REPORT_FILE} [skip ci]"
           git pull --rebase
