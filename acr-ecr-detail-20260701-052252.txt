@@ -1,0 +1,4831 @@
+ACR vs ECR Detailed Comparison
+Generated: 2026-07-01 05:22:52 UTC
+Mapping:   acr-ecr-mapping.json
+============================================================
+
+REPO: airbyte-ktb
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 3   ECR manifests: 3
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: airflow
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 88
+  ACR manifests: 240   ECR manifests: 291
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (28):
+    2.9.3_20250210.445
+    2.9.3_20250210.446
+    2.9.3_20250210.447
+    2.9.3_20250210.448
+    2.9.3_20250211.449
+    2.9.3_20250211.450
+    2.9.3_20250318.452
+    2.9.3_20250320.453
+    2.9.3_20250326.454
+    2.9.3_20250327.455
+    2.9.3_20250327.456
+    2.9.3_20250327.457
+    2.9.3_20250327.458
+    2.9.3_20250327.459
+    2.9.3_20250430.460
+    2.9.3_20250512.461
+    2.9.3_20250512.462
+    2.9.3_20250512.463
+    2.9.3_20250513.465
+    2.9.3_20250513.467
+    2.9.3_20250513.468
+    2.9.3_20250513.469
+    2.9.3_20250513.470
+    2.9.3_20250513.471
+    2.9.3_20250513.473
+    2.9.3_20250513.475
+    2.9.3_20250513.476
+    2.9.3_20250513.478
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+  MANIFESTS IN ECR ONLY — not in ACR (51):
+    sha256:007e9adc86eb445a713ad2f333c2a3fbc5e734fcb46028c692bf728e9d6d4552
+    sha256:0758c5017ad8e3151b1192a9e94b7a449415913c8e3f1b51d1c0e297a2dceed5
+    sha256:0c83c13159516f0ae2d28fe6a2eb126658736a92c0ba7099b26db88a126f1bdc
+    sha256:10b5cd367f31bca0a33b09c95f2036d9cf9a312584a53b5dde196995f1948df8
+    sha256:1d1199b1a9aeca9bf4bc7248ac6f8b2b6b5878aa2d560ac1553e59a085e6eb8f
+    sha256:299abf363f6a03547966592debb4c9eb9977cf2eba7a87f852176facb56fdb60
+    sha256:2a235faa71f6ef6d8b984ce34c92c1948c8020784bc54004dcdaef7197cafcfc
+    sha256:2aab4412659c607f11e2e7ace0ec9d267b8ed8d3068036dd31373bbeb48448b7
+    sha256:300ec9991edf2ab328d45eb6a8845a6ac0062262cc7cd8fd8036822be83eb2b3
+    sha256:358e5dfda35f0332329f0bfd55e99fd890a87ab8cac85efdedd36518db0cb558
+    sha256:4d23b8cad02d2b137ff920881b8699c6917c81b80b06b9ce2934902e04c38854
+    sha256:582f9603e11cf83adfcae354758c4a070ecaf93ea3cf2184394bf41f0c19c037
+    sha256:5921de0a2bf9d810036dda1f1d710f2f3574ff40e5ec7aa00cebd5a465751dfa
+    sha256:59fb3d5f538acb9bce50d2f2e32d2e20585651541604cdda87f4ba787a0c4d9d
+    sha256:62c70f5c4bff8cdf2c4cde8a9a6b254b21577ab4623ac26a3c8b3e75a5dc62ba
+    sha256:6420c494eb4f42bdddf450e4d7475c9a9e75642248ec8b1cb52bcfaa6b82137a
+    sha256:688e28134324e8b83d6b1273358f360c4d772df9448c5e4cde3f4483172e02b5
+    sha256:6a8e3b605b8522e2c195954aab9531e198b6bebf0a2b4606a42e188c63ff9be8
+    sha256:6b715d5fa25e013843c6d6877d9639baa654db8df278560e700ecffdc992840a
+    sha256:6f3698b10139f3788dd2807dd3620cb74528ce3709c30022f357ae33fa8dadb2
+    sha256:768ce858ae5a5ab581d9ec7f6b14b74519432c5afd26216968f1b71afd00f84c
+    sha256:7f17c138fdf504685ee7d337232611dc6356fe9849f484101264f217fd7b0694
+    sha256:8391b6987f9df2f5771e22ddd1140f37aede3d346a3a33fd4b2fba0181778ca3
+    sha256:943dc044cf2e2e6a4cbb096089aa536a5370720223b71f309497502cea4d0978
+    sha256:98dec426822f86773ac995f573d54b8e3d566f051a57a90a82f05e5e6ef0dca8
+    sha256:9a07a28e2c1f88d133283c7785d5323d0bfaeab2a4b1cdb6ca8c6a2044bb75ff
+    sha256:9cedf93615e68ccbc8a3246b7609f30a786db9f1006c4aa24f92607d40405d0c
+    sha256:a10bf1bef2e79a9a103bf5e62005947aac52df2035ea4e9b39519b510d39f522
+    sha256:a590e09c6439d4caa8992423edd5536ed5cc13ae9e86ad5e4da59712b90aa51f
+    sha256:a80384b1206772c27993727114a542906c17f7fbb553fa1339cdb8e17ed51464
+    sha256:a84353d60a2521e3f47a9f9f78f80ab50bdd2edc6a1fc926a0f08cca0cf34311
+    sha256:ad6e696cedb93240186370ccac94335c4ea8e799bf7ce36231e640f5a7ece145
+    sha256:b02fd62860d723d3b6d4e8b6d085b929767470cfa930dc73fdaf9c5926e0f6ac
+    sha256:c3e95308301398afadcbf8022af65206d88a29cbb37141d75b273b1deed5bee9
+    sha256:c578cbfff702a7b46c6df90260aa24621fd88b54e3bc011c52513fb572655b8a
+    sha256:c79c232dffaed820a0221ed3fc08e47654f1b40e340cf7d40698cbd90824aa01
+    sha256:c842ecc20d75d7d50e9a320351449ded1958797a04f540c8d042b82cd38d5798
+    sha256:cdad2c576e9252769915f197b67ca3b6bfee4fbe0ec55ba1391eab19f3d7914d
+    sha256:d0ed8edaa893407e38e2cc0f10f00737f8cd0d17d776506c131ba3d4214c29f9
+    sha256:d413b9050aa209ca7c37c3fb58ccb23ae87c87dcd4351b904f75c149be13b149
+    sha256:d41e7f5ba87b3af75f690f4b0393eead756fc8f07b22d15a71ae0ef5a7d6df90
+    sha256:dadce021a3d97b0fdcb134a653b519aa7d09bc41a4c4309cb313088fd7f680b2
+    sha256:e6203654df14713fb07e6b9a0dfc4173dc253350ae176f31d4e8cd2646410f68
+    sha256:f18f4b53d962249eddca2170a39404e2022fe9adde5c864c3cc0e0e317b742c3
+    sha256:f3c6a558197f7365f044f8e3d416432167a544e9714b1d17faebe3038581ee65
+    sha256:f486c3ad912837315696300220c2df9b90522eb28aa7f4fc1a3a8460512789c3
+    sha256:f6eb76314dd72539f24ec2af597ca8eb8bd544c71a6feeb99c71508d037100be
+    sha256:f7cad586bb4d51daafab03100088e0125382a7df70f2b3fd826cc45d62fcaa47
+    sha256:f7eecc81be9c9423e40193585450a80dcd212556fb87c09b00d9265f3edf04d9
+    sha256:fb70f09e715a80eac492e597617f8e0fc9ada80f600197baca8561e89cc37fd6
+    sha256:ff5ee0610a6e68adc1745bc3b85d8b0dcd1c530ac1cf6487b64a4febf3af937c
+
+REPO: alertmanager
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: alpine
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 3   ECR manifests: 3
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: backstage
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 75
+  ACR manifests: 240   ECR manifests: 240
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (15):
+    2025.09.16.73
+    2025.09.16.74
+    2025.09.18.75
+    2025.09.18.76
+    2025.09.18.77
+    2025.09.18.78
+    2025.09.19.79
+    2025.10.06.80
+    2025.10.06.81
+    2025.10.06.82
+    2025.10.06.83
+    2025.10.07.84
+    2025.10.07.85
+    2025.10.07.86
+    2025.10.07.87
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: bitnami/rabbitmq
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: busybox
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: camunda/zeebe
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: helm/baobab-backend
+------------------------------------------------------------
+  ACR tags    : 4   ECR tags    : 4
+  ACR manifests: 4   ECR manifests: 4
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: helm/client-management
+------------------------------------------------------------
+  ACR tags    : 2   ECR tags    : 2
+  ACR manifests: 2   ECR manifests: 2
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: helm/couchbase-dependencies
+------------------------------------------------------------
+  ACR tags    : 5   ECR tags    : 5
+  ACR manifests: 5   ECR manifests: 5
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: helm/duma
+------------------------------------------------------------
+  ACR tags    : 3   ECR tags    : 3
+  ACR manifests: 3   ECR manifests: 3
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: helm/fineract-backend
+------------------------------------------------------------
+  ACR tags    : 23   ECR tags    : 23
+  ACR manifests: 25   ECR manifests: 25
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: helm/fineract-frontend
+------------------------------------------------------------
+  ACR tags    : 7   ECR tags    : 7
+  ACR manifests: 8   ECR manifests: 8
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: helm/log-app
+------------------------------------------------------------
+  ACR tags    : 4   ECR tags    : 4
+  ACR manifests: 4   ECR manifests: 4
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: helm/msgateway-2
+------------------------------------------------------------
+  ACR tags    : 29   ECR tags    : 29
+  ACR manifests: 38   ECR manifests: 38
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: helm/oaf-odoo-data-migration
+------------------------------------------------------------
+  ACR tags    : 3   ECR tags    : 3
+  ACR manifests: 3   ECR manifests: 3
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: helm/offline-writes
+------------------------------------------------------------
+  ACR tags    : 6   ECR tags    : 6
+  ACR manifests: 6   ECR manifests: 6
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: helm/otpgateway
+------------------------------------------------------------
+  ACR tags    : 4   ECR tags    : 4
+  ACR manifests: 4   ECR manifests: 4
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: helm/ou-api-service
+------------------------------------------------------------
+  ACR tags    : 3   ECR tags    : 3
+  ACR manifests: 3   ECR manifests: 3
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: helm/pesa
+------------------------------------------------------------
+  ACR tags    : 5   ECR tags    : 5
+  ACR manifests: 5   ECR manifests: 5
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: helm/ph-ee-engine
+------------------------------------------------------------
+  ACR tags    : 3   ECR tags    : 3
+  ACR manifests: 3   ECR manifests: 3
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: helm/shs
+------------------------------------------------------------
+  ACR tags    : 7   ECR tags    : 7
+  ACR manifests: 7   ECR manifests: 7
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: helm/tax-signature
+------------------------------------------------------------
+  ACR tags    : 3   ECR tags    : 3
+  ACR manifests: 3   ECR manifests: 3
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: helm/timiza
+------------------------------------------------------------
+  ACR tags    : 4   ECR tags    : 4
+  ACR manifests: 4   ECR manifests: 4
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/defaultbackend-amd64
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/ghcr.io/dexidp/dex
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/http-base
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/ingress-nginx/controller
+------------------------------------------------------------
+  ACR tags    : 2   ECR tags    : 2
+  ACR manifests: 6   ECR manifests: 6
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/ingress-nginx/custom-error-pages
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/ingress-nginx/kube-webhook-certgen
+------------------------------------------------------------
+  ACR tags    : 2   ECR tags    : 2
+  ACR manifests: 6   ECR manifests: 6
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/ito-cluster06
+------------------------------------------------------------
+  ACR tags    : 2   ECR tags    : 2
+  ACR manifests: 2   ECR manifests: 2
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/ito-kubeclient
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/k8s-zabbix
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/kiwigrid/k8s-sidecar
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/konga
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/kube-state-metrics/kube-state-metrics
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/mcr.microsoft.com/hello-world
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/mcr.microsoft.com/oss/kubernetes-csi/azuredisk-csi
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/nginx-base
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oaf-certbot-godaddy
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oaf-ipsec-1sbnk
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oaf-ipsec-server
+------------------------------------------------------------
+  ACR tags    : 2   ECR tags    : 2
+  ACR manifests: 2   ECR manifests: 2
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oaf-kong-ingress-controller
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oaf-kong-proxy
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oaf-nc-listener
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oaf-oauth-receipts
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oaf-postgres
+------------------------------------------------------------
+  ACR tags    : 2   ECR tags    : 2
+  ACR manifests: 2   ECR manifests: 2
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oaf-stunnel
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oaf-zabbix-apache
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oaf-zabbix-api
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 60
+  ACR manifests: 59   ECR manifests: 59
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oaf-zabbix-grafana
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 39   ECR manifests: 39
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oaf-zabbix-index
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oaf-zabbix-influx
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 39   ECR manifests: 39
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oaf-zabbix-monitor
+------------------------------------------------------------
+  ACR tags    : 42   ECR tags    : 42
+  ACR manifests: 41   ECR manifests: 41
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oaf-zabbix-mysql
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oaf-zabbix-prep
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 39   ECR manifests: 39
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oaf-zabbix-web
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 39   ECR manifests: 39
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/oafoauth-proxy
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/ocs-integrated
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/quay.io/kiwigrid/k8s-sidecar
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/zabbix/zabbix-agent2
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/zabbix-apache
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/zabbix-influxpush
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/zabbix-monitor
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: infra/zabbix-proxy-sqlite3
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: ingress-nginx/opentelemetry-1.25.3
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: jetstack/cert-manager-cainjector
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 6   ECR manifests: 6
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: jetstack/cert-manager-controller
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 6   ECR manifests: 6
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: jetstack/cert-manager-webhook
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 6   ECR manifests: 6
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: jiralert
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: matomo-redis
+------------------------------------------------------------
+  ACR tags    : 15   ECR tags    : 15
+  ACR manifests: 14   ECR manifests: 14
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: micro
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: nats-streaming
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oaf-logstash
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: one-acre-fund/tupande-mobile-admin
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/adminer
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/airbyte-custom
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/airbyte-firestore
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 40   ECR manifests: 40
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/airbyte-kobo
+------------------------------------------------------------
+  ACR tags    : 43   ECR tags    : 43
+  ACR manifests: 93   ECR manifests: 93
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/airbyte-source-telerivet
+------------------------------------------------------------
+  ACR tags    : 3   ECR tags    : 3
+  ACR manifests: 4   ECR manifests: 4
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/airtel-connector
+------------------------------------------------------------
+  ACR tags    : 33   ECR tags    : 33
+  ACR manifests: 39   ECR manifests: 39
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/api
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 103
+  ACR manifests: 120   ECR manifests: 132
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (43):
+    v2.8.1_1710a1151fba9212f8f031f2d7e7ce037288f520
+    v2.8.1_270bf9f305c5a8f2f569a73902993b3972e10a65
+    v2.8.1_3dfcf970f136e7201f718b4ef0da3c312edec6c5
+    v2.8.1_73f485e3c3c5d296512d6884e06584bf4fcf85a6
+    v2.8.1_756085cff877d579c098544455740f8d713d9b68
+    v2.8.1_863d04ca2ba7170bc74449dd30a19a88d2455e16
+    v2.8.1_901aafd7e7ee6b5fe3e29e67f39d60c373877d38
+    v2.8.1_95ec1297fe9e9c3adfda8bd0bc852a6285f48474
+    v2.8.1_9a830f3d1cea8fd0d74c080df8a150e050332c30
+    v2.8.1_ac157619424d34eb05de71e4905e2eeccbbc97c0
+    v2.8.1_cb8d3e7a65d630af14099695f871d055fa49d2fa
+    v2.8.1_d1a560798b39f89e155b294e0d65d9297fb1e52b
+    v2.8.1_e17b2e5bdd4770900442a4803d3933c91cf802c0
+    v2.8.1_e96c6fb12559c2375fd15ad5618d932468b2a613
+    v3.0.0_20f7974bc8b2f5431c8c614a141f1356ac4d9656
+    v4.0.0_265d723cedce5941538603fe284432c582b81197
+    v4.0.0_f51941148fc24166c86596b16e152d64ddc81f13
+    v4.1.0_0520ba6dbc5188f38694f279d90a06c995ada46e
+    v4.1.0_2fd2188fb04f8a356c4693b75d2f94bcb11aaa93
+    v4.1.0_4a1b9d7249e6bc1a7bd5be1dbf12267b9d60cb99
+    v4.1.0_8261ca1222957cc9a5811472da0b2a58d0451bcc
+    v4.1.0_aa1c0e3b48a56e38a686dd10c321deea0feb20f6
+    v4.1.0_f0fb8f7bb27071fbb9cf4b90e2a0bbfddb2a2bf9
+    v4.1.1_0d2719765ceecaa55ade3b80a086e9b831c1958f
+    v4.1.1_133c35df79193d1e5322140b2e2d3614ebd78354
+    v4.1.1_399533a7439476135a7ab236c0808f1fb31b8bbb
+    v4.1.1_41c1c62740ac1d3e6220dd84beedb87f6a6c3483
+    v4.1.1_47122d9367f3ccb32f875fb1618f4f89367cd01c
+    v4.1.1_521e2279700eaaf6e1d328e0292e31b0739b9104
+    v4.1.1_6efdc54440a1271d950bc795de8a415c4bfd929b
+    v4.1.1_763f08219eba08b00c6a1191cf2dedcdd35548ed
+    v4.1.1_7eb23a1d4b9131f28f16246c3badf24b36ecb847
+    v4.1.1_88618baec4f5ea81dff3d50f3eb1ad6b31c1a63c
+    v4.1.1_997839add41fbaceb433d22b0e3522392f506e06
+    v4.1.1_a92f9703843e34572e25c007b9ac533faa56a695
+    v4.1.1_ab278fd3a5fbcb510452cc926908b80d3d0f6113
+    v4.1.1_be882047961ed3d2d749f25b0dedcbd15b6fdc6c
+    v4.1.1_c9cb463f859aca7c03f1f0962b8b7ff71b1445bc
+    v4.1.1_d788b83a73015d1e4363896cbbe5be44662ebb92
+    v4.1.1_f972a1533e3758cb581392dc42ff9e974234a7e7
+    v4.2.0_696abe8863b398606db3f2eb795aa066243cd642
+    v4.3.0_05c77444e0bdcf65704f43981104c24849f8a58b
+    v4.3.0_dad64fa19d99bdbd7db37e3bf8a973b0892095ba
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+  MANIFESTS IN ECR ONLY — not in ACR (12):
+    sha256:21aebce66e8987c3d39b959f1193062822ec411ed2470211c15347caa2110001
+    sha256:3d560c5b5edb064d7da1b185620907960b09df886f1a1205ee4009be74a9756d
+    sha256:50d94083bd39ab3dd3ca9ce1690c7ffd98e0bf4803af7322a072358f0865b812
+    sha256:68cb2c6653028702ca28fb9884d4e8134af5bd6a2ee273a4c2e6d5f9de739ea4
+    sha256:7dd7088440774bbad785d4d829e6c6bc3beb931b602149545e3b3f625839d4ef
+    sha256:918a6f9fc4fadc82f9bdfeb3bc17041fb59ad442e68a66156966fca277355f21
+    sha256:9a534a40522640bc41f265e0e870c3293900545843326673f418ac50ffeb2a1f
+    sha256:a465221bfb6ea4e59595b3d3b25d2d5dc785c12ec2278faaafb83eab7dde75ba
+    sha256:b91a51ad0041d54b0755e7473a01417cfdb4cca7a7eb145d4b6096125597c3e5
+    sha256:cb16e7b0e198ddd54ed9f1b9ae1e6da294aa7d99139b7d9c4b673afe3e2e9d57
+    sha256:d919d18198d16789abe4b684226bbae02b1a15668d5a53dc392fa4eabc427d6b
+    sha256:dab6b0b27c86f5223868e5b36e1ff147909517441fda6df3bd73936d7e63b7bf
+
+REPO: oneacrefund/auth
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 103
+  ACR manifests: 120   ECR manifests: 132
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (43):
+    v2.8.1_1710a1151fba9212f8f031f2d7e7ce037288f520
+    v2.8.1_270bf9f305c5a8f2f569a73902993b3972e10a65
+    v2.8.1_3dfcf970f136e7201f718b4ef0da3c312edec6c5
+    v2.8.1_73f485e3c3c5d296512d6884e06584bf4fcf85a6
+    v2.8.1_756085cff877d579c098544455740f8d713d9b68
+    v2.8.1_863d04ca2ba7170bc74449dd30a19a88d2455e16
+    v2.8.1_901aafd7e7ee6b5fe3e29e67f39d60c373877d38
+    v2.8.1_95ec1297fe9e9c3adfda8bd0bc852a6285f48474
+    v2.8.1_9a830f3d1cea8fd0d74c080df8a150e050332c30
+    v2.8.1_ac157619424d34eb05de71e4905e2eeccbbc97c0
+    v2.8.1_cb8d3e7a65d630af14099695f871d055fa49d2fa
+    v2.8.1_d1a560798b39f89e155b294e0d65d9297fb1e52b
+    v2.8.1_e17b2e5bdd4770900442a4803d3933c91cf802c0
+    v2.8.1_e96c6fb12559c2375fd15ad5618d932468b2a613
+    v3.0.0_20f7974bc8b2f5431c8c614a141f1356ac4d9656
+    v4.0.0_265d723cedce5941538603fe284432c582b81197
+    v4.0.0_f51941148fc24166c86596b16e152d64ddc81f13
+    v4.1.0_0520ba6dbc5188f38694f279d90a06c995ada46e
+    v4.1.0_2fd2188fb04f8a356c4693b75d2f94bcb11aaa93
+    v4.1.0_4a1b9d7249e6bc1a7bd5be1dbf12267b9d60cb99
+    v4.1.0_8261ca1222957cc9a5811472da0b2a58d0451bcc
+    v4.1.0_aa1c0e3b48a56e38a686dd10c321deea0feb20f6
+    v4.1.0_f0fb8f7bb27071fbb9cf4b90e2a0bbfddb2a2bf9
+    v4.1.1_0d2719765ceecaa55ade3b80a086e9b831c1958f
+    v4.1.1_133c35df79193d1e5322140b2e2d3614ebd78354
+    v4.1.1_399533a7439476135a7ab236c0808f1fb31b8bbb
+    v4.1.1_41c1c62740ac1d3e6220dd84beedb87f6a6c3483
+    v4.1.1_47122d9367f3ccb32f875fb1618f4f89367cd01c
+    v4.1.1_521e2279700eaaf6e1d328e0292e31b0739b9104
+    v4.1.1_6efdc54440a1271d950bc795de8a415c4bfd929b
+    v4.1.1_763f08219eba08b00c6a1191cf2dedcdd35548ed
+    v4.1.1_7eb23a1d4b9131f28f16246c3badf24b36ecb847
+    v4.1.1_88618baec4f5ea81dff3d50f3eb1ad6b31c1a63c
+    v4.1.1_997839add41fbaceb433d22b0e3522392f506e06
+    v4.1.1_a92f9703843e34572e25c007b9ac533faa56a695
+    v4.1.1_ab278fd3a5fbcb510452cc926908b80d3d0f6113
+    v4.1.1_be882047961ed3d2d749f25b0dedcbd15b6fdc6c
+    v4.1.1_c9cb463f859aca7c03f1f0962b8b7ff71b1445bc
+    v4.1.1_d788b83a73015d1e4363896cbbe5be44662ebb92
+    v4.1.1_f972a1533e3758cb581392dc42ff9e974234a7e7
+    v4.2.0_696abe8863b398606db3f2eb795aa066243cd642
+    v4.3.0_05c77444e0bdcf65704f43981104c24849f8a58b
+    v4.3.0_dad64fa19d99bdbd7db37e3bf8a973b0892095ba
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+  MANIFESTS IN ECR ONLY — not in ACR (12):
+    sha256:029fb1ce5448c482b676d0cb8170753c000f2f8843d91da381b516d646109d2f
+    sha256:0b992ff5b20c2d3590e7a1ecca1c2fdf8929b6093522a75638c088105808c079
+    sha256:1b960067daa8025a4aa8c51fe9a21d62d7d5b83444404b27015a9656d9ff38e4
+    sha256:213ec6d23542b47b3804303c0bbf9b364c694acf14eeb4289e35ed75b92b46d7
+    sha256:272226826e0e298166f6b28ed0fe061f599088d1d3e2a65a558926f1e2e97c84
+    sha256:3eb130ce3e91e3e7a69d0c17d53247a19f4bd8d5364372038c5e05a8136b95f4
+    sha256:5bbd333d9c35dddf3f2762e749aaae57d8f0b7d385b996d18fea7e0a265f3aaa
+    sha256:5e66b028b90f2eff980640ff8630b55b7e6a5dfe63e9b6f358ae05f17332ae16
+    sha256:a97958aaf8927beb1e763f8ad130e87a0dcd9f493177756b0714e34f47590474
+    sha256:ba4596b3f7f5c0f83098656750fcd712371dcad81638a5529735b0ab33515be3
+    sha256:ce2ef03a0132242ef1f9c87a49c0f0e6a6bf0db0ac7baf89b7a532a06a3d1a33
+    sha256:e5f73aadd0aa98069698c01a03a18ae1a1c23d14dc8532457b062b7e52e7fd74
+
+REPO: oneacrefund/autosaveconsumer
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/azure-blob-logstash
+------------------------------------------------------------
+  ACR tags    : 2   ECR tags    : 2
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/baobab-backend
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 60
+  ACR manifests: 147   ECR manifests: 144
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (3):
+    sha256:5353aef7e701297735c2003177b5df560d737f32cf1befcd318fcea0e103c696
+    sha256:a668c908145c328ed5d29581302c77e6168f472057ad546702ecf7358d6c9d4e
+    sha256:cca7c49e533279d9163477fd9591c185bd1802bf13b40955c5aa10257fd58036
+
+
+REPO: oneacrefund/cbes-connector
+------------------------------------------------------------
+  ACR tags    : 2   ECR tags    : 2
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/channel-connector
+------------------------------------------------------------
+  ACR tags    : 56   ECR tags    : 56
+  ACR manifests: 58   ECR manifests: 59
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+  MANIFESTS IN ECR ONLY — not in ACR (1):
+    sha256:5f16935f8dbcb140c8210ccfe8883b58160576eed1c43badf7db1ccf23646a17
+
+REPO: oneacrefund/client-management
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/clientconsumer
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 39   ECR manifests: 39
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/clientmanagement
+------------------------------------------------------------
+  ACR tags    : 15   ECR tags    : 15
+  ACR manifests: 15   ECR manifests: 15
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/clif-cache
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 75
+  ACR manifests: 102   ECR manifests: 116
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (15):
+    3385
+    3389
+    3392
+    3393
+    4360
+    4361
+    4362
+    4363
+    4370
+    4374
+    4375
+    4376
+    4377
+    4378
+    4392
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+  MANIFESTS IN ECR ONLY — not in ACR (14):
+    sha256:02c499e0d7b01096cc133fc1b6051c08f577aca383dc9485a7700181576cd138
+    sha256:37bbc933e9cf3de6598a9e9a8a32938f03a8b897028d1f31f69fea32878cef28
+    sha256:50b69da21d6b05836ebfb97c8477775bc1aa7f1b7a6d2dfb47d47d523ebb2f77
+    sha256:568f7171d18b3a28a5c500a0c617a3febbfd5fc33677db50e1dd225502c8b88e
+    sha256:6c9622844d3dcf777477f7ac8c8916d5bf624ccc991d1bbd2af1e9721b57cce6
+    sha256:734630cc5c08014c8280b8277cb854e625186d73ac36506664f424b1106a90f2
+    sha256:7bb2fcdf824bf010d4223f2d48fde025ea7913a32f5e8d350e81b26869d9804d
+    sha256:80e7b46b262600efd62bd3276e9083dd3d5b21c22663bd0a1208a092a2d2fac9
+    sha256:895793d41231c19c6d59f48bb23cea894507d5d3d44553f0e0836021535714b7
+    sha256:b11a3970cd5fca9e1a01ccb3662a701c58e0f054c032d2d19d482116215a9493
+    sha256:b39c315dbe9342a1dd6e5f1642f1f8eb6dd96b2921ccb4e450833957616183e0
+    sha256:bb0e5be2e5f2d114140d04b762490826cae54383621bda6f23e695949370e5ba
+    sha256:f0a966b06f1271991d3a303844313ca21dd2911e866aa1cd2d4e830302f427b1
+    sha256:fce6a151188e1009051f6c290a4a1c858a7e527b128ba032b8f77379438e55e9
+
+REPO: oneacrefund/connector-template
+------------------------------------------------------------
+  ACR tags    : 2   ECR tags    : 2
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/couchbase-duma
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/dbt
+------------------------------------------------------------
+  ACR tags    : 6   ECR tags    : 6
+  ACR manifests: 6   ECR manifests: 6
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/dumaapi
+------------------------------------------------------------
+  ACR tags    : 5   ECR tags    : 5
+  ACR manifests: 5   ECR manifests: 5
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/elasticsearch
+------------------------------------------------------------
+  ACR tags    : 32   ECR tags    : 32
+  ACR manifests: 3   ECR manifests: 3
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/erply-cache
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 40   ECR manifests: 40
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/erply-connector
+------------------------------------------------------------
+  ACR tags    : 31   ECR tags    : 31
+  ACR manifests: 31   ECR manifests: 31
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/erply-consumer
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 60
+  ACR manifests: 60   ECR manifests: 60
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/erply-create-payment
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/erply-payment
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 40   ECR manifests: 40
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/event-publisher
+------------------------------------------------------------
+  ACR tags    : 4   ECR tags    : 4
+  ACR manifests: 4   ECR manifests: 4
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/fds-api
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 106
+  ACR manifests: 114   ECR manifests: 106
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (46):
+    3143
+    3147
+    3148
+    3149
+    3150
+    3198
+    3199
+    3200
+    3204
+    3207
+    3212
+    3213
+    3214
+    3215
+    3216
+    3217
+    3218
+    3231
+    3238
+    3239
+    3242
+    3243
+    3244
+    3245
+    3246
+    3247
+    3248
+    3249
+    3251
+    3253
+    3269
+    3270
+    3275
+    3277
+    3278
+    3279
+    3281
+    4292
+    4306
+    4309
+    4310
+    4312
+    4313
+    4321
+    4322
+    4324
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (17):
+    sha256:15e2c1b10149216a3ce4669fb700245317df2191e254995d974287aa656076cb
+    sha256:1fd3ed2081dab4a208d0c6e59ea5583b6b70db57fa0cc53675c92fdb3ad51353
+    sha256:3b2cd4f794470ecc1779b0360ea47509ab43d694ed31f2bb7d5f7e70557b625a
+    sha256:3d8609f7f6b1e5861dbec8e4aca1e53a920edbc287e0f5fbdf7878eab5ab9b48
+    sha256:3ddb4e5a6a185bf7534011c686590b7bec6b49090ae9473b0a81d60ecd5b8aea
+    sha256:4693955ebea0fb038f9e71aedc878307509b7c49e40d76e545e3a7fbedcbd319
+    sha256:4e62269aeb2949272057c6ca5214bec3619b4e801a4cf7b8127d6fc488467d4c
+    sha256:5816e8a8244fc5d40b5f9cf0ade8f07c0c96fd932d5826290a184915f1198d2f
+    sha256:822211a4a11e26271212b8eb45cf4bba5e80445e788aead66e790016458f0df6
+    sha256:9c9911db26c52c3067bbbcb44123b85557e66acfa756f9664f1d804798fdbbcf
+    sha256:9f6c1af7c9f332c75aea2c2f0ec977404ddc34e9769015861caec0ab18f8a14a
+    sha256:ce4403f71e9b7cb0e5a92384e97d6af5d3a90a7ba254f9994b4279b77c5489ff
+    sha256:d2372b5672170ba826215c738288e135a1766f46fcca2d6e7d56fba5f2199695
+    sha256:d2eba42f0e92e4f55d71d8db03976e52c55c646e58a049d5d547eaa1e44c72d9
+    sha256:d9c7dc994f956c3e852b16326f69c38b63b67e70444003607323225eee1262de
+    sha256:e7373566b6f5e3892f31c6d6cead3cbff8e1636e06d392a73d7c9cb3d3fbf0ab
+    sha256:f10d61c038faa29f0a466955a0d90a9b9824733dc4a93fbc3d2020b2ad579bf7
+
+  MANIFESTS IN ECR ONLY — not in ACR (9):
+    sha256:28b8faa9eb2183004e91da49117d366191964c550d65cea2acbfb0880b7e573a
+    sha256:2e4e5aa95dde78c0e7798d406e4959bdaab02d99f8e9e69569e28a8982e75799
+    sha256:55462c708eb2aaf00db3951a78f47da16e8afa804effc2644b7c068da58052f4
+    sha256:7714427143ad594d434e9198888dda26c01b26a6ca61efd4a54bc1e9bda41e22
+    sha256:84accd836c72125fce503c3158ff1a953f3df50a76249ef0b37b87633c1e9ecf
+    sha256:91b8bfaa7508bbe63bcf38f9b1000914a9a30d1b97cf0ceb4a5bc2f4688d2ab7
+    sha256:aee294545c6604a2d349b3ecdf2dc153cb11e7475c50d807d09ee727a5dc5edb
+    sha256:bc2ac62ee3c1e65f5c65eae4a2259e5ffce90986a0532688c5132c1411fd3196
+    sha256:d1aeab5c9875d2c0611db9ab86e3d3aba95167273af5e9b9ab5e6762da6a3630
+
+REPO: oneacrefund/fds-consumer
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 70
+  ACR manifests: 78   ECR manifests: 70
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (10):
+    3079
+    3080
+    3081
+    3082
+    3083
+    3084
+    3085
+    3086
+    4310
+    4312
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (10):
+    sha256:1c6ee93aef1be94623ff93276e1cc3f06eeefb694801d350810db7728ab9e4c8
+    sha256:625ad0ebade11b123b0de6dd44ab4705f719d9387e13c9dce6a3e1880c0231d8
+    sha256:848920251c2e3f965af1466c525bd4c9e39dbbf56fb40442b2ded9aad59e011d
+    sha256:89ace941170840687045e433b359842cef5f9f1eec60866f21bd7a9ab65d8246
+    sha256:8cc9f7852e0e162bc5e890b7f41c31d257f9869dcf33eef68016910023436671
+    sha256:a2982beed6a31e5065179d016d99492bd7f06dc16fe7408451e12fec2990d4db
+    sha256:b6cd10a013353cbc36c967fff4cd3fd6a4bbffb117a13d44b6383eeba84054bd
+    sha256:be6776932276d9ba7bbef50e5d24bd53c592f8222d2d68f6d617ffd61739865f
+    sha256:e17d26c45cd331103b0516f40ba6826077375af82e98cd636144d27ee89563cb
+    sha256:e3345d45a715d16a9bf096e694553e20dcc3e3a897a32ca5ed8ed513d4144d5a
+
+  MANIFESTS IN ECR ONLY — not in ACR (2):
+    sha256:325a878de92cd0ebd5e0f4014a293680e148caf37aad4d223c71d8fba6561a6b
+    sha256:b288df40618c8bcf2bd8af6f9b33682a7e3469d2982ad71d01b33b9a6634806a
+
+REPO: oneacrefund/ffp-consumer
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/fineract-backend
+------------------------------------------------------------
+  ACR tags    : 63   ECR tags    : 91
+  ACR manifests: 122   ECR manifests: 90
+
+  TAGS IN ACR BUT MISSING FROM ECR (2):
+    1.8.19.1.2026.06.30.4316
+    1.8.20.2026.06.30.4317
+
+  TAGS IN ECR ONLY — not in ACR (30):
+    1.8.15.2.2026.03.25.3930
+    1.8.16.1.2026.03.26.3933
+    1.8.16.1.2026.03.27.3935
+    1.8.16.1.2026.03.27.3936
+    1.8.16.1.2026.03.29.3941
+    1.8.16.1.2026.03.30.3944
+    1.8.16.1.2026.03.31.3963
+    1.8.16.1.2026.03.31.3965
+    1.8.16.1.2026.04.01.3969
+    1.8.16.1.2026.04.01.3971
+    1.8.16.1.2026.04.02.3975
+    1.8.16.1.2026.04.02.3980
+    1.8.16.1.2026.04.03.3983
+    1.8.16.2.2026.03.30.3959
+    1.8.16.2026.03.19.3904
+    1.8.16.2026.03.19.3905
+    1.8.16.2026.03.24.3918
+    1.8.16.2026.03.24.3919
+    1.8.16.2026.03.24.3921
+    1.8.16.2026.03.25.3926
+    1.8.16.2026.03.25.3929
+    1.8.17.2026.03.30.3953
+    1.8.17.2026.03.30.3956
+    1.8.17.2026.03.30.3958
+    1.8.17.2026.03.31.3962
+    1.8.17.2026.04.01.3973
+    1.8.17.2026.04.02.3976
+    1.8.17.2026.04.02.3977
+    1.8.17.2026.04.02.3979
+    1.8.17.2026.04.03.3984
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (32):
+    sha256:0237465c6c378a21f90d77cf163c293ec7311bcb7632a6e0ac47879a650d55e5
+    sha256:08ffd72d8933d8211d631b727d042b9a2d455e28e300e66eded40c6da3a70b5c
+    sha256:1aa4093c8732ba9eae6c0ae82cf32cd424d7d04fef445f2e44c04753f22e022a
+    sha256:28f97330d76ac063db9437aec233636cd6b3a6a81624229b58308c479d2908aa
+    sha256:295fc48bdfa91e247c5ad5a9f8eeb9e867437dfca84115fa471d83e1192512b7
+    sha256:2c3d0196c7ad9b6ae58c3876027383a83c3adb4aebb0b1ba45719242f767d5b1
+    sha256:2c510a2158062527f29cd89bc17a28233a975733b0e6fbea064131d3bfbbf98f
+    sha256:381404b7f2a80714da1a5d7e6ec6400c289a4107676f6ae1b41ddbc0ce2868d7
+    sha256:38b414f4d8be8954fe1a1e701d3a797df73faf0491b3883e4cdd8fb91651a88c
+    sha256:3ff192f2af42ee7423616539304d6a23cfe97b59a90ca06705c3d02e6a6c2bb1
+    sha256:42c238e03f4399cfb1ec172f658835ad86a6234139e6ff807432aa955f4b8faf
+    sha256:551c491a7657d0020b85267ecbd8c20b602b3d81524e0d20e2161c46bac4856d
+    sha256:563bf17e1c96db1320e573edeb9b31aff329f0dece2ba3bbc1aaa5b471292469
+    sha256:5b7f1ac5f3881552f6171d27d12befc8981ee7756936e5092df01cf4c7845d8a
+    sha256:5bb1b974a3d384828786df84c7294f9f608b0e813095e695a168c26cd2348443
+    sha256:5ec2098824570c0c3d48f38de4862b9c2050407f74d1d69e701c1fc9c862548b
+    sha256:7545207bfbefcabcafe5e02c7f86e7b6dce79b7e5179f442b15ecbe9d17b0dbf
+    sha256:88cfce6e98bb827a8e99e9f8c92a9eed1e7ed649cc39779396afffd26ac7bdb2
+    sha256:8e489219b7f5da00f542fa4f0910edf1d422a256a0483e95fc950c06645f42c5
+    sha256:99f063ecce3cc346cd5f4ff959d31357fca1999c7fc632f8b9eba628767d14f4
+    sha256:9b7b427fda539e844a4273c60495a1d59ba943254f59d8d1de5e894d265807d8
+    sha256:a3adca6673df7c5944db2061cecb2d977613e4fd11a83aba91a9587f6b295e07
+    sha256:a56f7b28be6de969108fefa44cafa10246f2c910c0ca67727939585850056af0
+    sha256:b3b5dddc8a7421b97933d295770b1b299cef62274a500f41e8506755e8709f78
+    sha256:c405bfbeb7bd3743b102b71b74b768d5cc871fdb9cee2d73f3a414bde8c62be3
+    sha256:ca2ecd6636344d72b57ca2eec647642489d9af9c78c1c23487e46214daf9e2cc
+    sha256:cfd73ffa174c6bc1dae7cb6ef697069b530fcc1a852b5379caaaef07ecb6754e
+    sha256:daebe8dedf22792a1e376a4dfd73e0b379d2656e0b402fe274b660380f88ba74
+    sha256:e0f2b85fde7081c9a5740de21062c96c6f83260013451d3250549b4f939823c7
+    sha256:e3fa1ad3013534f6f79395636cbf39b04fe6760b871612d563c95b01da474f20
+    sha256:e43f136d86929d374bc274ae5f2c3438a51dc131073fbb40409594755ca9f8ca
+    sha256:e6fce0a7bc6cffdc224097d121de27760e5046b136049e573cb35c1ebd550731
+
+
+REPO: oneacrefund/fineract-frontend
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 60
+  ACR manifests: 86   ECR manifests: 86
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/fineract-frontend-v2
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 77
+  ACR manifests: 115   ECR manifests: 82
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (17):
+    1.4.1.1.2025.10.08.678
+    1.4.1.1.2025.10.09.680
+    1.4.1.1.2025.10.13.692
+    1.4.1.1.2025.10.13.693
+    1.4.1.1.2025.10.13.698
+    1.4.1.1.2025.10.13.699
+    1.4.1.1.2025.10.14.701
+    1.4.1.1.2025.10.22.704
+    1.4.1.1.2025.10.28.709
+    1.4.1.2025.10.08.676
+    1.4.2.2025.10.31.711
+    1.4.2.2025.11.01.714
+    1.4.2.2025.11.04.719
+    1.4.2.2025.11.04.721
+    1.4.2.2025.11.18.723
+    1.4.2.2025.11.21.725
+    1.4.2.2025.11.24.727
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (33):
+    sha256:01b6185eebbd0e81e070b07dd2d79cb3eab2eef83e35171cfd0315a0e32d29b6
+    sha256:03f29443916481f88bdc00e0a6c88ebd80567466f54c51b461d0bdb202eb5872
+    sha256:095e1f4570459d0a000584103975ddcb4d3daecd968ab9732524f2002f8b1d14
+    sha256:0f01822ef22080da141f42d6845600f9ca438f90521b3b8cca6f9a3a52517a89
+    sha256:0ff893bdb9868fa748cb67b7906b56322ae33d7d584fc38de0950c4a151287a7
+    sha256:191b14bfe402a2053080de5575747b7aabd4c07062e3b9c8a884475f2bc10b21
+    sha256:1ca1e683336d0dad9e36ffedf1d42a33243982fb90c48965d149ff666bace1d7
+    sha256:2c128c9593893c2d8f01916cf942904e6b9490cff2cd6f3877159ef4bcacb24b
+    sha256:31df6fbe366dc37ba7fe8a19500e6a4e26627160d3e87e31815d8c8e77fa7b15
+    sha256:3695d6ea43951bd2cc2c39ed1d9e06f3a1e87191b5c13e90ce1c2336d1fd0b47
+    sha256:3d855d9ae8a8db25296e041097f2cab18abe2650e9b70b5d382441db48781492
+    sha256:43bfd2ca4485fc3a61588fd6342160808427572f0d5203ecdb358beb549963ee
+    sha256:47a1a63cdb9faf39435085328e54d18716cfb3ed6198878456f154d41c563741
+    sha256:47a480f2a5dbf210cc477256e8f8edf35e1114265563d75939b4710690d8d2f7
+    sha256:47d937da07540c0625f893c9f6a7ee723bf722a11e780d20b9ae1c23cee9e839
+    sha256:4b4d04cf2fd86fabed737ae5ee6e2557c68aa5e69f8ede9ea6c38cc315314395
+    sha256:5db1b8834afd4607a7d46f92f387e5e2e7d345ffa82a8e74f2b98ab85759650f
+    sha256:7356ce5d93a6688dd40ac9100168a6ea6eb6d399acd82e0f4a91d0412e433873
+    sha256:7dfdcb173fce770dcc138123debf461850c483558a263f9cf6d06edfc43bc1e4
+    sha256:815b8a9eddca8ebb3524b0c5f8169f005b4d94996b56388e1916b53fd44feb31
+    sha256:82edc5150f04b72f30bd35f69a523f6cbc926e126885e366b4538ec2a9032d4e
+    sha256:933c7cdaddd4b67b59ee92d9ecb00773be89c1b0f826aa9d4917db4b067512db
+    sha256:967bf3eed9dbabfa93d330d38dd52ef6b81cde512123c6c00db81a50e44f6ecc
+    sha256:99bdf93c2ad59f0af6e7bcf191ff0a61600d168406edb5404fd874bb860a8f31
+    sha256:9b47822e84f9292a32f0f9f58c0bcd34605ea6c7dd2ad5338aabdf257a665c32
+    sha256:b6098146a121b98ea116ca5633a8d8d9abc431fc585e8f24ffe526078f066511
+    sha256:bfd4afc513388f0cf32f191b7f2625ef451db88edef0c2079b5c3d52c466d8be
+    sha256:ce81c8fbc06a12bb1c9169960914f0ba027b554bab3447c3fab70cef8448c775
+    sha256:cf4e3257a49fed4f28e137b9b162e7ea2279752a1bd9d7ec7e991f18208707c8
+    sha256:d0baf1a6852f6947a9fa955b0f895df6bdb0d165fb4f1509e156d680449f13c9
+    sha256:d0eea20ffc6d8e113092bbce45c30b62bfff7fd429415e58bb2b428155c395ac
+    sha256:d1cdfcf29d53f40644bd5395a5b7cbcd849e4ef498db61589323bb9a9f35b001
+    sha256:e28862cc61c1498f47cabf468c52ace75ffc198be72c28ddae9e171b1dbc3d5e
+
+
+REPO: oneacrefund/fleet
+------------------------------------------------------------
+  ACR tags    : 3   ECR tags    : 3
+  ACR manifests: 4   ECR manifests: 4
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/flink
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/jenkins
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/k8s-elastalert
+------------------------------------------------------------
+  ACR tags    : 7   ECR tags    : 7
+  ACR manifests: 7   ECR manifests: 7
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/k8s-kibana
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 96
+  ACR manifests: 181   ECR manifests: 194
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (36):
+    v0.1.0.2026.02.04.463
+    v0.1.0.2026.02.04.465
+    v0.1.0.2026.02.04.467
+    v0.1.0.2026.02.04.470
+    v0.1.0.2026.02.05.472
+    v0.1.0.2026.02.05.473
+    v0.1.0.2026.02.06.472
+    v0.1.0.2026.02.06.477
+    v0.1.0.2026.02.06.480
+    v0.1.0.2026.02.07.483
+    v0.1.0.2026.02.07.485
+    v0.1.0.2026.02.07.487
+    v0.1.0.2026.02.07.489
+    v0.1.0.2026.02.07.491
+    v0.1.0.2026.02.08.493
+    v0.1.0.2026.02.09.494
+    v0.1.0.2026.02.09.496
+    v0.1.0.2026.02.09.498
+    v0.1.0.2026.02.09.501
+    v0.1.0.2026.02.10.502
+    v0.1.0.2026.02.10.503
+    v0.1.0.2026.02.10.506
+    v0.1.0.2026.02.10.507
+    v0.1.0.2026.02.10.508
+    v0.1.0.2026.02.10.509
+    v0.1.0.2026.02.10.510
+    v0.1.0.2026.02.10.511
+    v0.1.0.2026.02.11.514
+    v0.1.0.2026.02.13.517
+    v0.1.0.2026.02.17.520
+    v0.1.0.2026.02.17.523
+    v0.1.0.2026.02.17.526
+    v0.1.0.2026.02.17.529
+    v0.1.0.2026.02.17.532
+    v0.1.0.2026.03.10.533
+    v0.1.0.2026.03.10.534
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+  MANIFESTS IN ECR ONLY — not in ACR (13):
+    sha256:164513d856041c3731e9f9c4c6927b26a7b8a49673cfa02f2185326474c63c65
+    sha256:1c00e27abef9703b1c603695f1b0678d60fba3fac1997466b06f1d8e41222cc3
+    sha256:4971c65953af8d0ad0db050fd577b334222a719e783d7c4d288bc0f86774778d
+    sha256:79d35ff89e35b6eb3121b81197f9ff3da3279b73ebdcade9838197e57f71d4a6
+    sha256:7f2252586a82fb3b8a089e9ad0aafaff23fce7244b615b6ac68a98d562fbcc1e
+    sha256:ad7686ef3d3f4820312fbca89d159ff7beac71aa08b70ee0bf4d04ab46f929b7
+    sha256:b879a00438ceece73c1fb9653a4baf32f97c342f8d28a607f5934b4ac4c95224
+    sha256:c8a69e6cf019863a8d00e7d964f2ccafc27405ae2a7bc7cc33a2282c65fd8edb
+    sha256:d7ef0dd882aac6318cbb1c3175a8a72e5fbb104e4aaf34ec155a30992614e877
+    sha256:e15e2ddbc757828e9328985acf451318e09bdac3ff9423a0c600d2029efd1d71
+    sha256:e779ef326ce9e20d6eb44efec08d9e69965a2e31296d11cf28e5203332ab24fe
+    sha256:f520f86014282cc406a507d507208a97434c742b96a3d96de3b4f64dbc5dc953
+    sha256:f8624779daae8010ec87985c1a47394f872a9d996ef310fdb8c116e6b1ddf3c4
+
+REPO: oneacrefund/k8s-logstash
+------------------------------------------------------------
+  ACR tags    : 57   ECR tags    : 57
+  ACR manifests: 57   ECR manifests: 57
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/k8s-logstash-polling
+------------------------------------------------------------
+  ACR tags    : 57   ECR tags    : 57
+  ACR manifests: 57   ECR manifests: 57
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/keycloak-api
+------------------------------------------------------------
+  ACR tags    : 61   ECR tags    : 86
+  ACR manifests: 122   ECR manifests: 89
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (25):
+    2985
+    2986
+    2987
+    2989
+    3001
+    3021
+    3022
+    3023
+    3024
+    3025
+    3026
+    3589
+    3640
+    3641
+    3665
+    3695
+    3808
+    3809
+    3816
+    3817
+    4275
+    4291
+    4314
+    4315
+    4347
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (38):
+    sha256:00aa3476aad34f4672933f4cfaa165fbd86c8363c6291e93a0f2a31f0461834c
+    sha256:06cba3f598a4951e11a980e5029ee94bec14881d06dcda278a8cfa7ab75df681
+    sha256:14f014e0508ae68247eefad4094ec67569b8aa4d42464ac8374aaa69f98e9506
+    sha256:181e191f83094246f2af93137306573d546be9e66ad9d935b17b8aa112f15428
+    sha256:1e37abf7cceeaa0956f5d250570f83ce893a5eb7608c343301b6bedc692b8108
+    sha256:23a895831a1723dfd746b2ed488d1e6466cfea54ced87ce9a29aa7c809faa7f5
+    sha256:26998b3f7254d0a014320086878fd372c51c881f9099e31a34f830965eaec32d
+    sha256:30a1fa9929a88abf7ec1041e0257d10b99ade36964e7fa404e5b5fc389ae3f92
+    sha256:3d32e1fdd4e2abf5fa6792d2c083b276a0a42ca62d465e749908ea6fbe61f477
+    sha256:41f234be528548562b43b1332411e18719336d58d4f6b2e86bf39c9b8ec8362f
+    sha256:44886370f17e279555e8dd07644ec88144e3f36fcd8e433719de38e0c4308678
+    sha256:4a6233322b37801046742c5721526194fda1f75ac7b2bf9d01b2bd6bfea800c1
+    sha256:4c617551fc6bfd5b6cd000e398fdc614d5cbd22f630dec3ecabac6de657fcaef
+    sha256:4f917190b68f9e70d397525dee6654a203b9a83c0b8fcfc75e6160d08fc1169b
+    sha256:50f369a5bf782e46ff4bd52f743f805c9141cfa42f492f87c2ffaa70fba2021f
+    sha256:53d1adadc0b181f14168fbc5b1a9a02fc40bd4e777c1f563c0cd2c7878c28171
+    sha256:560d8977ef3f80f8cd4361b7ee10a49dd5f836186446cf0a0eced71528b2972d
+    sha256:5dfee41e403feb648189183e393efb39bc08be133edb54a9ae35fddf3719394a
+    sha256:73fcefa87824de409c7aeb00b91ae400e5f1213b1e5c6ce2a8e9f422389ddfd9
+    sha256:9b2132de3f23a617af6669b53b84f91e383a029fdcdb297b364549fb6900039a
+    sha256:9df1645d4b39902cc8b7ad8d51a3511034ca4631818f003196806d05d1b9957c
+    sha256:9e76b63b0270637f721453f1b15b92c205b01e498dbd54314f850e36561aa959
+    sha256:a0563340c27a35a97960971263d68be8f17a828b8e48315bc798de7b80c2cb8c
+    sha256:ac81b29c94f23c7b3cf9804f33380c6d32c24bd73b8a44e4efc0cbe767657ce9
+    sha256:b0c899f5ad0c136505dab8ddd153ff73121cc8ccb0264997df23039b45241814
+    sha256:b14adbd7ce624c61593908f9aa2b1b6f760376c506c5605287d32e77b6f1fc50
+    sha256:c5b4d15e3d82bcdea04cc401243cf61db43dd83c7ce25b5abb126c740d4adde0
+    sha256:cd45af4104b99ceb2a8ca3ef97f433b1c7733154d3a0f53dfa22390c27b84dbb
+    sha256:cee721a076f409d82500d5344d570be2fc0e51bea44533a18a9ae244d80c3866
+    sha256:d98a24639bd372c0a799d9aa00788003953f09b7c5a4c5fd402b3b9c29766395
+    sha256:dc43b71da9a08a7d036f3fa4cc4a48061fce3e6715eb73c8cb25e04ce3815e7f
+    sha256:dd517a76a99f1e9ae70551e54ed85e9a614549470288422765321240f0912b87
+    sha256:e6a31b81db0b12a8fe478b885efb159b3567530bfc14c9fb7f3596131d3de1a7
+    sha256:e94fe7c9a8d15eae84a624f2373ce93b2162e6c489a6da42cb38e8af258f9f9a
+    sha256:eacd2a7b6971e3cb51c49e7a6d9b87bb5d8864d2ecee21a59f4aa7f8a6f76411
+    sha256:eba65df2df72eb390b41f503492a6d61bf67c0db836ed7104de8e828f6c185ed
+    sha256:f237226b551b59f9b97ba69ffbe7db200a8c7011cba670a866530b7da1d34ba3
+    sha256:ff0d91567b12f9ff8545fa2008b5af3ec4540dba3df15720086812b8106f0dee
+
+  MANIFESTS IN ECR ONLY — not in ACR (5):
+    sha256:03c6644cf372dd4e388cc3eda363b9fc23d1acd682994cc8f9f869e1110da865
+    sha256:8636e34b038f9c3d6fc053a9f1efb88eb5189ecc05ed57fe06895e9186fc2bde
+    sha256:a3fcd70ea583ec5924b3db161d566c50fb04d9ae5b5137eb04ae161f72420efa
+    sha256:e9220d4bfa5da595199cf884cb3e1d5931a1646b1a665b6f86ff6d63e2d96b06
+    sha256:f567c19dd6a87252d3ca137ab94128ea58313c2e02a96db2945e61f2b8666809
+
+REPO: oneacrefund/keycloak-themes
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 60
+  ACR manifests: 59   ECR manifests: 59
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/kibana
+------------------------------------------------------------
+  ACR tags    : 32   ECR tags    : 32
+  ACR manifests: 26   ECR manifests: 26
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/knowi-agent
+------------------------------------------------------------
+  ACR tags    : 2   ECR tags    : 2
+  ACR manifests: 2   ECR manifests: 2
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/logistics-app
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 56   ECR manifests: 56
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/logstash
+------------------------------------------------------------
+  ACR tags    : 8   ECR tags    : 8
+  ACR manifests: 9   ECR manifests: 9
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/master-data-odoo-consumer
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/message-gateway
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 63
+  ACR manifests: 60   ECR manifests: 62
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (3):
+    1.0.2-mifos-1.0.0.2026.06.30.172
+    1.0.2-mifos-1.0.0.2026.07.01.179
+    latest
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+  MANIFESTS IN ECR ONLY — not in ACR (2):
+    sha256:6ef647f05643944592dff1efe8a63815d7c60b4b24f78a8c88836416695df1b2
+    sha256:bfba6d046dc8aa6be1464418b255744f28f4bd213deef1d160dca3a17eab575e
+
+REPO: oneacrefund/metabase
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/mpesa-connector
+------------------------------------------------------------
+  ACR tags    : 31   ECR tags    : 31
+  ACR manifests: 33   ECR manifests: 34
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+  MANIFESTS IN ECR ONLY — not in ACR (1):
+    sha256:1cd3097f4cc7f6150027581bc392f2a2160b6502297f804827cb91e583b8e4fc
+
+REPO: oneacrefund/msg-refresh-v3
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/mtn-connector
+------------------------------------------------------------
+  ACR tags    : 39   ECR tags    : 41
+  ACR manifests: 40   ECR manifests: 42
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (2):
+    1.1.9.2026.06.19.73
+    1.1.9.2026.06.19.75
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+  MANIFESTS IN ECR ONLY — not in ACR (2):
+    sha256:8ec202ae1d9b0d416cbfb30f8060885bd7f21d24d0f8f16ea365dfa92c9cfa4d
+    sha256:bdec321058b936effa09c0c5f1d36c212b7ff0c9f39b635c37a30dfacaaeba6e
+
+REPO: oneacrefund/mw-ai-services
+------------------------------------------------------------
+  ACR tags    : 37   ECR tags    : 37
+  ACR manifests: 37   ECR manifests: 37
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/my-project-api
+------------------------------------------------------------
+  ACR tags    : 11   ECR tags    : 11
+  ACR manifests: 17   ECR manifests: 11
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (6):
+    sha256:1a5392fb921784995dd216c6ad5bc69e126e099db907657eba6858fff4781011
+    sha256:546c41d64b7b6f63b3a3c45888c24e5c2c766145616ae695bfd4dbe0df42cff2
+    sha256:807bf1e1bb709ba48eaa3cd5e14f39ad37a6cde1f3cb94605ca1616da4cd3e4a
+    sha256:83aae816a6ea63430b4aa6e4955e90e9431d04ae0c40f31445a653b233bf1a4b
+    sha256:aebd1ddd576150164a9f9b73f9cc71488c1f41bf5250860c429469d0929b0f6b
+    sha256:c27b7a4894a1d530d00a22c484dcdea34277614baf898bc40929cd930c748dc5
+
+
+REPO: oneacrefund/my-project-worker
+------------------------------------------------------------
+  ACR tags    : 8   ECR tags    : 8
+  ACR manifests: 14   ECR manifests: 8
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (6):
+    sha256:07ca833696e2c4bd1c5a347d5d75b9ee6f16159a3a08820b0bf506b4b8161a62
+    sha256:3e3c0840e4688d785dcf600807c7b94d0e0607a7e86c3e93135275d08cfb07a8
+    sha256:cb116b6c371c2664117ed68cbe6195744bfd4d9ea27653d3e8615a10f633f4bf
+    sha256:dd7a6374bd565b7e56d86998de03a38f607e03ceeb78696fe69658c41c761993
+    sha256:e3b69b92deadc7bf1e45236967b83a85af8e43fc2c1e54c73feee53bd36fe335
+    sha256:eaf8a005875f7f173a5d26fec1795add67183a0e5c1a0993fd0f02419243bdda
+
+
+REPO: oneacrefund/n8n
+------------------------------------------------------------
+  ACR tags    : 45   ECR tags    : 45
+  ACR manifests: 77   ECR manifests: 77
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/notificationapi
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/oaf-client-update
+------------------------------------------------------------
+  ACR tags    : 2   ECR tags    : 2
+  ACR manifests: 2   ECR manifests: 2
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/oaf-dbt
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/oaf-jenkins
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 74
+  ACR manifests: 17   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (14):
+    2.544-jdk21.2026.03.09.473
+    2.544-jdk21.2026.03.09.474
+    2.544-jdk21.2026.03.09.475
+    2.544-jdk21.2026.03.09.476
+    2.544-jdk21.2026.03.09.477
+    2.544-jdk21.2026.03.09.478
+    2.544-jdk21.2026.03.09.479
+    2.544-jdk21.2026.03.09.480
+    2.544-jdk21.2026.03.09.481
+    2.544-jdk21.2026.03.09.482
+    2.544-jdk21.2026.03.09.483
+    2.544-jdk21.2026.03.09.484
+    2.544-jdk21.2026.03.09.485
+    2.544-jdk21.2026.03.09.486
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (16):
+    sha256:0e4a9c74180bb3bc1d0791de9b93188e170cc8a0bf9f8a906d21d26cfdf4f9c6
+    sha256:239a52fca1872f99de6ca85b264dab1ce560c7a7af76629e8348c15d99566600
+    sha256:307a3d1d3d9334834407b046073c60ed4b9147fa5b948d7b4051463becc12269
+    sha256:30ecd452fa278692c0cfd46d3f5955357f868274b3d856afe17d3231c1049c37
+    sha256:341062666759beb6520644a174d4b5813e95b30f20ab1c0562c653b26344c0b0
+    sha256:7378ab782a046dcd959ebff0e2480854d9953e063fb42cb40fc4697bafa73fb3
+    sha256:a08a22d3a229cd2616f791af4f1fcee380432bacf28761b51d5f15da48b60d60
+    sha256:a56b420f6a819565969dea96017227e2eee91a4fe8c0d33fbe4f0666de62bd3c
+    sha256:ac028a1880c1608be61a0ef5d662dfe2edeeaf91c91a8858166678daf31aa436
+    sha256:adb312d1d9486a4012c501923652eedc53d73e74458ca0faf15d872a0b9f5e42
+    sha256:b60456cab0b211d9049e4c397f3206d7ca875b5769388ce974e07c55441bb6cb
+    sha256:c215e8df21e85146d884b9a75f17e83187006fd933346a895f1d05991249f4f8
+    sha256:c2f70b5e264603393ece32650e8ece7cb4f9fdca9846615c8b706ad2a7bf92d1
+    sha256:d88003febab08f1cc26ddbf7bfa8a56ebbc9fe885bc436a46c0c050845646dbb
+    sha256:ed401b47f0b4fa87989c36664969fef3f340d5e8cce102c49b5b8709632a5a93
+    sha256:f41faa38f80380041b07e268a590307ccb72485e6405a27404ae6db49f958a6c
+
+
+REPO: oneacrefund/oaf-logstash
+------------------------------------------------------------
+  ACR tags    : 8   ECR tags    : 8
+  ACR manifests: 21   ECR manifests: 21
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/oaf-moodle
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 66   ECR manifests: 66
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/oaf-odoo-data-migration
+------------------------------------------------------------
+  ACR tags    : 2   ECR tags    : 2
+  ACR manifests: 2   ECR manifests: 2
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/oaf-toolbox
+------------------------------------------------------------
+  ACR tags    : 8   ECR tags    : 8
+  ACR manifests: 8   ECR manifests: 8
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/ocs-fulfillment-plan
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 60
+  ACR manifests: 60   ECR manifests: 60
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/ocs-reserve-consumer
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 60
+  ACR manifests: 60   ECR manifests: 60
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/odoo
+------------------------------------------------------------
+  ACR tags    : 63   ECR tags    : 160
+  ACR manifests: 246   ECR manifests: 477
+
+  TAGS IN ACR BUT MISSING FROM ECR (2):
+    v17.4.1.2026.06.30.11282
+    v17.4.1.2026.06.30.11289
+
+  TAGS IN ECR ONLY — not in ACR (99):
+    v17.3.2.2026.04.30.10998
+    v17.3.2.2026.04.30.10999
+    v17.3.2.2026.04.30.11000
+    v17.3.2.2026.04.30.11001
+    v17.3.2.2026.04.30.11002
+    v17.3.2.2026.04.30.11003
+    v17.3.3.2026.04.22.10913
+    v17.3.3.2026.04.22.10917
+    v17.3.3.2026.04.22.10918
+    v17.3.3.2026.04.22.10919
+    v17.3.3.2026.04.22.10920
+    v17.3.3.2026.04.22.10921
+    v17.3.3.2026.04.22.10922
+    v17.3.3.2026.04.23.10924
+    v17.3.3.2026.04.23.10926
+    v17.3.3.2026.04.23.10927
+    v17.3.3.2026.04.23.10932
+    v17.3.3.2026.04.23.10933
+    v17.3.3.2026.04.23.10934
+    v17.3.3.2026.04.23.10938
+    v17.3.3.2026.04.23.10939
+    v17.3.3.2026.04.23.10940
+    v17.3.3.2026.04.23.10942
+    v17.3.3.2026.04.23.10943
+    v17.3.3.2026.04.23.10944
+    v17.3.3.2026.04.23.10945
+    v17.3.3.2026.04.23.10947
+    v17.3.3.2026.04.24.10946
+    v17.3.3.2026.04.24.10954
+    v17.3.3.2026.04.24.10955
+    v17.3.3.2026.04.25.10956
+    v17.3.3.2026.04.25.10957
+    v17.3.3.2026.04.25.10958
+    v17.3.3.2026.04.26.10959
+    v17.3.3.2026.04.26.10960
+    v17.3.3.2026.04.26.10961
+    v17.3.3.2026.04.26.10962
+    v17.3.3.2026.04.26.10963
+    v17.3.3.2026.04.26.10964
+    v17.3.3.2026.04.27.10965
+    v17.3.3.2026.04.27.10966
+    v17.3.3.2026.04.27.10967
+    v17.3.3.2026.04.27.10968
+    v17.3.3.2026.04.27.10972
+    v17.3.3.2026.04.27.10973
+    v17.3.3.2026.04.27.10974
+    v17.3.3.2026.04.27.10975
+    v17.3.3.2026.04.28.10977
+    v17.3.3.2026.04.28.10978
+    v17.3.3.2026.04.28.10979
+    v17.3.3.2026.04.28.10980
+    v17.3.3.2026.04.28.10981
+    v17.3.3.2026.04.28.10982
+    v17.3.3.2026.04.28.10983
+    v17.3.3.2026.04.28.10984
+    v17.3.3.2026.04.28.10985
+    v17.3.3.2026.04.28.10986
+    v17.4.0.2026.04.29.10989
+    v17.4.0.2026.04.29.10990
+    v17.4.0.2026.04.29.10991
+    v17.4.0.2026.04.29.10992
+    v17.4.0.2026.04.29.10993
+    v17.4.0.2026.04.29.10994
+    v17.4.0.2026.04.29.10995
+    v17.4.0.2026.04.29.10996
+    v17.4.0.2026.05.01.11004
+    v17.4.0.2026.05.05.11008
+    v17.4.0.2026.05.05.11009
+    v17.4.0.2026.05.05.11010
+    v17.4.0.2026.05.07.11011
+    v17.4.0.2026.05.07.11012
+    v17.4.0.2026.05.07.11013
+    v17.4.0.2026.05.07.11014
+    v17.4.0.2026.05.07.11015
+    v17.4.0.2026.05.07.11016
+    v17.4.0.2026.05.08.11017
+    v17.4.0.2026.05.08.11018
+    v17.4.0.2026.05.09.11019
+    v17.4.0.2026.05.10.11020
+    v17.4.0.2026.05.10.11021
+    v17.4.0.2026.05.12.11022
+    v17.4.0.2026.05.13.11023
+    v17.4.0.2026.05.18.11024
+    v17.4.0.2026.05.18.11025
+    v17.4.0.2026.05.18.11026
+    v17.4.0.2026.05.19.11027
+    v17.4.0.2026.05.19.11031
+    v17.4.0.2026.05.19.11032
+    v17.4.0.2026.05.20.11033
+    v17.4.0.2026.05.20.11034
+    v17.4.0.2026.05.20.11035
+    v17.4.0.2026.05.20.11036
+    v17.4.0.2026.05.20.11037
+    v17.4.0.2026.05.20.11038
+    v17.4.0.2026.05.20.11039
+    v17.4.0.2026.05.20.11041
+    v17.4.0.2026.05.21.11042
+    v17.4.0.2026.06.10.11082
+    v17.4.0.2026.06.10.11083
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (6):
+    sha256:1e235128b28626a259079a198d5bcd0c43073bbf2613f240ddbe96abe3fcda7e
+    sha256:26fb5b4ad8869167727c815fdb9ad3420ac54a9994453fa8485f26fced537eee
+    sha256:76ac8a4010f066966a05c15dcf01cb36f3654b6ffcdeb2bdeac74ae785800b42
+    sha256:a76be254bb2b9ad548afe02f4e4013e5c7b555b7a4b729d4e2111f30b15c8b5a
+    sha256:b7013fc7902efba969e340ac82db10dc652a69309f3a56cd68e3114bd77e27ae
+    sha256:bc629d2dea49a99af0da90b0a3b51522d531bec606e726a0453d8464afb0b6a1
+
+  MANIFESTS IN ECR ONLY — not in ACR (237):
+    sha256:014d95051efbc13fa80b41e987270a557a1e198704030e0be47be45a4e8cb302
+    sha256:0255b672a58c0bd5f8778db63574ad381ee099d26a79bb5a594045db24603d8a
+    sha256:03b96537e1016b23ceeb43f949c64ca934a3e0b85122b88c38997de60cfb3584
+    sha256:04d6281aa1d878cc728822925bf6531237aa80129da26d163c1277d2ba9081ab
+    sha256:0512dadb9981778c9d72e56ba4acfe8682a537c9f8e3367402c85f113468f77c
+    sha256:0587c9687b856b53a6ad0e8332ff5bd30928e475a558a0ffca5791ba62f5fee2
+    sha256:073bcb4976d6d11c93a2c4437fedde6cf0715d6694f73205d197fac0120133b1
+    sha256:0b95e2e9413ea20ddfbf80c35fce4927974cb33475411bb2af0d819ee4d98361
+    sha256:0bcb10272fb2e82b41b8d9b04fe4a079b68054859852002f3c692cd362715dd5
+    sha256:0c67cc1c8bd03df8ccbd8febbfadb28441a058d2a5296076776f5b6dd96df9a5
+    sha256:0ca3ad83ca3f308c83f3bbb80e69fb7c34d31fceae60f95aae1c3dce46d3c5ec
+    sha256:0e1ecf4a895ea70fdcd0e4ca0399f63f9876ae2759ed35fa354e9e81e7a52f6d
+    sha256:0e78769ff7fdd33e62b0f6201e87ce31e0bfd6860e1b9b4fdd86c640ce9d65e4
+    sha256:1003ff9e8e08a89fa4bb66354306c3ef413e4aa7871a42caea1a8d8f88472a89
+    sha256:133ebc43dc6482f625900de04eb016652a647b03f9be1c3a907402ea27362ab1
+    sha256:15c4afd85e5462147a482697554c8ff9dd3fd08906c51b564b6e0de7731e5f9b
+    sha256:161a2e8c2d8094f21b8158409064d71a45fba4920a9395e4199311d916387014
+    sha256:173c5a83ebefb5e08ffad363992f71d8e84475797db6700b4fcb1004bf191ad0
+    sha256:17a5669ae789b0b44853964b2b3cc8a750e6f9f0bedbdf862689d3b524f9a370
+    sha256:17be17f850e6246cc7ce4b5fedf3b3608f4fb7fe74ace27b8044a2e6fe2220ba
+    sha256:1880c13f274a3e6c2521f8cf8e808e94dd96cffbf5b17aadfa8c0f90fb9c0d72
+    sha256:19ccbd22af70d364616110b08bf659bd3ed7bb5da935199824c42ddb553ac4b4
+    sha256:2297cde8021c51662753c445f63c5232f6174157df80c5789f8de1ff3de39cd9
+    sha256:22bc903bca0a6c77466f594d1e972f5bb651a366d5250f37b06d2ae098a85fe3
+    sha256:2460f434cddc935d9cea8b6e2fb57baec7df2959811c73b543385758b7c84d84
+    sha256:25217792a421593e04e4ea3d9cd6925bd002d1c008b3fa164d6f40fe56bf57dc
+    sha256:261431806fa57098506e9894a3325ae5d3ef790299f80a916e5e693cdf6b0c41
+    sha256:26919e21ec57403a3738da3855563b498a22087eb2ef09e17e675aac1d65d818
+    sha256:26f13ba92c373e9662b60f3d2e5234778b421b86728fa72bd7740ca3118e0bbf
+    sha256:273a920dccc18db470c16d697c38348bea546017cfbc714180aabcabb729e8b4
+    sha256:276228638ddea2c3a0870488a40bd5de8a68882bc883f7ae208e0c798b233fe4
+    sha256:27b507fa138173c4a036c5003daf246859e3f3f5fcfb76ce900b71548ec273c6
+    sha256:286a0971906debd515e92c5e4f3469234f58d05103ad5ba6e1c99ba576f65640
+    sha256:2895fbe48ac7205d91b95dd25f89fa54cd738c854aec56d0d0f37a5a856aa48b
+    sha256:28fe5cfa8ae01c3b594130e6f121fa6eca29a2b5d6b47d1d7fee89f67fe684fe
+    sha256:29c42c3375d2dbbf11323a36477f4acf96860ab6bd58c5e423c97250a81912a8
+    sha256:2a5a6195afbb5abc08c0c35399fdfeddf3b963ca304bf8da2a261f41a1adfb6d
+    sha256:2bd94d80c69160409f6163929be29c0eb259733363e302520e15d9cb39a96f8c
+    sha256:2db52af3dde6a72a6c8087aa3126808dbbd58771d2922533900de4f9c556ba3c
+    sha256:2dd658b27fa376486ca00e09883d8b5f78487c0c91eaa7e106b7dbae5a53e10b
+    sha256:2e5e04dc4752bead8ef58d0d02acc8951b4dfe5eb098e84b75a7618e40841659
+    sha256:2ed512b73d57364e9d1a56a97a6bf7e5b2a8d0c2b238bff637c150ffaea5c059
+    sha256:2fca25a02ca6e9bac27a0f122ee22cadf275150c8ad450c5f0efc7a0834dd92c
+    sha256:30370140847486ffb685f8cfa2551d755e881bb1e9d4d585447f29911b660974
+    sha256:307e44fb2075411b753a2f054468dfcdeb3bed710cae61da55e1e336062965e8
+    sha256:30d9b0073284d2f78a9e1a29dd42c6ee30646d1851581bfe4b0a5c179168408c
+    sha256:31b29f825a3ffec3c2a6130d2a140022cee034c9ada6735ad87934708a021b04
+    sha256:33934934a4776718310984ada86049495bbfdaf1846a71ddf5a77d4fc642668c
+    sha256:33c81592764a7ed04882380ccd80500855500fc3cc2ba020e9b16d63997609bc
+    sha256:349692abdc3b0151ca9c267a92c7368359c1acb42a4af09b752c39eecf0edf8a
+    sha256:34e5df20d5706bab3b2c2add8bc3562b922e5bd3cb5bc025f570e89239f709bb
+    sha256:36aee7466f846abcac5c285be9a9c798d85442820bbd7f0a8535baaf52a67a32
+    sha256:36bb9e9a61ef288897fc18c64fb15a5899126b97664c2c2bba04ca133cd0a62d
+    sha256:399db22fdc3f24b80e6282f28a0c2d1705d95ab2bd844546273e49a7188d1cd8
+    sha256:3a59449e0469b4352680db9d724e9d5bf4fd6ac905af231cac2284fcfb774fb7
+    sha256:3a8526254b0978483c99229c357eaa0566c4325b004eb610d8ca4dc94b609e05
+    sha256:3b39de6120d8135bb0e29289b07ae13fe3df3586bac91992afd49d5ad217ac00
+    sha256:3c4a92e54a2bf236a61b6fc19e50d6752c9f3b59e5abdaedf3c63ca023425604
+    sha256:3c93636740a1cb41382a02c6b6ee206250532fd8fb0f7cc551ebe64d257a0c78
+    sha256:3cdc8d6805b8b9b67640bee3fac2a14cec324d5efaa2a9d31203894fadbf189c
+    sha256:3d01bd9efe59c5fe94f167e0b1dd41bca96bdd3865cf987cfeb15e334d037a61
+    sha256:3dde3974f4eb1441412da0a4c0a477e15b7da41c25e4b987a1382643d7f93c78
+    sha256:3df9d8534df223a38eaf29b626c05d88603dd84013d51a417c54bebdf056f8f0
+    sha256:3ef70b271382a72e372e035a4fa9a1b831108004f45d4bb9a8920d86fb1bfc32
+    sha256:3ff56eb22da6a5a0410ce1ba9658c55d18f95c64c4388d1fc82daf668a33e427
+    sha256:41e0424547e87e62e0a6f75ededcd37517cf94ecf9a51245094e902c4e3464cc
+    sha256:41e6c9978f61959fcc09f9ce0e404d7d61086e5f5092b680c910229b5d11e819
+    sha256:4468baaa457f75dca176b3643f505bef91d31ef1391050a8ff5efdfeba23cfdb
+    sha256:4472daa27a51a32051e6a7c30df1be74c8e6a63c7745f4d90e138adaedd7c197
+    sha256:4563800ad9de08fec4fab67af8f3aadcdfda2176ab51a84c91797e7090a0190d
+    sha256:463ab74e08d52005622b4ef9b747cd3e22d4e153897957357b7647afa96f01b6
+    sha256:4734e61cc9ea0795b80b0758b7a75f0ccd3f9994543b7ed52eb9d95bdfc64373
+    sha256:474c4d1eb9e93d920ad63f5ea38a0f3bf600b4dc66ced542adf05927f01f5d28
+    sha256:48021b506b5bc43c3d39aa1af7b94a0043b049a65471eb4ef456225ebbe4cd35
+    sha256:48105e4865ce0c69ded96336c4dce2f369bd4867ea22500e250b6b26a8ac2f90
+    sha256:49b7cf4eebcdf308f2f9702bfa01a71a272d64a9671424747730cae8e0a67310
+    sha256:4a5c1c0f497cd3580a316ed0f964f9161ee29862a65ca117df0467886037fed9
+    sha256:4befd8c63303312fd07ac7a6c2c2b411a26122e52c5a7bff5733a90d6678d2b8
+    sha256:4c601f043aa7b0d6d96fa622d796d5e54101442e512babc53783db19c8441e50
+    sha256:4d3796b30ef01f68a02ae5115309d4683e814bacbefdab8fd0b79b43304d41b8
+    sha256:4d4f568e6a857fafaedc7c9c4f601691593f473f0cc3d066fa30c678628e23c7
+    sha256:4d7a3f1ca7b6acf788a244e551ace054c5c0b03f59009d8b92f37567410ae777
+    sha256:505d0fe292130568226b350bb4cfb3715495a930aa0f16c44e048c5834d290a2
+    sha256:52c2a1151ea5b1b19fa5c9af36ff5ce6faf1d056383c40eda43c816358f034f1
+    sha256:574b6c12993380f09203ed03d88ff4c0966911eade7f521cd1f32f5847a072d6
+    sha256:5b26b91c1332676eb0ee99b459b2af93e1be84388236f42b62e8d36016c80e32
+    sha256:5b8530e289dd467fe5aa2a7fea73f6cebb9cd6d03a4a388ed3a8ff4d2a593cb1
+    sha256:5c4f3768b349f6df1ad5a2e75979057d13d41abdf9a36d50a2884655cd15e174
+    sha256:5cb1b0d970178d3c8b9cc567c70edfbf430e31c17581ec7088938bb3410b7d17
+    sha256:5cc073c2c7512f123e6c10ed5ce37b907c5f39fd4f552b73e4df3a08475b93f2
+    sha256:5d817c0f344e69a5119ce0ff72cfea131c0872e7a3459bf7de871ae758269669
+    sha256:5d87f241f230c64f47422bb95ccab3591b160d78c95f9aab659d38ea483358d3
+    sha256:5f477179eba87cafe7c3257ab464b259969e5a4893cef501bee26e7302ae9579
+    sha256:612665993eff6db70b9dd1ce1dbaf851cf3b893b06fb10b1eb7ad7409f3bb1ec
+    sha256:6195bc6397abdff40976d603ee827c0da95ffe982d5264e99a2710fdb994f3e2
+    sha256:6340825982f17cace2ddd644b70710243815e98c54c5973a3453a16140ee63a7
+    sha256:63ca1309ecaeb7575354c9f5f464597f6d38d0e1b4bec60a4c69036401227983
+    sha256:64298c9bed26e1a0dd6a8bb93405d106d580469b258542e94e54b77e236705a2
+    sha256:64577a73b92627dac57e0b7e621cb4cd6473d374bdcd4fc2bdb6cb85c6943bff
+    sha256:66a98d556fc85867cc4598540ed61bd81a7c00591351fb66f98ed73381deabfa
+    sha256:689f6ba99e9126d168d178fc970a08ece9f99e4f1405b5e831d000b777a59d54
+    sha256:6b2cc194cd81b5420939ec800621b176f8c12ff23c977ab176943ac46f60dd17
+    sha256:6b34365f477881a3af509f5b31172b4a54ae501dbf0bf41d2441a2c14308d60c
+    sha256:6be5bbc63b57a85a1a56742a424c0de39d072097fe4d481c51e724a531f6ad26
+    sha256:6d0a1669ae3bac4c25673e4daec4bda03e51d5d3ab3058c1df90a255c9b75ad7
+    sha256:6e23ff408daa84683f860b08cc4b64f59c0097d3e42a452cfb1a4849798ae196
+    sha256:6f2115de88a03696eb20f4cdf0ce8ed671b519fae5a4292ef007de9ae044f304
+    sha256:6ff840f9d5491b87bdef36af0ad2f8dc8b7505723f15042cd61b8275437540de
+    sha256:705086bfb8c6ae6cf86cf904167dc2705f9a55ce74ef90d449dc9b4512ed2a67
+    sha256:70dbc08cee63310f7e1203a2a0ea99d2f469ecc9c8a64196a673b4ff74b002da
+    sha256:7198b68af0b9e426266c779ac23021c8e3aff7505e5f06d46fbaeb184b018a59
+    sha256:72b7155dbf027d3719acaf849c3a17b03ee5b340b076db8ec642654daa6a0dfd
+    sha256:743765ebee06ab9b23983a1af58c8659ce3ad75a6667ca77d0c88865c7e54142
+    sha256:75e416cca40f35f025aec84be644cf093176d65550338076aa36b55c7c13c854
+    sha256:75ea93cd90744b44110825088471c99b1e1fab41d113f846ed2f6134bbd871ca
+    sha256:7627ec7f44c8e5b5d22a21e9800c56b1c28ba2ff4495c08e143bc9bcb93f054b
+    sha256:76ded679a3dbb6549e9a8452f28e97e5fb1638412e75baf7495a44b47fc6fdab
+    sha256:77ad9286c32eb6fc320d1d9793d6b6cea0f943f1d638dc29a3401b95a9edc7b2
+    sha256:786f37f81aaf70819286e0e2391591be8f4b4f214ff5d7d75de7c0eeaf191dd4
+    sha256:7b293627e5704ddffb75aaaf65480937ab743584dc3fc87d06792d472cb8045c
+    sha256:7b48849ff0b4e03cef8fbc47e4c0bcaae9a1fd44e04ddcf40f8b53c780df2fb5
+    sha256:7d7a20b611247917aedf26954c3f3a43495c75611ebe7fda6c3169abf03961a0
+    sha256:7fa60c77860f239efc805571fb0943336effe03a210d9fedae671117a1bd263d
+    sha256:82c20407afe136e654b85fa5d8e500548c7a6037ea7be1d7d0f04d9d1a188d29
+    sha256:849659f50f0e0bc436b33d4c41da28d95d3ddd5aa27f506233878e61bd6998db
+    sha256:84989017ed992e07481044230d06b4ee50eac1f62b1519e06a470762ed9383b9
+    sha256:8668108ea7dd1c3cf150d96aa13a3c90d3ee6774aab3e39098dddf20d02abad2
+    sha256:86cac8690924fd4a91d21a4bd08660f8a93275997202855ce279a4ccedce8de5
+    sha256:86f147a157b55d12d19e6e196fc4d52dd0336cec3ba9ec6c2356d8b129833e28
+    sha256:8969ac8e6d4493be0527acaf889697285dd1ded78bec19a968dd95bfa25b8a59
+    sha256:8b330a5b56ad7b388360e8a3c5022e505b5b67159a7ad8d0af491e4a22eb348a
+    sha256:8b88b4643b6e915004058804492d9c5d1a0e7382c88c14d291363e2903984769
+    sha256:8ba8822d6764ab0d3ce0450bf10313553fc6b3ed38e8cd97c82ed763cc1f0269
+    sha256:8c05e83db1fde38a03dd3981a4cd6b56cc3aff206139af90f8275664a349a0f3
+    sha256:8c3c979f279ac43536231d6bd9613f5cc596768cd1b71552a2da4ac92f560f2b
+    sha256:8de013f98c73c6525e713fdccd188eeda0958f49ac6e287345b6b0c22f2a7436
+    sha256:8e32d9613faabe372cc098a30859d23f9d60bf9b617b93b3511933441fd09eaf
+    sha256:8ea696f1dcdd9438ecc5c7a2864617dba746e105e7c15bbf19858c758ddc2a42
+    sha256:92eadacc02b1ab97718ad635916f9064e06a0a9bf0f9aa26cf08ba9d6cf08126
+    sha256:9329f8366056b3b2fcf799a45ce964bb993d106d1629f0856bfdb086d987928b
+    sha256:95755315b828cd69da6de105971372f74474f021016b787ee645a29a1ec02b16
+    sha256:9a5c6e3e919295610949c7670e12acc09fe56fd09e700ce883b5878f316cfe0d
+    sha256:9ca314154f391346ac788739c07deab133952aa401c98c924857fe4d3d577943
+    sha256:9e67cd6d0bae5b71e56187ca677c89f243700402367cc237bfd07595f6994453
+    sha256:9ed9bcc82f02f52c48cb972ae4b738bd00298e4b88181bd26679db993433def8
+    sha256:9fa8819fb2596bc258cad10aa0092fe54f4c4e4fe714a185f2ea636edbb4e229
+    sha256:a12d792194c1e218ed6aed63779c51281934ac0bb80528301b75b7a8ec0b1e6b
+    sha256:a1e5304df0e9a9d8d8e9ea3a5c2e8ef21cf3d42bbabcaa92d1750ba10bfd2258
+    sha256:a223bd30b4c5f80460342d6ed3b417e57bce331d375aa56012e9f32112d90ee2
+    sha256:a374927c7186b0a905d7c08740e390d38016d5acd204d82afb74799b36fc7b40
+    sha256:a41db5fbad8e1921a8ddb986e9dc9489a7397ccc014d49fcc32e2663d38f13f8
+    sha256:a47a1ba10a6a71a98ac585c49d97c88cdee4ec6fbd6e567742a887642b762851
+    sha256:a4ceee08c20d9c5cd2281a22467d5b1ee29d7ba328d988d54352f5ea46abd8e1
+    sha256:a5b3ede8dd0540aef87044416c0ebf6a91fc30ae1bf2ebddf9b3b79b58aaf5c9
+    sha256:a7ef05869286d7b052cab0bab9b659c8a4c7d645f28483caba9749e773277686
+    sha256:a8973640567a6806ab7c984a21ae0db9d51b4b829765fc0d5fac30f1b29ddf4b
+    sha256:a94e6aa3c00710ddcd04690bd2925eb1fd1b0258aa1a4387198911c7a86c29cd
+    sha256:a975ad4c35b0f6b1c361306fec91b508401356030ed4723790bb956087c6b9cb
+    sha256:aad0742eb0bb4b2715bd8a792d1b199d3f6a450bd6bcd4f31cf3562a0912cb75
+    sha256:abbae8f823bbcba7a21ea862ddb7da26b39bb013dc871acdc8f07f737215b2f5
+    sha256:ac09d58da802baddc5b446245bddafa167246bd1602f9600bf7fe9a0f26785c8
+    sha256:ac62f8cb7d85bf69bf5d316b1c316c5cbdb6b384532dad854bf23de68e055682
+    sha256:ac6527fdd21bdf1b528b52c4d5665a454c4bd4c50169a3d9c416a6b0c88787a4
+    sha256:ae7a4cfa6f546c264d602ffa88fe9535b4a7e282f167185681300666b787eb4f
+    sha256:ae9e381ddd09b80022d250d755a14c95acdcca9be8cc92f2a5b602675275c866
+    sha256:af3c7d37f75c5504a1b41616ea16f5de463b072934e2a0835289bf1705f4d14a
+    sha256:b0403615d3f3e36ccd5447dd01b9afef2e06e9f63013178581647e1e51fea996
+    sha256:b14b557aa2d8a4d1c93d400530088ad0426a31807ea177c4dede6b3cbec37534
+    sha256:b278c310fce22148ab904dec676133a7310bd4d6470719db9d5af3fc7b24c5e4
+    sha256:b3037841f84e9c17cbc04ddd6507624600abb1b44c14362040c3682b1199dbc1
+    sha256:b45771559e205a1f9cef74738c28db4a9c71dbb1bd77a0e5128e3abbf5986cf0
+    sha256:b5e5e519ba8fdac54937933380c1602a74a3e89f800d37aa1689af049c6f71f0
+    sha256:b7856fa6559e8bf89d853a9895de099d8a57486fa3432a5c1593dee9b92e560a
+    sha256:b7f0c80da9315b1d1f18b72b86372930ba6c5d724bceee9e428aac4f8d043230
+    sha256:b94fa182576ae7f9fe2663eb20aefcc4035623d3057d6a960a63bbb3c813037b
+    sha256:bae8197d35f1fc4fee1858bf2c20c54837a0eeb48941571f36455e88de72d8c6
+    sha256:bb573fd8a1155a35f0c1195714ec5fd027b2c17d98c48075ca2a3411acce3751
+    sha256:bd804ce6368b188a50a25a08a53efc023f78305cf318bfcf2265f07cdf186819
+    sha256:bdd311434b800c7888845a816c2575155079b8da3a871c078f7b82b1bf6db8cb
+    sha256:c094d2c85058ffbf06f93f7672e61bc069ce287b86d62d0f88a64aa914fb96d7
+    sha256:c0c994388684161e609f7a610f6075c5a1904fd5cef0ed0b901740b0910a5d8e
+    sha256:c29919abadc529fd4015d097e7826c529a08b77666540c3515f76fb1cdff4250
+    sha256:c29bc89525fd2384bbb3f27af4d29932bc83bdfe6812a4594c3d0f4ea052f421
+    sha256:c3acd6e33c331c31f6871a48c9a5ccb91c5389be01a9c2729ec78bd1b5ec5b83
+    sha256:c5ba3ce594d1214d3eda140bb07472dc20dc4ae51e89cfeda7950144e60283ef
+    sha256:c6acc125152a8a345987fa6d71eeb53edb84cfcbbfd4b9defa1f4c1d782376c2
+    sha256:c732245e0f11af12acc543068dabc9fd5dc8bf84d1267196000ce4d8369831b5
+    sha256:c8d3bccd127879c8f7f0770efefadb4e30d4c54d428105f0a7fde0506fe31e43
+    sha256:c8daab0f284149318fc58f01f85c519d069422950837f034fb5050784799f506
+    sha256:ca30af3f4536e5b28c5d2513b97a739b0227a85282a31d084e3919e6064e3480
+    sha256:cd3d6dc453e62f4238b55e4eec8b108b222b5948f02ab83102c0515f32f0837a
+    sha256:cd76cd786f806e7e362a549f179735f521d2ce4ec251848dd827f2de73e2b32f
+    sha256:cff48c61f5a36771806af7725d6498e32d8bb33ca4dc3840a6243631e781e69f
+    sha256:d19f56eda7ec715b6fa8b6c5f6f33856fb324b585663db8f297ef560fafbb16c
+    sha256:d2a28a2bbe45a8400128eb95889c1e5bf735b520b98230bfbbb088109988328b
+    sha256:d422da0f645c7d96b8c4ca99d8086876c7146196b676209044a70e317d62c630
+    sha256:d47eddf394b5e8c73bc8e1e307c695fdb61267e97be2eb159d8c5657eef8277a
+    sha256:d4eb8aa3c2f8bc78c5ccc47a3a44eb5ed7daef78b37979607989e6eb4d45ada9
+    sha256:d5624f56975ff30cd22ff69804ac435a0bc7cbae496d2afff5241c9b3223329e
+    sha256:d5df6192bdf42a315d98d323448e8ccfac790b6f824512a4b71ccfca255fe39c
+    sha256:d5ea4b133759e8ee638ec7cfc06b144f9b50408f1e4e96349e98e31b421ec258
+    sha256:d74d16b690b31d5cd85d4282e0d074acd3478de543618b4468f2b5057957cda4
+    sha256:d8a49f383da7a4eefafebcd91b4e6f78e1fb6ee53d19bfa66bacd39ca2eb9092
+    sha256:d9659efe0d88f1170dba5a1e190041631a25e5c7e9d3da7cacb87a12add09461
+    sha256:d987c6d5b8859ec71b6bfb379add5c957b9294b158cd7f48cadbf6925eb55548
+    sha256:dac4a155ad63005a0b3d32c04dc53500a07fbb779ec8d3727cd2bade86167075
+    sha256:dbc06b7a493023782c545cfead02e2c995b4af9e09b745b07d1ae7d434b354ad
+    sha256:dbf5ab3fe1a2cd1969a74c668bdd9251b1039cd90687f7a40bf54b659765beb3
+    sha256:dde41663323716aa9556cb2c143f60a161f1f151368c8565fe5b8abec62cbbf4
+    sha256:dfddfe2830ceec3cd406ab8a50d646ef754fa46d80ed2ba6a6c378ecf098cacc
+    sha256:e02fc0049a55be35060fd264e63c1444d6ac1e1218e58023016058ffe3c8034a
+    sha256:e17adf1d3b3c4d72efcc91be86cad4a20e58e792d0b848d91cbd8a9728c7059e
+    sha256:e263425f4be4a83c38ab1b01058bbc54be16cabff1ff8dff189d25a4bb80e708
+    sha256:e2de7ba3af334c1ecf176835fa3e646a1ed0fccc9dc44c230cfc96df4b893fd9
+    sha256:e3a69ea91ffac1af90add0639b72528688658bdc93cebe2c705b9b700d9d680d
+    sha256:e63ec1a0fad94c413c423241897164041c18d83510e2eb30ea9a2c685517c6f3
+    sha256:e8d48483de728e2562bda29d24437cba64e5d2039bb423d66eff0acf9cfcc550
+    sha256:e95ebede39e856385aed40d8f9629264e68a61add1fddc4e243bb8f5a7d96007
+    sha256:eae6f8ae16c0a4672825516d861b7a08ddddeb19b32afe52bbcc45cb82a371b4
+    sha256:eb151ef8bb695b3eb7b63430d37d97650e402b65c042218f3005ba3d6bad97ea
+    sha256:ebb48633d3e6bb109534e2dc84da959011593cdbb0c01b13e8d130eda8be5025
+    sha256:ec5f0a350caa410b1a8e489750f6c9bbe4bbf2982bf6bef7b0c9af30263c82c4
+    sha256:ed7d0122b87ba05ba161a2df01049b0f696fa05f5e84512767791789dfa7aa1e
+    sha256:ef6e3e08ba1190664e584c44f82de3d91f87b2e9bfec64d0ce3e6077d56ca9af
+    sha256:f0134994627c51103839565e1f57c2d9b4367a27839e86d4407ae865ca25f15f
+    sha256:f40035088d7679db775c64ac072b6cbec826b0fc0603baeefdd845331a253b11
+    sha256:f43598f3ea3079bd02200bf225c46827895eee650682e621cf263a216f3b8e5a
+    sha256:f5b248a512243035e7e8b647563e3e1d4ce1a80283eb59e0bd8b8830be514481
+    sha256:f5f8c33e4d2fbaa8ad1795143d175c77cd96c53e6db280c12e10ccb82b033f97
+    sha256:f8c411c2d427bf73ee1b479ed08288fe0e85de45b041ea784c813785b4d2f14b
+    sha256:fa553d549532881d8649482c1a115f906855790efe075beaffcc0625004167b3
+    sha256:fabe17d67e21a4b108d6e7b6452b222353da2283db206a671891dab3f04029a4
+    sha256:fc85eafcee3626c563927e6fdf59e8053e3eee372cf0329c5cca5e5d462bb172
+    sha256:fdd009b54e09dfbccbc3dd49d34d783aee0fa4f9d0403a26a637dcdc11137686
+    sha256:fde1ddbef4046f01a46eb27b9b4143ffc2a3f674c6fc895a82165526a1269e73
+    sha256:fed0e0419b2723ba39576e7b544d632f788236052f1fdb6dff1d40fd94b94247
+    sha256:ff35aa6163aa694db4eeaccee1e2b87f59dfe3d7d5debe5b3bda492305d4f08f
+
+REPO: oneacrefund/odoo-cache
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 40   ECR manifests: 40
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/odoo-locust
+------------------------------------------------------------
+  ACR tags    : 0   ECR tags    : 1
+  ACR manifests: 0   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (1):
+    2024.05.29.46
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+  MANIFESTS IN ECR ONLY — not in ACR (1):
+    sha256:f98f90f0f60f3c370a764b6a0ba5620403b1608b63b7d375125d86e06dc1404d
+
+REPO: oneacrefund/odoo-procurement
+------------------------------------------------------------
+  ACR tags    : 13   ECR tags    : 13
+  ACR manifests: 39   ECR manifests: 39
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/odoo-producer
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 62
+  ACR manifests: 78   ECR manifests: 64
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (2):
+    4310
+    4312
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (16):
+    sha256:1241298ed7080932f740266dbf3d63642b45ac98a8e9ef64ab0e8156540a3aed
+    sha256:124ebbe1858a5003f64947a54327b61b66cc833cdb310d47f718a6eded54184f
+    sha256:30038719144690b9f818883904687fc69269139c009c815e398cc6d16bc5c0d5
+    sha256:4c9c8eb647597f6f5ea841d196511c34d50df8c90d7c850b2ac720e468a2cea6
+    sha256:50a2189358e6b2a6c5a39e6fb212526a797bbdb34c00ea6540d259b56e81faec
+    sha256:5129f75145f4d07de9e704bd11eaeaedab02b41dd85ae83fe79b9630a1df3a8b
+    sha256:54f37b1e23f655a1dfbdab2210e2f10bcad5f90db2ef31636b5b6c7a8180b1e5
+    sha256:5c0d86be5fc29aad7f791cc4a6fc222785e886b1f09ce1fbeb848982953ac10c
+    sha256:6b25ce20972afaca6fc2549d26e13310559a416cc771de9bb4bd02029f32944e
+    sha256:a0b46f594486de9f52e5d10a844d70cb863e8752dfdd17af96983fbddfca625d
+    sha256:a0c24e5f0d4598f8f23fe828f804c7780b87f16f30db5ac1490f061e6619d871
+    sha256:abb80860d4e680ec376dab5d1211924916461a4ede813e4813586b6f7f19a6d0
+    sha256:b44dc27bb26b3ff3f06e48a45b85c53df0981f760eebb2b93633b8fdb8dd6e8a
+    sha256:ee2dcac0600e062fa484faf6834072ca38ee0f04131ab665a79d27eb5cf53726
+    sha256:f4df34132789ab7fbae1fe03c47311f3f2aab634592807d966ce0e918e951efd
+    sha256:f6c7f7739788d580d46bad92fe0efa770e742f2331cc6da091a1bb877751b0fe
+
+  MANIFESTS IN ECR ONLY — not in ACR (2):
+    sha256:69776b2a1c544fbcf7450d4785594a38674565fb4fcddec76eeaaaee87564d9b
+    sha256:770edf034b906743595133229c3570322d5682cb267d881d5ab5cf4c523d46ee
+
+REPO: oneacrefund/odoo-sapb1-consumer
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 84
+  ACR manifests: 120   ECR manifests: 86
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (24):
+    3724
+    3725
+    3726
+    3732
+    3737
+    3738
+    3739
+    3740
+    3741
+    3742
+    3743
+    3744
+    3760
+    4333
+    4334
+    4335
+    4370
+    4374
+    4375
+    4376
+    4377
+    4378
+    4386
+    4392
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (47):
+    sha256:07628e1c4db1146b6e2a50df50bb492512bb82b1533a4e21f5961323f71f8f92
+    sha256:0e94e71900ca2ef9f39c0c532e76065d0974c2f1a5059a4f83360f771332a932
+    sha256:1235fd20dd6c3876a6107f155977f0d3fcf7ec973c71481480acc17f6f1466a6
+    sha256:15b6542fb7c5664bbbe2d5c6c3683f50e7a32e943d83e52c10e6a4bc942becef
+    sha256:179a8a679acea5b5a96871c85ff2ac48021e565d48c12d76b45b78cbdf640473
+    sha256:20b223e99105191732eed49a5bd6eaec8dddad8a22d391229ae0e284551e7dad
+    sha256:218205c7ba2d95f5b1de2161ba94697693efee7ffdeb927d9698b002c395bc39
+    sha256:2a6680179d7fbfc5f2d59a022d0b94bbbc350340c027aa11118f2a57f68b9f7d
+    sha256:2e224a020a2e956c975565ec4ba0906e5fd8bc88a94390e9d50ee7a5f205ec92
+    sha256:5461c33f380bdc1ae91f22330e5579808cce830c45a416a35781c9c773cd4c79
+    sha256:56b3553797811e9b66283a10bb58ed7d450623981a0e1dafdd1f3bcae4e1302e
+    sha256:58a453643053f99815427d630a7e6d68644d6d5f728f1830df08e86f78942e41
+    sha256:5dc55a4a451b560fa2f24703c2270a4d816500cfe99bce90d61075bec5cde881
+    sha256:5e1af4c9a9f0d1149d315613c7ff8e8d531180e1b619530ac04dbb2aa6fad761
+    sha256:5eef9bc902a14a69abb18f4ef5524afe906a347498e1a0bf91140ff3b268e822
+    sha256:63d5e4fa0861b5a103284f790ddc5fa55e177e9705dbb1af7f8485b181a8d21d
+    sha256:65c3128172c0c9d8d04e305e08430590162076549876410b3c98b56a3b808843
+    sha256:7606b1d01756a298e430bff006c041cde90b6f5b78ff8f083af26b6724389043
+    sha256:773183d5f10d39745caf80dec8087d0ba35b64101c0db15a64c5d341117023f2
+    sha256:80cf716794dd76cfa56fde39590f4a8f99a4015b4dc8e6cc09b9332382c399df
+    sha256:863a920625aa560c0b986831885b19175251e8e9bd72d8e1df3611ff7aada1ea
+    sha256:9a06583814af0392ae0fa0968599c6638d69b61c0334a488522513b428f3459a
+    sha256:9c7d6bfa101a541329df10ae03bea641a1530b176ed0fa3365f7f722533854f8
+    sha256:a89c46a213a9d8b4ae44a3f43ca18b32d0b36e1639bc93007356e769e9b858fc
+    sha256:ada8f3bbf663133e878abb2416de914bd3f9488ca9f2232491a6524d129a49dc
+    sha256:b06bf684d9919a927e853ed8d54f121f3a2da8c34cdba791bf38a1235e4b73f5
+    sha256:b3324cdaa5469bf07bad748bd3a7ab49e3d43eb364a524da8451864acd4f4aa5
+    sha256:b514315b4bccdaa0ba0cdf8a98f92c19a452fdc29c3e86591ce5d5388da463cb
+    sha256:b80940cc69854ad7babf731ada52cf69e2fce70a2a5bf81f7ed8f321483a024b
+    sha256:ba9ddb392ccad4fda4005757a6df4d9a9238e80fd3db351d8e58d811e7fd858c
+    sha256:bba2b436d4c2d994cf1b9b3938d49dca908c85227f5c4fb0093c97bb8cc2127e
+    sha256:c48b0f1a9c929e47b7a392a3364981144242ef16539740a70675c5ad8c9ccf86
+    sha256:c8b69e423c71c01ada453dd428efb31de89eff8668b5cefd08362be6d457fc9e
+    sha256:ca2b79fcb830ac6f621211af0a6cc42361703cebb2fd6b9ec9bb7e981138b5f3
+    sha256:ca54404ea5d882644dae8465c156d4ebbd78a188a48be77ba2ca916a2f7ff822
+    sha256:cc84262bef6a29432b6dc8d9e0bd4316ac075b84a0aff46af8b8536d64ec6f34
+    sha256:ce4492ba62d69d0cc42c774edffb03b91d2862db6a711fc25094429b2b36eb15
+    sha256:d402b1839a84730e0ab4a83897b58d2a5b15967dabf4077961af883f213a1ef9
+    sha256:ddf05c12b8b02e19b7ac383e60b7ee639611d57abfbd767c860d67de17f814cf
+    sha256:e15ac3f53e5603162353e14c558dd35088fc16c3bcfba5390d703801653f33fb
+    sha256:e5ef1af3080b03487c4014cb6a74891647d001431c031546ff0074387de52755
+    sha256:e7546ddabd0348ca333f8e8495a2fdcdc9ef3ef38aa953a5c99184dd9b76dee2
+    sha256:ecb324439f57239efe215defdba59339cf8b636c3fe3e12f988a8fb030d57843
+    sha256:f9be30e25fd276a812139d189cc78f4f5296b2f19257d612765c4613fcb6e1cc
+    sha256:fb1b5571d19c3759903cf485065787766389a86bbb7bb6b13dc0b24bf639a854
+    sha256:fc192de74afef7d3a643bda8df81607d34c540429373c788027e6d33908d8b9f
+    sha256:feb4715315949d260eb8875a1afa9c8f6cc39cd2e6df24de024778f02ff762a3
+
+  MANIFESTS IN ECR ONLY — not in ACR (13):
+    sha256:07c13efe4a43cabf94c21ed52cb554f1fbf94662cb4e03e77714fd1f0fb72793
+    sha256:13a9960e85bca2970be586492aca927667c05a9c8635d4b511bc49d458defaa5
+    sha256:33cdc01bf5656f704870daa92bf7e170020908acd58df5adbb67b46afa536043
+    sha256:3dcd38bde29524067bf6af79131dc62511e45572afc91fccaf0e86c1a2f8809d
+    sha256:44896218df0b1979a51080c56d52ab548365f67d705b3777b8e8794e9aebed8e
+    sha256:51585f763d46051d74f4d2191946be1cea0fe85ed07ab7d05356ae8c167e1329
+    sha256:6459aac473a12d7bf7053d9dabd929c4f3ad8046b6ca467898394e0ff02d1176
+    sha256:76519087bd8f0c799e59027962c68947db8ba1fd5e7c8139985f0d8e2c65634c
+    sha256:7f8763b26d91abe81a2ae4f4960f9fcc364a9d4562510e08e623c524087abde4
+    sha256:a2f9519ef4a0f372c737254ba8b475da433a61969a52a757a7dc88bbe2d2ea5d
+    sha256:a6e3357a72ed1e17774bbbf148b9d71f747177936a5c998e2817ba4f7e7badee
+    sha256:aed5fb9ea912f9f7d6b319497f53ea694725809dd464adde330f55b377866861
+    sha256:e01c049c35b425389ccf516dc35bc0b22a27374bf9ddaba5e3d0cb601196307c
+
+REPO: oneacrefund/odoo-sapb1-sales-consumer
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 65
+  ACR manifests: 120   ECR manifests: 65
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (5):
+    3873
+    3875
+    4310
+    4312
+    4345
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (58):
+    sha256:02e5ed4d5ad105d957c7e45b816a396a8123e25bbedcd7b63d21840545c9bd65
+    sha256:039159bdc3d02fd52af3fff998de9a758b481d94bb806a6690bb0978b86fdcb6
+    sha256:0c5052150efe9846d1ee3b7ed00dbae56392bd1098343efed8b778820425841e
+    sha256:101335d626e2f52e13171dd45098de82ec8a9ef16055ed0e73ec68a2d15e03ea
+    sha256:148f3e2e17efc5d3f140257efb555b436fcdc910c710ffe1a522e5d416f2f55d
+    sha256:23761707cdc4d978e59e64fcfa6ee0a137170bf9faa6f495a1a2575621d42642
+    sha256:26ccc31198af3dde82f70067a7cbf49609337414841b739df2aec0b4fbaa9adf
+    sha256:27d844e0dac70207695aa1fd45aa7771a7379f3dcfefc425b7d3235ccbc6a90e
+    sha256:29d293f793198809b0ce4ae09d64b98d43256fb4dc170ab4050e5258f139d62a
+    sha256:2ee24ec7c0d4cd98a6137746ba870508cef5048ccbfa584610a9366f7cd95969
+    sha256:2fdfa282af2a36f776b35868a8343813770573479f463d1b323c04da88db9ac8
+    sha256:32630dc8e5dcbca9743bd8d5cbec9528f6bcdbc6ce0a02ec8fd470bb4b8225c5
+    sha256:33857b0f9d64541a66df6c9cdaffbf302a0b58766ce8b37246b6c5a3a4922a2b
+    sha256:36204f97982723e380021450175560891b273d3a43736ee1af3531a1a34e9115
+    sha256:43d61fd38dbfbe5ffa27b39e119d7690387dfd5d7e77a1fcc7aee4fc235523ab
+    sha256:4c57da8de36254781308fa1d8da074d624a4ddc1f1c264614f2eaa5f3579a94e
+    sha256:4e398bf56cfca0c8844b5e1e99894d1983f1e488aa3bdd94401edb8808e03915
+    sha256:51e12b44aa0ab184312105e3d014ff04a9537e87d26712c92f1e99180b8efb36
+    sha256:52b6122538fe9b37e429b04c7c3171a3f7ad8a2a3dd1883e8cd3fb92a0d4b407
+    sha256:52dd5cd7950738ad26cbed37a9b11bf4b33fdc0f25e08f02e2102c123d3a2ad4
+    sha256:53638122585b8cafc81419f845065ca6f1b7002a90c162a94abaa6bcc1a6725f
+    sha256:53bdd6a39103b7aee5e00b457ef26578f656db19809e5bceb470f37177a6548c
+    sha256:58289e029874569d5d14fb1f5d56fa72d8b5f3fa7c9b007c6056bc8ada477f53
+    sha256:5905397206e7ad8d71711cb3984ebfe9fafeb615489eee5668584676d02d6031
+    sha256:5c840fab78f95aad245d3c0ff9def5adc9289677bf216e9270ac5c0eadbc39b2
+    sha256:5f5a37ef77b1b418197cb8c0fd8810fa05f125b6948d92dd1c6e35986267919a
+    sha256:6c0cbb80b66676e49e8d06291bf2d1ac1fde6acb1e954d247d5d3bb79ba48846
+    sha256:80363aea994cd2616f4c2a21703048170c00fabf20343b9babc4c5a2ecf68388
+    sha256:86369e1b480fceb0518dec70ae49574f047961bb7317862c1b24862614826284
+    sha256:882166f2c4168500f64bc8f704c89f3823f2538da23b2a9af6479042f7c423cb
+    sha256:88bac27d62385fbedca022a9b9816550a400171bef652fb42c272b776107023d
+    sha256:8aefbe36874cf27fb38e41aa45b9cee2746dcc65757f8a45b76d8006ee815635
+    sha256:8b5f3c3ff30f1c77f76aa187d18b003c26b9304e726fb6f1b083e675f850170e
+    sha256:8f9681c55defeea45eef374b5b194a51da7fd6f5c69f3e7a22b8445378f682a6
+    sha256:9459fc80453a2c24bcfd7140887962ff7da3a89fc82f76815c7894d7df6a9041
+    sha256:9897c9a7c6c7cc8f6098085036c81d5c640e3f174c5190ac64ee581c07f0cc6a
+    sha256:9b0c39eab5c50dab393d45c57398aa73e212889f0b5bdb07c12be11f5d0248fe
+    sha256:9b6dac3d596c99ae2653f74038b1fc7d05e0722275d6ff4edcbc10cb3933998a
+    sha256:9d12fd71185081e395a12c074360cd1bf78fa5376f4a353d456d34bd3bab8dd5
+    sha256:a2ecd0f6c0cd24f05ffe3a1b65eb25a9da126235c111f4be4c3affd3460cb018
+    sha256:a487848398fa3b670bb51f8e79c51da431746a5c677580e1842308a06e870157
+    sha256:aae01736045a49914ba26fa88e1596409d3dbac9b420d0fb7706d441de2011d5
+    sha256:b451c3e0f67bc1220170827c602a237bc90326ff479f506edac20d6777e159f6
+    sha256:beb62b25646684157b928bdecb9a3b14f3da6cee9e410e4a8cf43781497aa6ac
+    sha256:c15afb449abbe8b39bb64aedafe2ec4a6f90dd4c7eb06b7d6fbbec8b372746b3
+    sha256:c3c26523d59b31520bef2d28ee781bd8e2497460cdbaa1c7e55e1a6682ef7761
+    sha256:c745c043290b202ef831211b6d0c6e037d281452747d8185d026a75c69ee7a35
+    sha256:cdc281e02558d209ce736c13b9a44e1d2a1a9410937fb943dbd5ee0dfe34b8e0
+    sha256:d073447d8e60ac14640f259f9f5241c545276bf61bd667ae26783e2efc018771
+    sha256:d1c9e4077c8bfbee47d9119bbef9076efd5ff0382f20ca6fde41b733eade1b6d
+    sha256:da281e557f01ae283d2d9e1d6f561760993b3ef3020c90f4ad8ef4959c3f9b4b
+    sha256:e1fa944aad83ed7b7d03fc2810d3411536883fe4e140ef19df627f8db25479e9
+    sha256:ea79c31e03e9bedbbe6aea686dd3779fea66e9c651c3e6330dacbbe5fa718af9
+    sha256:ea838e40da94927dd5ed18b76ba5c2278d969be033f4f544eec661f1f454ca62
+    sha256:ed6c99e1400eac26f9cbb71d5550f1ae01748f1003f580afdd2fbef495fee809
+    sha256:faf6d87cabeb6e8dc33ca0fe8dc9d0120987c885f8d9bdb53709ec190acf0e38
+    sha256:fc045ac4fe5c0e4eefe935ab658faf2471c8f873e760606cbb90e99ab1c3a6c9
+    sha256:fd417cb5f91feb5c3181be9a8d9fbff34c2acc7bb730fc710d72418587f3ee6d
+
+  MANIFESTS IN ECR ONLY — not in ACR (3):
+    sha256:712f7e0af3721ad81047eeea9e9c1f7b3c0a656b4f94a4b63a84ca79df75ecd0
+    sha256:83ef917d129702b0e3403ee027da36ba310685f2d8b8c0b34c19284f0e6aa820
+    sha256:9863f68cb649c21b23ed7cf9fcb3c732938481782e5db0da4af63c50fadce94b
+
+REPO: oneacrefund/odoo-service
+------------------------------------------------------------
+  ACR tags    : 0   ECR tags    : 0
+  ACR manifests: 0   ECR manifests: 0
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/odoo-utilities
+------------------------------------------------------------
+  ACR tags    : 61   ECR tags    : 110
+  ACR manifests: 243   ECR manifests: 330
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (49):
+    v1.0.0.2026.01.21.1855
+    v1.0.0.2026.01.26.1859
+    v1.0.0.2026.01.26.1860
+    v1.0.0.2026.01.26.1862
+    v1.0.0.2026.02.03.1876
+    v1.0.0.2026.02.04.1877
+    v1.0.0.2026.02.04.1878
+    v1.0.0.2026.02.04.1880
+    v1.0.0.2026.02.09.1881
+    v1.0.0.2026.02.09.1882
+    v1.0.0.2026.02.10.1892
+    v1.0.0.2026.02.11.1895
+    v1.0.0.2026.02.11.1896
+    v1.0.0.2026.02.11.1897
+    v1.0.0.2026.02.11.1899
+    v1.0.0.2026.02.16.1904
+    v1.0.0.2026.02.18.1911
+    v1.0.0.2026.02.24.1915
+    v1.0.0.2026.03.05.1941
+    v1.0.0.2026.03.05.1945
+    v1.0.0.2026.03.06.1948
+    v1.0.0.2026.03.09.1955
+    v1.0.0.2026.03.09.1956
+    v1.0.0.2026.03.09.1957
+    v1.0.0.2026.03.12.1972
+    v1.0.0.2026.03.16.1980
+    v1.0.0.2026.03.18.1988
+    v1.0.0.2026.03.23.2019
+    v1.0.0.2026.03.23.2024
+    v1.0.0.2026.03.24.2029
+    v1.0.0.2026.03.24.2030
+    v1.0.0.2026.03.25.2031
+    v1.0.0.2026.03.25.2033
+    v1.0.0.2026.03.30.2042
+    v1.0.0.2026.03.31.2047
+    v1.0.0.2026.04.01.2052
+    v1.0.0.2026.04.07.2071
+    v1.0.0.2026.04.08.2076
+    v1.0.0.2026.04.08.2077
+    v1.0.0.2026.04.08.2080
+    v1.0.0.2026.04.09.2081
+    v1.0.0.2026.04.09.2084
+    v1.0.0.2026.04.09.2085
+    v1.0.0.2026.04.10.2088
+    v1.0.0.2026.04.10.2089
+    v1.0.0.2026.04.16.2105
+    v1.0.0.2026.04.16.2106
+    v1.0.0.2026.04.16.2107
+    v1.0.0.2026.04.17.2108
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+  MANIFESTS IN ECR ONLY — not in ACR (87):
+    sha256:045067cae8f17f19db53f4e38e178430fe9d0cc430322217d33411cd97b27017
+    sha256:0468f47b5565ccfd54d88a924540e31e59f615ff05888d3f2f75049ec6f388a1
+    sha256:074179f0f40b90083e120b898cb4b0ca954e9381312e0aeae8494c8e20e7ffeb
+    sha256:0efb83699bb808ee602fdda68a92f8c3487f69228917a1f274efbd0eb10c159c
+    sha256:10c4b40c7927cb0f712e0df9e8647dd013be80541edcba4478854ca1d2e73ae5
+    sha256:10dfda96798314f4d47d9d8a8b64621213aa70bcd6d13bebb2dd506d31e6d57d
+    sha256:1169474e7a3482daf9ff913d194c65845b59bf898340f2d60cdf3aaf1f1c54f6
+    sha256:199e82ad6bc922189a69805de6a63a6638f2d1957bda43b1a3f53e4d44edf5a0
+    sha256:1a91d8c026615d726b31590ddaf61a27e25a0e6db857a706ce3ff50f3f124a0f
+    sha256:1f0fb198f042685c60b6bec21edc5b362c435f7ca491dfeab2711123da9bea26
+    sha256:212681a37eba7eceb6881354caad1cf0b1550a31a760e59008127cc2ae63ba44
+    sha256:21385f6f912248efcf5512bcb8d038719c84ae37de3abe4e97543b5fed6cdae3
+    sha256:21becde36e2f0d3ccdefa8c61052174317872d2de10a60f75d78bf5149d55460
+    sha256:24194c761c73f394d193ecd81b383fd6d5794c1fd3d94ef58cf0d1a568bd494e
+    sha256:24296282112a72ea44c24449fb4b0d15e8759c3f75e38b35a1a5000453fb968b
+    sha256:244de6f11ba320414d4e84b204c0d4fa65fe305259fd608e4c9a59015ed75f61
+    sha256:2d4769c6cb456bdea93568d27a6be73651c49300de8b9d68af8b9fde3c72f2d5
+    sha256:2fb7573f738378d320e7f69922c89794a4a188923f1cc0038f8b95982f297534
+    sha256:32c853a8da8fe1c14fe30ba7a265957d8dde94e5d00bbe141ab0f72df77c428f
+    sha256:32df4344aa8132da8f566492cb614a8886236fcf5d22db77a035a4da53dc711a
+    sha256:34ca5ce74e12c38bbdde94f7a054dafa27fbbab516647890b5e2b25f64ce389f
+    sha256:370e2f44eb7d6e096f9df2d6c6dedf5360c699104df4c9759c4eb1e4ca339be9
+    sha256:3aefeef350e1fd01f50018b6eb504262a780e51f6069cd8c6dbf2f835c8a2e7b
+    sha256:3ed1f52c091f617b79a88a222527491de15d3b48af29782a15ae91ed7f1175ac
+    sha256:3f24a11ca9b7e097f151912af2ebd0b2d2d13f2ef25399af40b08b16df76644a
+    sha256:415e26c6a7b134d8b8783526809f4a1c7d7abf92404d5056af425313ac32dd2a
+    sha256:41e3fdfaffac298bb9b21cc8d96ecfbcf1fbd66f9dbc7a893c60c7424f4b94f2
+    sha256:459f7b30f5591ec112ddbb0f2f1f25908ce74e6f2804a93f92e1afb2cc587ba5
+    sha256:47d13929870b78920745f22b694ad70808b4f3eee21dcaa394a84de3740f3398
+    sha256:486a86a9fd2e21083381cb6b927d126262bc0adf3df8a70d550a868c5e394bb2
+    sha256:4a4e04c411d3ae4c167a16b066c6f1cce94b9e31d94eb77629515325a2922267
+    sha256:4a4e64132703ce29fb2b41c2ff3b2394635aa00b95cebbd001b2b90fbbd6c6cb
+    sha256:4bc6f138a310d807f9f5391c4f25ebdf23b1a9b643fc86db3015cd593a3791f5
+    sha256:4d41994e2f35a3f13fe71cd464fd6a76397f698fb46be6f366f6498eaa44b421
+    sha256:524791dda73ec9785b5335fc41754b99d497a94b1b87f19a71753e5b6e4f1918
+    sha256:530c3baa54b68374bd8e7f099bba2732f884d7cbfbb8e347b52155ac5609eca1
+    sha256:5385fe1773f9f4dcb00911fa81b178caf8f4166d3ae5690af43e7c511a28be48
+    sha256:586bc80ef64ee44033f21555325acb9434d3ad5c1a63e46c75d5fa91045067e1
+    sha256:5ad90ad568b5ef50d5716d44d2b52356998aef53fa8cc56cf96fe27ca75accbc
+    sha256:5ae81c67da6a9b4a517be2ab8e3c0302a96c1abf661b487e56a573fc9509f683
+    sha256:5ce6bf4af71ee07bb25aea561588c84bc7618b6944ca15943aa8c61bf05518ae
+    sha256:6bd1f269b5d234c467586086bb4e35fcdcf768cea56da2e1c6427fe923d6244d
+    sha256:77e586405e84e76244b9e2b178d259f8b2e1fe524e9c25a66d08ca7957b4a221
+    sha256:79ded6ac2a97f2b34d9922673071fc48c33a3875cf1feb50008a0afee2f4742e
+    sha256:7bedf140a9e0063621b05abbec12dfd9442bf746c836585edcceb3f9216eaa38
+    sha256:829748c94e8f75470a4c663a71ba3da00fbcf6939b65b720bc71473071ee0847
+    sha256:82ec511eaa952d7a24c19f34cb9e16b0504664600827b4ec8694884da7457ca7
+    sha256:851c4b6922ca6673b3ec4a7e726b81b65e657f1b27210344481d95e60f5b3018
+    sha256:8b8639a480f403d550f82b2204ee9fe55ee9e81b30f0edb7e4a76499007ed6e8
+    sha256:8c65bf79a6168e35850768daa6d6489164700d14a0ae6b9e0c4ca3aed0d0fbba
+    sha256:8ecfb857a361d2ab0fb03b2622ee14049a3e33d08ed62677bf777c5e92561ee9
+    sha256:8f5949c8f091e59c45fd99752afdbdbfad1764922e0c61fbbd2a2577eefbd4bf
+    sha256:8f72301e9829413303ad4a65e1df1b0dbf74fda5df43c889b53785ba7051edd5
+    sha256:98d4e436ecdda0290a9b9fa7c8a02132f823b974f38f42965fef7ca7247b73e6
+    sha256:9e2bca6e91817726805ce33bc0f4a965cb2fcaa625793164426bc2fee460e40a
+    sha256:9f9badd8676a54aa8e5d83d6790b93f174da7f89c3f058c5cf79e55ff76eb5cb
+    sha256:a129d96fdcbee8469aebc7a8d215e34ba9ee35408ba0a4f7caa6e68166b47086
+    sha256:a44e531268088b1516c3fe71d340b53f84acf425739a42c92815e1d0b9b82a6d
+    sha256:a526a73b62126c18244b87f658145fb97a9c455240d44f3902bec1363c9a7c33
+    sha256:a5fe0866d7f9025223cc19b336e42c99052bd46362260d6edc36fea486e7c3ec
+    sha256:ac248f4aa8dfea7f277de1d769bc96ea6c15354d7e2b3c4435c09284982123b5
+    sha256:af8bb621e010df5bc7c56f239822d1be4bfb4eb2d445fd1d8701d9d20688d7c3
+    sha256:bd3f75ccef522b644348e2a176492e8f207c5f9d0b7d5daadc70bc8751a87e89
+    sha256:c3d0cc272857216a3639f4b13ff038256e9fba7eaf022e5f8894bff2f0c0e863
+    sha256:cb50d4f8fabc9f6b0fa4d88bbc011c964b59fa7c3bec0fea98925e44546a2501
+    sha256:d02800f7f17eb52549da1a18a71d06884f8728a40ed173b8075db999b8551658
+    sha256:d0c104f253dc23795434c727801d36a4a9cc9882d90e3475e4372a9b3d3b2bbf
+    sha256:d1cc03ed3be4aeec5cface61db0caa001aeff7c22ddd0abadb90de53677f9011
+    sha256:d6c49ef860b5c2da8ec0954d661f1b39273b8a13d36f278f411f6d1923610c94
+    sha256:d98fe00d2874a568c1af3ecfc4e8612c1a735f7efb89f973d1f9a9235c86b266
+    sha256:ddd43f5a69f5113304e7cdd56010e757e78eb928852c12d9b95f1ee6578359e2
+    sha256:de7b93c41898297079b180805d07e4595cfd11202c2c3cc8336d9487a23e24f0
+    sha256:e101c5ffe044c2c672867eefaae012ce30078c8b40bd39d1aa81fa685c7f0391
+    sha256:e2dda688620535d80f3ac7f47142955ca24189fa66c9f02fe4efa6bab5604774
+    sha256:e6aaf878fd590741ab5e55635650cd27f4d40f9949293794c96c17ded60be679
+    sha256:e83832ec1684427a6d4d006e5c9975f6a6232ef219a73d2ef0a844ff0125a587
+    sha256:e83bd379e85b5c7ff699016cc2f3d8de753f7c36defb550c68e87877446d2ca3
+    sha256:e952c4a77e546be992df23cdbd390c7828cb96b5151b3597e1cd55769c79d405
+    sha256:eb469c80e22351a2cdf340acfb1e6c08733a1086b30a9d414c7878162e4711ea
+    sha256:ec0f74ab10d77ad9070ff8419dae356dad33034e9832b27e4fd4e5427885bf0c
+    sha256:f472c195f2dc686e8d3308587d66cce0cbf086cd678cae9e6fa35e41e8d958e1
+    sha256:f4b1bb9c559a0012c07136f9b14fe6e2ac762a95e15b537b6d74b12a6a081187
+    sha256:f8481eabf29507560d96289a1b1189c806686813a86fb6e0e9ac9b7074bdc7fe
+    sha256:fc292d29a621f604eb98a4a8c81b6b7d5965983bd920d7a9e4972cd1a3b078fb
+    sha256:fe16aa8039e75775797c52424a9c9c722c99f99c515210dfcc21ca4e35669279
+    sha256:fec40b04423bee109af244320d4c635cfba98034a1e026f5bdafcfa773ad6217
+    sha256:ffbef71e888bda96ecba21c0b04b17d50ab0177761b55e4654689ac3ed39c96d
+
+REPO: oneacrefund/offlinewritesserviceapi
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 65
+  ACR manifests: 240   ECR manifests: 195
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (5):
+    v1.0.0.2025.06.05.15464465880
+    v1.0.0.2025.06.12.15617573078
+    v1.0.0.2025.06.13.15617573078
+    v1.0.0.2025.06.16.15617573078
+    v1.0.0.2025.06.18.15734235635
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (45):
+    sha256:007f52a8dbbffe05aae45939e7fff08e4fc6460363260b5562152de1e3d31628
+    sha256:06c106896a4168f2089cb0b41c5c1521d3a3181ecdc2e265c8d964edf583dc3c
+    sha256:0a82fbd28a35c2c1f869ef751d38db55a5b596e74e8e22e5f473e06907d1f9d3
+    sha256:0d4ce1c106d24a45dc80e5f7d52f9d4bfb4526e563341c566f0cb12414942729
+    sha256:114475546baadb77414f8e7fe60010f9dc3705db8aa744b539228db56896b9a7
+    sha256:12c2667c182fb465085af50ee75e1b51a2bdb27598b374d26d9e4e8a121e7a45
+    sha256:1579b395fad4d29235f491bcfe37105784afb8e213f73b5c36b7b1bcae668089
+    sha256:255de03e876431e2a6462d3c5ccede23b9def29cd1ea3bfd27cb0842c60ef1ce
+    sha256:2701440cfcb1ff523b12ebc6ab28396cf27fd3e4cf198feb0ae0f5ba4befeb5a
+    sha256:2841c2581f8d4c5aa9824357fea02a6f83156c7e50f704c6c80f2da5c9af56b1
+    sha256:2ecba98daf882861bfac491baa74f2ed626f15b1e3c1cb16cd07b4017f8e68a2
+    sha256:3071d8cda0bd4d28071de6f70b5c8b30dd3dc9e1d109be13adc9f7d4f2003474
+    sha256:3d93a7d10d8181b7b181dc42bc8cfb0fad951c886aaaa9c739cdca46563499d0
+    sha256:4043f78dc3182a575e4cab5d737a332ed26a4f8caae4ed776ec6d351cbb263bc
+    sha256:4fd9258ff8f967c1d906e13321bd4631b57088c24ea260d1a21037c083752248
+    sha256:52c706370a0c41ce058efd33e4e58002d7bb34f5656cd818dedf89e265df78b7
+    sha256:578298dd2fef6bb81361165752c803faf5dc8097e0d88ab32d6e9ddfb193fd03
+    sha256:58928b0d918d6152c0ccd2108beb90b186ce9688e183d88bfe6c21a30debdb4e
+    sha256:59e9fd7273048de14e71f02ed3b69ddb92fb3e59d5e3e039febde2fa97dbebf7
+    sha256:5a8e6acd534785b6b63fcd2c0c4055cf6b4f7d3db1341ddc89502c7b794dcb5a
+    sha256:5bc32c25ddf0a1da3dabbef30c581967a0b3742f0c564bb30eb14e36ab80406e
+    sha256:706fe98db0a35268ab78ce01b83ece188a5ceb59814c950c020ee91b68062d55
+    sha256:73f6d0d579384b83caf82ba825555a34581282a826a520a1165bf95da69d6c48
+    sha256:7c0859e728e597b827101cb2300579cc4371135e32bf8c38f3d54d9996537932
+    sha256:7cabb6ed9edaf67aa741129f67d639dad8d2199725710e03920e4987ecdb048a
+    sha256:8c93cfad7125007d1931275439a5b43102e2d49884d8101eeab1de0b76a12d54
+    sha256:90b0b317a5eb9cbbd265ea8495c790794179087550f0a0287988e49180261ab4
+    sha256:93a6b137363ea212fe319e81879daa16b0a6884605bf96eebf68a8fb5b1f9672
+    sha256:a1394cb153b68064c825f675adfc40ecfc6358b470c8b23332e28834ab622127
+    sha256:b489cba39b09c224c9a67a8d9d104a8fe1c808c7f90c16f93c96f3ddbf778371
+    sha256:b4c3e8ce88f381d0cb2193e81e56b90757dd73ec5a997c33a5db727186602538
+    sha256:b71f26058b645531517a2682f58455f4a179e9411a857b371d7ea16e9feaf623
+    sha256:bbf573a6d650fab662fabb5e76dec32e9eaa4126aacf0560c3d29e76c984dda4
+    sha256:bc974b7ef03b55b39e74d23995990beca0beeb336054bd3ca8e0d6fe92ec75d0
+    sha256:c3a45cf022f8f1c18f05aef03a3953f3a579ac171b05bd21f96be55421695b02
+    sha256:d075af9a0c6812a7c08e8b90110eb76a998e71cf4cbd15213e491cdc9412c850
+    sha256:d5ba1986cf6d52f8f32e6ba68a5e8f768848817addec4f3b9ec1cabb735f960f
+    sha256:d7d29d672c4520eaf6bf22e3e57ce3f5a825b0e8b215f0a7cfb5becda1913847
+    sha256:e2a7323dde41a7951a019a82cd00bc6082e5db44fe27e5d1fe83632f5d0fe718
+    sha256:e96e60dba356fc26b379041686a807bc8a787dc57171086e1bcf49ffa84a518b
+    sha256:f24f7c0ce97ed573c0a1d9b36fe55542648e5b00572d90f5807428216289af1c
+    sha256:f684c45a6c0d9e376a3195fb4252c74d90c3574349154af1e9f082ea9ffe7532
+    sha256:f8eeb2164ab93eff395845ef985f1b8f8e60fa8500a64c6cb247c8b3643a4498
+    sha256:fc591ad448893a50c66dd77ee663f4b77388d1f4749edc68ba41724f748d47e5
+    sha256:fd88a377df79fe09d3adf9951c46ddc98ea151b2b732a4905ccb85bf9691da76
+
+
+REPO: oneacrefund/oneacrefund
+------------------------------------------------------------
+  ACR tags    : 4   ECR tags    : 4
+  ACR manifests: 8   ECR manifests: 4
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (4):
+    sha256:25cf28a7aa27255324ddd5c6ea925dfc41ebf5cb085d199a6a5382c426ef223a
+    sha256:8d242c6f3b2d7c79139da060c8ac1160c5e8c969b0bc5197cdfde8c01a6077dd
+    sha256:fc17f4b1d71b92960ab12b7afa33cbfa40a38faa51c0c6d596c1263577998908
+    sha256:ffcb240b0cdb1434efb4166cc8cc52dc48c318bf24fd6d8f46456b649737e0a6
+
+
+REPO: oneacrefund/operations-app
+------------------------------------------------------------
+  ACR tags    : 30   ECR tags    : 31
+  ACR manifests: 32   ECR manifests: 33
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (1):
+    v1.1.14.2026.06.30.86
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+  MANIFESTS IN ECR ONLY — not in ACR (1):
+    sha256:6a9b8fc57e8270c71c59859238af38dc6491d2e8a4526cb115d544abd4356d70
+
+REPO: oneacrefund/orderingservice
+------------------------------------------------------------
+  ACR tags    : 7   ECR tags    : 7
+  ACR manifests: 7   ECR manifests: 7
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/paygops-ams-connector
+------------------------------------------------------------
+  ACR tags    : 14   ECR tags    : 14
+  ACR manifests: 13   ECR manifests: 13
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/payment-gateway-consumer
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 63
+  ACR manifests: 78   ECR manifests: 63
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (3):
+    2849
+    2851
+    2922
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (15):
+    sha256:0ee197ff841f838772175367406f0edba7f423cfa18228ff9d6591544bba65e4
+    sha256:12930d3ba0d199391728ff716781395179617cb980b4137d6e90325e7d0895c2
+    sha256:12c4141c1b6b0f00618deb64b94ac13376e5a4596e5535cbf1bb3aaa23226445
+    sha256:41d063abe66498cedac75e95965fa78870d02212d3d5973af1feaae4225c8eb5
+    sha256:44d92f9e55f29d7413c287e1625ee39ac4f48a320bb2d75982d89c6cffce69a3
+    sha256:597e66ef7f2ffd8863b89510afe0d7edaf717881adc6d2ac277a8abfac0b0d1d
+    sha256:722055ee66f56ee1ca046d99fe515342efb286340af11cdf68ac733d30eb7880
+    sha256:78bc517ed3b93150c3459114fe45f65b610fc98d0fff3de4a358a3f2a5c4ae03
+    sha256:920be28184057982643ebb9cb3256c1cfe89e363bd5c48f8a455167f8092f2e1
+    sha256:b3c3606cc4f01ebdfe4409b941d503e78209a67961fff31d0d4bd81fbf3c90f3
+    sha256:c4b1d7050e5e68d10a13171dd99d54ee11c6828f1a6d7db956555b2a70bb566f
+    sha256:d30184a79f89a34e71acc9d0adacfd2b519f5a9fcd165bff9d284c3d61d70e52
+    sha256:e2bebc2a991324ffca95ceb075b2c1b92d129d832bfac3370bde120f6409302d
+    sha256:f6850deb56a8b2d88038e59f2af12c31770ef26b899c00c4ba883a523e6f4091
+    sha256:fbff6d491b0ff5d75c1cfe5d15ccf8181583490b78e39851f5380630ad392bed
+
+
+REPO: oneacrefund/payment-gateway-wrapper
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 69
+  ACR manifests: 136   ECR manifests: 117
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (9):
+    3481
+    3482
+    3517
+    3518
+    3519
+    3520
+    3532
+    3566
+    3567
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (19):
+    sha256:0e453ff9db2226efeedf370b07894c3b8a9e1c5d3cec3da440e65c5f31040e3d
+    sha256:14f229dc1ddd8e04ceb8f5f5d963b880d93158ba298dab2cae2346679531c2c4
+    sha256:1f4a3b3989e3536c257b5713f98fd09185b218e9dec06b06d84ca4f0078ec691
+    sha256:2e9798951203b36623b37735ed21cbd6a205750790d9b38b109fd73c04b8d905
+    sha256:31781a98f414913d59270b43e6af882bef668b2e99724b6cc322d6ea9d089b8c
+    sha256:439fb2fab102b2fce555241054d27feb1094277b50f2ca93709923d24961dfa4
+    sha256:542a5cf9b5c08855b013ee956f6e9311f51dc328e1c3b8342a429eb8d17ca71f
+    sha256:5b74092a6759f8a6b762c5d58344e88781b17386a96b123b9df9952495166408
+    sha256:845e33c1eec663ba47bdb79699d30aadcbdbeda32ab21fa7037a87258802649b
+    sha256:851928982bee7369d5d20d8904f291b7a0db955b96ad8f20bf8c47018032d1e5
+    sha256:8f3b2db2752cfd1c0ab26521d432151b17289928efd4c538b6c2fdda7669e241
+    sha256:973036a24e2d824f3aec3cf167944e36c7cd46274e3be50abfa219eac326c3ed
+    sha256:9a32446d00472a94ef299927038aed7442065846281abf4c544d5950a7f21a91
+    sha256:a0774e666bcfe0e19310182a43731160e5f89a6fa69347738dd8e22f015ef4ce
+    sha256:bfb399cced36784eb49ab9b8e885e1036f4c2ac59b470dcdff364da8d28fb46e
+    sha256:c6a333a98d0c8f401a4c98e2f8fb3ced8b48a38a6d41fac654b297f53f7ab81f
+    sha256:de43b134ba0f62fc5adc3e0ed592b1492e00c1a7fa0274bc566a2a1594ef818a
+    sha256:e7b53e7f1b660e3f49d9132d439d911996e274d86b1892e227103d2e76d53cc4
+    sha256:eca8fe8c73d06bab7bee1a2866f1e7c5ff7981d762eab3fcb540babf0dbb3678
+
+
+REPO: oneacrefund/paymentconsumer
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/payments_pesa_autosave_consumer
+------------------------------------------------------------
+  ACR tags    : 16   ECR tags    : 16
+  ACR manifests: 16   ECR manifests: 16
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/payments_pesa_core
+------------------------------------------------------------
+  ACR tags    : 14   ECR tags    : 14
+  ACR manifests: 14   ECR manifests: 14
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/payments_pesa_equity_bank
+------------------------------------------------------------
+  ACR tags    : 16   ECR tags    : 16
+  ACR manifests: 16   ECR manifests: 16
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/payments_pesa_payment_consumer
+------------------------------------------------------------
+  ACR tags    : 16   ECR tags    : 16
+  ACR manifests: 16   ECR manifests: 16
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/pesa_autosave_consumer
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 60
+  ACR manifests: 60   ECR manifests: 60
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/pesa_bancobu
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 40   ECR manifests: 40
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/pesa_bank_of_kigali
+------------------------------------------------------------
+  ACR tags    : 13   ECR tags    : 13
+  ACR manifests: 13   ECR manifests: 13
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/pesa_bc
+------------------------------------------------------------
+  ACR tags    : 3   ECR tags    : 3
+  ACR manifests: 3   ECR manifests: 3
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/pesa_beyonic
+------------------------------------------------------------
+  ACR tags    : 41   ECR tags    : 41
+  ACR manifests: 41   ECR manifests: 41
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/pesa_bk
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 40   ECR manifests: 40
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/pesa_core
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 40   ECR manifests: 40
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/pesa_equity_bank
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 40   ECR manifests: 40
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/pesa_fbn
+------------------------------------------------------------
+  ACR tags    : 51   ECR tags    : 51
+  ACR manifests: 51   ECR manifests: 51
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/pesa_first_bank
+------------------------------------------------------------
+  ACR tags    : 13   ECR tags    : 13
+  ACR manifests: 13   ECR manifests: 13
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/pesa_payment_consumer
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 60
+  ACR manifests: 60   ECR manifests: 60
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/ph-ee-connector-ams-fineract
+------------------------------------------------------------
+  ACR tags    : 42   ECR tags    : 42
+  ACR manifests: 43   ECR manifests: 43
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/ph-ee-connector-ams-odoo
+------------------------------------------------------------
+  ACR tags    : 13   ECR tags    : 13
+  ACR manifests: 15   ECR manifests: 18
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+  MANIFESTS IN ECR ONLY — not in ACR (3):
+    sha256:16e34f74f552db44988e9738cfe0ab100c7dd19c4c4ac24e0ab82ded2a45eca4
+    sha256:9ce2c59dd118021c09853ff991985783da4fd9f955a0b6823bb244eba3346a99
+    sha256:df8feaa8df9a7144d0ce584027c9797b8c2071710c0e4b876cc449a39841f068
+
+REPO: oneacrefund/ph-ee-connector-ams-pesa
+------------------------------------------------------------
+  ACR tags    : 5   ECR tags    : 5
+  ACR manifests: 5   ECR manifests: 5
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/ph-ee-connector-bancobu
+------------------------------------------------------------
+  ACR tags    : 8   ECR tags    : 10
+  ACR manifests: 10   ECR manifests: 12
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (2):
+    1.0.7
+    latest
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+  MANIFESTS IN ECR ONLY — not in ACR (2):
+    sha256:bbf0b2329ff9624e8b86753881406e4236f1a0925da1bd3a7ef92b57342b122f
+    sha256:c482838bc16b210452c58cf8af11d08aec5ec4a4b9fc1b38f4f3ad85e2971e88
+
+REPO: oneacrefund/ph-ee-connector-channel
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/ph-ee-connector-mpesa
+------------------------------------------------------------
+  ACR tags    : 7   ECR tags    : 7
+  ACR manifests: 7   ECR manifests: 7
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/ph-ee-connector-nbs
+------------------------------------------------------------
+  ACR tags    : 6   ECR tags    : 6
+  ACR manifests: 8   ECR manifests: 8
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/ph-ee-importer-es
+------------------------------------------------------------
+  ACR tags    : 3   ECR tags    : 4
+  ACR manifests: 5   ECR manifests: 6
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (1):
+    latest
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+  MANIFESTS IN ECR ONLY — not in ACR (1):
+    sha256:34abab824904a9b9be58bf54d7b19fb93cedfe7d1e9de4d9316e1276bca9fd42
+
+REPO: oneacrefund/ph-ee-importer-rdbms
+------------------------------------------------------------
+  ACR tags    : 12   ECR tags    : 12
+  ACR manifests: 13   ECR manifests: 14
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+  MANIFESTS IN ECR ONLY — not in ACR (1):
+    sha256:1d9cdd66efa8f66fb52b2007d85f1132436cedfa6e44106225e6064a0a7d9e0d
+
+REPO: oneacrefund/ph-ee-operations-web
+------------------------------------------------------------
+  ACR tags    : 44   ECR tags    : 44
+  ACR manifests: 47   ECR manifests: 47
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/rabbitmq-connector
+------------------------------------------------------------
+  ACR tags    : 3   ECR tags    : 9
+  ACR manifests: 15   ECR manifests: 29
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (6):
+    develop
+    sha-25bbbfb
+    sha-3b604ed
+    sha-bd76d6a
+    sha-dc3ec04
+    sha-e1ee3ef
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (11):
+    sha256:0a8204b6a3b19f9787b57c42711c85c2bb06e217ee74d91c9d64a66e0e7a5547
+    sha256:0dd084ddd8a23ff864e2f31e662446d5b38bfe9752b8521e4ffa46f0282d3504
+    sha256:0f73161d8d6988a81fd2bc5d63c13747fd48a7ef602d7a5118b592f8dec9af05
+    sha256:480eb7d3895a97592dcae598dbfd741abb6e820b07b7129ae460c325ce7e7284
+    sha256:49bfab4797147a5401cf16668c3d6da016460a0bcfd208b64dbaa26ee0a17cae
+    sha256:4e35067735af5b64bb1f027226e55988d17690c2f365f7d5cb7862ff0ee1b355
+    sha256:63fbf9236e35daf4aefe4e331e8e05a0ab2cdb0fbc3ca86ca01c5ad1d0ac047b
+    sha256:92e60e869f42457b897475b0f80cacff11ed5202ad2a5c647f54bec9a296471c
+    sha256:afcea9721629eca3ffc1ee2b318267c97717e3fe9c23cb1e70f0ad5f972f8783
+    sha256:db268e35370b420b29ae3fd9632a036771aed6ff008c2bf9fb5816b1a5b0bc46
+    sha256:f315bd70350e9e80e1dfc6d1dfe0e76cdeed03a2022d4fbc5d010c6e02547ac7
+
+  MANIFESTS IN ECR ONLY — not in ACR (25):
+    sha256:0ad3527224cf4cc32dca535706a29003a952712c6f1c8a0be1556bde9c3d9098
+    sha256:1278eda5c25d47ba3ceacb39c8562f750c2baebc4c2211c26f894d4dcf48ac02
+    sha256:1901764a75f6e1ad60ec2b4028884aecb74f51cd93fc59720755002fddcfd973
+    sha256:21d33e110ebd11a7b5f5a42359e1e6e0a5004629b01cf3100ced8ac4bba750e5
+    sha256:24990c38344787e564728a598b00dd96e906c5a245e79c616e102fc4fbe0b598
+    sha256:3748d3c8e5dbfe9eb6c6d838cbd57fce65a5b372af5bb97a051df4c2088b17b1
+    sha256:466473bffb0a6765ad15276be63e78c397f9d04ba3c886d76a1a3ef9e53bbd3e
+    sha256:4ed1a94e5af5af0649535926855e5225ba9b58873f4144f5df193bcfbd4c4d5a
+    sha256:67ab37ea189c849747a35d6f9af977e7b5da5734e009a0c4f7e66c26457861c3
+    sha256:687622451f8be69def9d41ed0302e5c3e66a473965141d49de30460d06f4d7c7
+    sha256:6e4c67f503fb555e17a3304bdd5bc30da4c443c63cd1dc95193f7a2976db5cf8
+    sha256:761149a6953ae711e621cc6a86b5c83fc108770f6bfaa51195a963840ee8e2a6
+    sha256:8c23acaa8b87d21b19eb32c28aef7ccf46090ffec306b24a118f3275532c6bd2
+    sha256:9c324f94053f32a9afd61fabdcc7a4af35a8818e54155cb8c307697d4ae8725d
+    sha256:a77611cb1d933a9ba0ab8e5d552cdfdc6becb0f1f9f5b7c3c2b0c748c9a5da60
+    sha256:b03a0a314fa737c9b7b6cdd0fb2e8db2eac0a2a7284881033a8fc033cd273094
+    sha256:b5e2373b390e5ee4163fa73add75f36ffcf9e038dc14980f0f640d80b7927f80
+    sha256:bc078a87a6cf2c211cf4a8f49ff622ef08c8af59018d5d248b6cac6947e4cabc
+    sha256:c488f74bb0fee1ca1d2ac63faeb7ddcd1bff79a9c09be14ed600fe60b2ccb274
+    sha256:d0e5716db66a944612e999cdcba434c306c42684cb0839d2242640b9a006cd91
+    sha256:d213e340f1fe908e2f85046928496e6e83278f0ab8be275503d84cdb5b7b3e9d
+    sha256:e7895fb5d01c18f865b12f9c468e3af35d00d37e031dffa82ff14a4c6f40b466
+    sha256:f585ba3e8307a99fd668f27a593d6619e046a5a2246d9a38a07cff749df70ed1
+    sha256:fa72302243ab9edbf08549871e06830df8d74149035b2ac17562ece1999b59de
+    sha256:ff6a8ab6b4b60725057e2d6794460fca2e6a10c01389421344ef1b58f4617a2a
+
+REPO: oneacrefund/rabbitmq-external-connector
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 61
+  ACR manifests: 79   ECR manifests: 64
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (1):
+    2213
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (15):
+    sha256:0ca2a79bc8c3f9d9013fe49e48f5adeabf282074797de135fd65f1dad50a55fb
+    sha256:0eb6329c40e82edb74ea93cafde08ebc448263d8db2d3157090804f058efadea
+    sha256:1a50e5abcf7e40e9e761c323ee94370cbfe8bb0ca01e0abaf84a489ee399f4fa
+    sha256:1ef7f16d14150ae0144179cdfc41714d676213a538d222377d5056cbb7887802
+    sha256:2c04b043fcff2f9ab1790ebfeb996e99e0f18e14db9d022e89f4fb5df4a0eb8f
+    sha256:4d2312fb79c207c8f5d573913349cf8283d34ce9b4e81dad46a2e6e627d2208c
+    sha256:65af8b5707812c63a306e43216ce182dc4fc6e0165cdc122df4f1ee28e3c0d69
+    sha256:667f0ce8d003f89ae586425d193dc8ab3113d463281c258ac25ee61a074175b4
+    sha256:716f5e005276c30d2e30893906eabf5fd0dc1f142a693484ab943c333e17efcd
+    sha256:717c8bc203aacbdee1121258f16177ba26fc25192da64ede8cbc0c1be7603bd3
+    sha256:999b38fdd6a44172476ddea8f74d1ca9a0ec3dd0d70d5d215bb8218d31f9fca6
+    sha256:b2e6d01844d3528bf58a0cd957941d4f82a0ff89adef1082941a67e26da82ef7
+    sha256:d412bfc6cea6d5de2a505fa6ec780598d84feee48e3b820d7f4ca879765b5189
+    sha256:dd162039fb5aa3d5b2c646edd11634ab62265b34661a18cdb89a32f6089b67ae
+    sha256:f4198bd576f22dfd8161971224843032ebb1db20b6db64ccadb72821eb423773
+
+
+REPO: oneacrefund/redis-service
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 60
+  ACR manifests: 60   ECR manifests: 60
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/refresh
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 103
+  ACR manifests: 120   ECR manifests: 103
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (43):
+    v2.8.1_1710a1151fba9212f8f031f2d7e7ce037288f520
+    v2.8.1_270bf9f305c5a8f2f569a73902993b3972e10a65
+    v2.8.1_3dfcf970f136e7201f718b4ef0da3c312edec6c5
+    v2.8.1_73f485e3c3c5d296512d6884e06584bf4fcf85a6
+    v2.8.1_756085cff877d579c098544455740f8d713d9b68
+    v2.8.1_863d04ca2ba7170bc74449dd30a19a88d2455e16
+    v2.8.1_901aafd7e7ee6b5fe3e29e67f39d60c373877d38
+    v2.8.1_95ec1297fe9e9c3adfda8bd0bc852a6285f48474
+    v2.8.1_9a830f3d1cea8fd0d74c080df8a150e050332c30
+    v2.8.1_ac157619424d34eb05de71e4905e2eeccbbc97c0
+    v2.8.1_cb8d3e7a65d630af14099695f871d055fa49d2fa
+    v2.8.1_d1a560798b39f89e155b294e0d65d9297fb1e52b
+    v2.8.1_e17b2e5bdd4770900442a4803d3933c91cf802c0
+    v2.8.1_e96c6fb12559c2375fd15ad5618d932468b2a613
+    v3.0.0_20f7974bc8b2f5431c8c614a141f1356ac4d9656
+    v4.0.0_265d723cedce5941538603fe284432c582b81197
+    v4.0.0_f51941148fc24166c86596b16e152d64ddc81f13
+    v4.1.0_0520ba6dbc5188f38694f279d90a06c995ada46e
+    v4.1.0_2fd2188fb04f8a356c4693b75d2f94bcb11aaa93
+    v4.1.0_4a1b9d7249e6bc1a7bd5be1dbf12267b9d60cb99
+    v4.1.0_8261ca1222957cc9a5811472da0b2a58d0451bcc
+    v4.1.0_aa1c0e3b48a56e38a686dd10c321deea0feb20f6
+    v4.1.0_f0fb8f7bb27071fbb9cf4b90e2a0bbfddb2a2bf9
+    v4.1.1_0d2719765ceecaa55ade3b80a086e9b831c1958f
+    v4.1.1_133c35df79193d1e5322140b2e2d3614ebd78354
+    v4.1.1_399533a7439476135a7ab236c0808f1fb31b8bbb
+    v4.1.1_41c1c62740ac1d3e6220dd84beedb87f6a6c3483
+    v4.1.1_47122d9367f3ccb32f875fb1618f4f89367cd01c
+    v4.1.1_521e2279700eaaf6e1d328e0292e31b0739b9104
+    v4.1.1_6efdc54440a1271d950bc795de8a415c4bfd929b
+    v4.1.1_763f08219eba08b00c6a1191cf2dedcdd35548ed
+    v4.1.1_7eb23a1d4b9131f28f16246c3badf24b36ecb847
+    v4.1.1_88618baec4f5ea81dff3d50f3eb1ad6b31c1a63c
+    v4.1.1_997839add41fbaceb433d22b0e3522392f506e06
+    v4.1.1_a92f9703843e34572e25c007b9ac533faa56a695
+    v4.1.1_ab278fd3a5fbcb510452cc926908b80d3d0f6113
+    v4.1.1_be882047961ed3d2d749f25b0dedcbd15b6fdc6c
+    v4.1.1_c9cb463f859aca7c03f1f0962b8b7ff71b1445bc
+    v4.1.1_d788b83a73015d1e4363896cbbe5be44662ebb92
+    v4.1.1_f972a1533e3758cb581392dc42ff9e974234a7e7
+    v4.2.0_696abe8863b398606db3f2eb795aa066243cd642
+    v4.3.0_05c77444e0bdcf65704f43981104c24849f8a58b
+    v4.3.0_dad64fa19d99bdbd7db37e3bf8a973b0892095ba
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (17):
+    sha256:02309731e52ece269c56bfaff8bafb1a998e8ba7c2c3319f568cd39e9228bb77
+    sha256:12b6c3b5eb5043e90cdd55e235d31ea4fd21383faf7077a05688a97dc40204cd
+    sha256:136573f73988c1765e933e30a72e988dfe2a161737415d63d8359f81a90f82b3
+    sha256:34f17e8b51856be9ff4c2205d31ef69acfb2acc79093b69d848a036e52334913
+    sha256:368643455b66b4293207e2d94cf9e3d1681b58fd18ec2d0656cd895ed05b1303
+    sha256:3f4f51b62aa8f0173fafb5b9710588da0d57001cee13399821e5899a9ce13fa0
+    sha256:4b803bc3707c25a2355e13d7b60632320b2de3f91946d0a4f90c330403bf0b32
+    sha256:5bf6048663159a0a0dbd62ba9319f7ce540fe51d8744c5375b729c4d9accbe5f
+    sha256:6f3b8b03ab136aa18f8a0eb051fb993c5b53f53b278b045164406a92976cd64f
+    sha256:94e6c4fe355de296cf4862db8e817ee084d34a120570d024e7a8fbce5d08aed5
+    sha256:9f1570c9e10a2f926b05f4dac5d3be58b73060c54f24135562056f739308b05f
+    sha256:bbc7643438c47dff68d0e7b1230261f81f39f02218fa680beefad5dfe6d93a85
+    sha256:bd1633011a350559180db6ae01e903bd7f700780b09b65d547a2373cd6101e14
+    sha256:c1c261771a6e6ff8c77a218a87d82b1074cc0a9bcd57d1bdd9f54fbde4d80e36
+    sha256:d19998da950e14235bc643d6facac9b7b27bcba50030dbfe0ecd56de7425255b
+    sha256:deb0c510414cb4cf046ffd2b5fe60c02dc33e06e7f3b444165df088316ad6529
+    sha256:df083d86035fad69e4060fab1f8225c3594dde89b3f0e92cda37026890dee282
+
+
+REPO: oneacrefund/retry-service
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 60
+  ACR manifests: 112   ECR manifests: 62
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (50):
+    sha256:0c3232c3802e2fe324fd1871140990af8e02d455f3aa34bbf9854881f55826bc
+    sha256:0d5381d49b2b301045f5a457b8831d82b5e82999abcca5dd1a94a9ef517357d4
+    sha256:0f27d866e398572cd557a33f68ef529d9c196d908bae09dfaa9a8d0c6efbc12e
+    sha256:11458eb4efc96251b919a12875d38eee87f5ad42b06e0cfde9eab428e7863cd1
+    sha256:12b568da97e19fde86e11017cf7c32ee54e6d7bbea55340b628cc8ec1f308d7a
+    sha256:1d44c44e59da6dc6ae09397c7be564598bbe5ca10913a7f8fcdf49f644abb05a
+    sha256:1f609836df1328add57a5f7f7435421801b8fa4bff4fb2efc4b2c3002aa474f8
+    sha256:2bb4c79b5580232fd15f34c813fef58a1d54703a1e4174036728adc72e16da06
+    sha256:2eedf1991725bd150935830de1537db2fdbab7e0a1e25f49936e507dd357fac3
+    sha256:30a6d8bca3969885b506c0e41ea54fc44cf0a096c009086c718f3915712a41be
+    sha256:334da15e5b3b367ae852de0d479a719d7ad5301197e55cc846b5c05c2a70b2cd
+    sha256:36273507df552219138420d26e5ea21fc20dc7f62cda6025ea7d353994b613d3
+    sha256:39b0829d6c1f2e4f1a0042684c813c6383669204f9a9950d55ca9bbe97185339
+    sha256:3b95f438817d87c2b0c71428ef56b236ae7e916db7481c05f14fad0dfd11785d
+    sha256:3f73faf2eabafaa508c2e0ab5d1bb0fc96f3d0410a24e9d017380ebb5f7b5261
+    sha256:4a035fe6fc3d735302cd912d5284ffff900ffd6cface30b5f83dc5cb25af623c
+    sha256:4b94b87466f147fef06edfb20c342df0423a58f81fb5c92350195420e2dc597b
+    sha256:53ab772ea3e5716bbfe8982df7671ea00b54129c47e7cc56b4195cb07ba0d599
+    sha256:56575f1ba97e5d821d3905449bb3d5b9451bb47480c9154e93c055d2efb6e07c
+    sha256:5964c26a9a7ffddad07df316574d360c999e2f40e3bfe13c904f589d9cbe889d
+    sha256:5aa36c340552ac5aa251c24707b4533b130e446c8739c0a0a92f42b073ecaf8f
+    sha256:5b16d1b3839f8b171895053502bafd73f57698f742360f8126f69c1130700fe2
+    sha256:5d9fcf8907a5eee670a8ad6e655d3877a4b56f49dea2bc963082b8590fc81eed
+    sha256:5dd62aaac45dc8f03f41a13484cf2b6ca53ace623b73a331d1f5a3f6f51caa31
+    sha256:60cfea10682394a95826e80e72f6e391b5f15c56609cc79ca41d1b63495882d3
+    sha256:64c2f761a504c4d18b68bebd809ef12d0922647e82058d32047689d3ce60d8a9
+    sha256:6b44cbdec534547b04b49c8b821f07acc694cce2fce7570ca5121e72f6660b41
+    sha256:6c61a489c6e738300cfd4c3b1ea539d58b17de461ab1f803d54728cfc2fc8fb9
+    sha256:6ffb6352d2db55ef6ecb4178bc82fccedb58c979d7405bc8e12165aa6b2152e9
+    sha256:899294335f570341794ef6cae5ed740115de19f2bd1aace5e443429f946b17fa
+    sha256:8ae712b615ed2bd528707e72709b656a806a665d2dc7b097ef56316f125e6b74
+    sha256:8fa4ad2e34927f8d8efabe83249c812b714a036c7c45153644d166aea153d313
+    sha256:93d0f4993d10e56f2a77485aabb33d8900940cbe5e61aa7f35c042805924e971
+    sha256:97086468bf1946b34e817b9c9cf538be47db14b856c41a203f9a150b8346bfd3
+    sha256:9c40b7bf2b56f05d73305deb2db240489fc4d661e5985a1f0951a37a6116e961
+    sha256:a4e4645f18eff456cb7efb73fed7e41267d7f883e35fb12705554fbebcd5b0ba
+    sha256:a8a0cacf31f2fd28bb2b6751ba52583c74b0b356b3cf8d66b09288df5fc1c9eb
+    sha256:a9b0a0a0312b9d2a518b6f404d9b9ff0a57a2cd99a8dca3caa001f4428a40dd7
+    sha256:b11489c47894fb4d92c82d5f40c89df39f3079b2f387b474177c174812a59372
+    sha256:bc9ad06a22a51376a8016fd8310530593efc72356a63babe24759f81b441e47d
+    sha256:bcdd8edee088fcc6a07ff9329a4719937782ba22a1d513ac5a9707d7b7b944a9
+    sha256:c1cfafb60e776b312878f426aaf914ef1236f919b5d6ebff3de3ae5d2f46fb7a
+    sha256:c3ce8a6fd74682def42de60a0921b372d859ebb189a58efb1cb9c46c4ae2da8f
+    sha256:c928d8683446cb11e454fe89bbccbd1be239b4228a6b93f86f2e68d730d229d7
+    sha256:cb319d5d2acf1a22ff134a2274dffbcd996c03dfc458d0ce401a4a039b5ba901
+    sha256:d4bef0d1955fd6d3071346245ff7971e803441801092f63ce96bc50b6afea449
+    sha256:f211797d77f0591c2627fdeb7de59e40e2343abb96a30d0056223e3418f2bcef
+    sha256:f7144559f5753070b6ae97cd3077fa94b0265060194e27becccc2ff88871bbf3
+    sha256:f9108b3480b9be8e7f9508a4259174ee8c5a99c6ca8ec97ccc6cc96b3ffb5e05
+    sha256:fffa64136040b6f23c63b72e91c5b599af4b5016853626f0e06cad38e938cdcf
+
+
+REPO: oneacrefund/roster-dataset
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 103
+  ACR manifests: 120   ECR manifests: 103
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (43):
+    v2.8.1_1710a1151fba9212f8f031f2d7e7ce037288f520
+    v2.8.1_270bf9f305c5a8f2f569a73902993b3972e10a65
+    v2.8.1_3dfcf970f136e7201f718b4ef0da3c312edec6c5
+    v2.8.1_73f485e3c3c5d296512d6884e06584bf4fcf85a6
+    v2.8.1_756085cff877d579c098544455740f8d713d9b68
+    v2.8.1_863d04ca2ba7170bc74449dd30a19a88d2455e16
+    v2.8.1_901aafd7e7ee6b5fe3e29e67f39d60c373877d38
+    v2.8.1_95ec1297fe9e9c3adfda8bd0bc852a6285f48474
+    v2.8.1_9a830f3d1cea8fd0d74c080df8a150e050332c30
+    v2.8.1_ac157619424d34eb05de71e4905e2eeccbbc97c0
+    v2.8.1_cb8d3e7a65d630af14099695f871d055fa49d2fa
+    v2.8.1_d1a560798b39f89e155b294e0d65d9297fb1e52b
+    v2.8.1_e17b2e5bdd4770900442a4803d3933c91cf802c0
+    v2.8.1_e96c6fb12559c2375fd15ad5618d932468b2a613
+    v3.0.0_20f7974bc8b2f5431c8c614a141f1356ac4d9656
+    v4.0.0_265d723cedce5941538603fe284432c582b81197
+    v4.0.0_f51941148fc24166c86596b16e152d64ddc81f13
+    v4.1.0_0520ba6dbc5188f38694f279d90a06c995ada46e
+    v4.1.0_2fd2188fb04f8a356c4693b75d2f94bcb11aaa93
+    v4.1.0_4a1b9d7249e6bc1a7bd5be1dbf12267b9d60cb99
+    v4.1.0_8261ca1222957cc9a5811472da0b2a58d0451bcc
+    v4.1.0_aa1c0e3b48a56e38a686dd10c321deea0feb20f6
+    v4.1.0_f0fb8f7bb27071fbb9cf4b90e2a0bbfddb2a2bf9
+    v4.1.1_0d2719765ceecaa55ade3b80a086e9b831c1958f
+    v4.1.1_133c35df79193d1e5322140b2e2d3614ebd78354
+    v4.1.1_399533a7439476135a7ab236c0808f1fb31b8bbb
+    v4.1.1_41c1c62740ac1d3e6220dd84beedb87f6a6c3483
+    v4.1.1_47122d9367f3ccb32f875fb1618f4f89367cd01c
+    v4.1.1_521e2279700eaaf6e1d328e0292e31b0739b9104
+    v4.1.1_6efdc54440a1271d950bc795de8a415c4bfd929b
+    v4.1.1_763f08219eba08b00c6a1191cf2dedcdd35548ed
+    v4.1.1_7eb23a1d4b9131f28f16246c3badf24b36ecb847
+    v4.1.1_88618baec4f5ea81dff3d50f3eb1ad6b31c1a63c
+    v4.1.1_997839add41fbaceb433d22b0e3522392f506e06
+    v4.1.1_a92f9703843e34572e25c007b9ac533faa56a695
+    v4.1.1_ab278fd3a5fbcb510452cc926908b80d3d0f6113
+    v4.1.1_be882047961ed3d2d749f25b0dedcbd15b6fdc6c
+    v4.1.1_c9cb463f859aca7c03f1f0962b8b7ff71b1445bc
+    v4.1.1_d788b83a73015d1e4363896cbbe5be44662ebb92
+    v4.1.1_f972a1533e3758cb581392dc42ff9e974234a7e7
+    v4.2.0_696abe8863b398606db3f2eb795aa066243cd642
+    v4.3.0_05c77444e0bdcf65704f43981104c24849f8a58b
+    v4.3.0_dad64fa19d99bdbd7db37e3bf8a973b0892095ba
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (17):
+    sha256:05052718b22ac27fedcf194a2b4a735a4518ba29ad144ffe02eb767c6fece60d
+    sha256:0d9c451f8dab9404e836082cf870faea169259b16b2f4166320eb13b9d2fd2e1
+    sha256:4254bb9d77c4ac1e0489b0a0dce547f373d61bbfd872e16a087424c8e231740f
+    sha256:4c4d32df20b35142154371797d641d6f9475b939436bd1597c63ca7542884d6e
+    sha256:54daf5cad6c70ce5779be2571652226c8a19be47eea545aca89073e6231726ad
+    sha256:74d761e0219b28ef4e71fb57de1aa226fc655e78bbbb0b8327329b37b4f39264
+    sha256:8c42db6f83f0e60c68d9997b90c4d585823d67f3c6a128994cf20e94fcb3c2a9
+    sha256:940abada529e960c1433458d6911cc4200870aec451b60f973b8d8a2a0cf4bb2
+    sha256:add472752291c9a0252bd8ca2116287f0bf7fa44ade33e6e1e30ca7ab4f3e6f9
+    sha256:b37b22e6c4c531f712b7ed24691302442beec26232f2814470682c9d52456633
+    sha256:b6e85d3eafe416a60564f8fb6681be9b81c004c805a6fff2048e2e9891c97d8f
+    sha256:cd4cb0e0d7e4bcce4b7028fa7b61b21ce28da541c7ef25aef04be1a636c747cc
+    sha256:d9552ee71f69bb72d30c548e99bf562111f9aed90fb3041d5d1e95ff7082df39
+    sha256:e3772d32e50ab78663477a7938a367da7fa32084789e69704b8603fbd41ec616
+    sha256:e700d6e97740694aa3d256cc3f85620f6ade902683e636c86b68f1212ee3c489
+    sha256:f80bc4680ededda9b5a3be120385631c9a9b03bdba53de85ce8681706fd05f55
+    sha256:fff61d863dd721c0c5730d5764a4acba0ff4ec2f35590a20f50741853713cf2e
+
+
+REPO: oneacrefund/rts-api
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 60
+  ACR manifests: 64   ECR manifests: 60
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (4):
+    sha256:317d9be81304228ad797734bcda5219cf2095ed61e1ffdbef0522b94e3aede76
+    sha256:3dc2078cd99ed3bd3890466d98431325a0dae5f86944bdb1c72eb5fa7b8fbdf3
+    sha256:73df318daee281363035de6be94a006ee8738e611656a633ba7e4af11d9a5cce
+    sha256:dc63c2ecffc4601b1d7605a9e0c8a3c5a3178748a4c2dfd0af41761d1fa52b78
+
+
+REPO: oneacrefund/rts-consumer
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 65
+  ACR manifests: 120   ECR manifests: 65
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (5):
+    3799
+    3826
+    3827
+    3831
+    3832
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (55):
+    sha256:009b55d4c534e78d5f0cb39dee2950f109f59486288c59364de696ab850f5da0
+    sha256:010c620667e0184e79299ee17f6f795147a1fa4456c6ab09c8364fa92cf87add
+    sha256:01c6b89f2cbb5174f391f342382ce866f99547877e289e1ff1acc94d37185dc7
+    sha256:043685ada817320da0990378aa6d69857ae491b8a6485ad6a720fd607e7646b1
+    sha256:07a7b89bab50bbceffa355b091c05d491cff278e0c6740e2509e01f0e566a05f
+    sha256:1434eca317e0d07222f929fe4bec343ce41bba9d64b470f0206a7087b4554a3d
+    sha256:1f9ee379fd5ff8049fea1fe3a01857f45b14a41f5357794c983e1d85dd2aa996
+    sha256:24fb799fd5ab0d7916af04e107ac8e7b1b5cf16145656f31121b391d270f8393
+    sha256:2d665a4dcf2afeed0fdd4dc8bd6c71df5e5939047885a9ef10b9b60e67acec7c
+    sha256:30625fb75028a06b18cd6973990b508a73842ddcdbc4d80b355234d4d4460774
+    sha256:3471fc9a7898fecfcc7c8b565c589b81d0947a3993cad34c5bbea75e040ff40c
+    sha256:3544c1185d51e2bb94dca481f115aabe543038388d958b06ab2bb271b103ca4e
+    sha256:3910c8451433b0e08f04407c4165698830a8f2fa8490df0a2ba73d909830591b
+    sha256:42108903162c88b199769df32972c297b59a8ecfafaa089b5145ddcfa7cb0348
+    sha256:42ddbc7161a2f279366657c48ba70c674b79690752be4bc9bb2b803b28bb4dd6
+    sha256:43d936bd1dc43c3c64841fc26fdc5e0e6bf8acc01c8b6760c73df3d7c6aa1f1f
+    sha256:441564c4a6ca34e65af4ef31637efe7718efd891c70941e7677a1ba2a5d4a8ea
+    sha256:475c6ae7b447345550790682a139a825165b421e47fa344f3ced44850870db36
+    sha256:4cac75d5e1655c727d6d5a3c1715c19849fd04124691c5fc02d017edfc67420e
+    sha256:4fe185fb4e16278d2611dea40f7d52c2c38a43e09fa16f40a32f8ee7fb3861ea
+    sha256:5489e7881b0f927fe0de504af6b15c6cc3e40c1e88df4ce69f21c7d8688e9b25
+    sha256:54b0a7f0b1f119a0709c02d7e52bdcf9c5d7b46f70e50f51283c3bd8866139fe
+    sha256:558c551476a6e4421396aae57ba3de00a9af5f35b16e38151ac6318620d06446
+    sha256:5d436f097ddab948abdc488d9203c24c99277172f89b5799fbea20ab73cbdf37
+    sha256:61a8361402c997f1ae1aa2e8ed1643bf4702763afa9de19e3b6442a84621637b
+    sha256:6721c895463ee8ef517f5a43df61d0888180e20930773945cc74abd594f932ef
+    sha256:67f6be44afb2fceedddd7cc2e0a962a55e94410e75584c22721c3a9863501be1
+    sha256:683a4e8ef21552af94b4ae3bec2d85e7298d6dcd66808bd739cdf86825963080
+    sha256:76d2232d3a9b4081fdda1e5e96c90b4b8af1798808daa612cf4b4b834e643b41
+    sha256:7b314786339b548da95683032eab58ebd29cf652b6659f2682341ad944f988b4
+    sha256:7ca21de54c2b032c3dbb04f7dcffa80fd2d65e8073410538a235edae96622bce
+    sha256:892d9fa50ca16752e91f5bb584d9107be2d0518d8b82014d3751d507a4cb15e7
+    sha256:8b481f116d4b7a66869eefd589fd55e7a919db14b5c19d1bfca556e7f05be7da
+    sha256:a25b60eb028f1abf5a9017fda86e207e9ec30345b4d6af6bbbb8554fdc3357d4
+    sha256:a285326ab1ec0f5ba102ee491cd55820fe6f12e05262c604ef7c9fdc2e46e789
+    sha256:af61ada0cc1ddffc207c877e639d13c4545c946a75cf85a3bf07a4050fd6fa13
+    sha256:b51807e38ff088a306d026c62b6c156988fd64df7e20c2f38edceb4013291904
+    sha256:b6656d0a59534abaf8ea9940b0d73fca27ea0935235a09de065406d770b90b07
+    sha256:be4a0a085eeb3af0d861141fc0321b9ec17680157873f215767d2ef8c3f8cd3a
+    sha256:bf977f7b0fcdc6993f8eca73387cc7e309900161a09d3a676f6043a9e8d13d93
+    sha256:c0ef574efbe829581250a96c96b5d7a956737c0a4434e453f99dcb2ab3116a5a
+    sha256:c4b6e550409c8f36fb2964d0ad92d1fff5b146abab3b9c5272f2e3947bed29fb
+    sha256:c5312bd38c7f6cc4e9460e8154babff7827d2382a800637c75cd04afeceec31d
+    sha256:c56a650a71f576b7a312b203684df8a808cb57b5d21d6b79d5882a4a4c775174
+    sha256:c95b9cb508d8e4031f6592e827e2b25a9d8d77a31a3523cd299676945b33b9f0
+    sha256:d346b06d3a553dddf621abdbbb807f1d65fd63d8a76db0e4cb1fe0f492c6aa00
+    sha256:d68c03e209981ef7bd29ab5f466bd207d0dc6924f413e9c5d13163b505a88d3b
+    sha256:d6b7f30d18494d6ee292bb412a5754d09e3e370cf653542f83a76df64908a186
+    sha256:da5142ec9fe2e11d6799634b73d1a8b1138f52864b1072546fbae1c35ae26b5a
+    sha256:dbcabc8a0f4851b9876256e4d2de2f9e62b5b0da6f54dbce055c319c25eeee0b
+    sha256:e93328185a212ca8c54ff2e1b5593a8f6e01213a28fd166b6ad32956be0cd3de
+    sha256:ea9d83cc5c5f59fbd6de0dc9d5cdcba334efad3683c0dfd6cca04b512472a86d
+    sha256:ec1a6ce7a89a5612714c8257117679d453333bc18d9009e253cc5c008c928a99
+    sha256:f37fcb039ea64bea148fd5b2329114f6542fa73cee3d269056743e89a6e35994
+    sha256:fd30f25efa2c90edba43871572db835c2a766be612ada256a5af355371f1f4df
+
+
+REPO: oneacrefund/rts-ui
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 40   ECR manifests: 40
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/sage-300-core
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 40   ECR manifests: 40
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/sage-300-cron-connector
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/sage-300-cron-proxy
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/sage-300-rabbitmq-connector
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/sage-300-rabbitmq-proxy
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/sanction-screen-api
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 61
+  ACR manifests: 65   ECR manifests: 64
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (1):
+    857
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (1):
+    sha256:0ef817d9d9cfe000d578098146ee3acb52abf85c3395b4458d3d10820bd698af
+
+
+REPO: oneacrefund/sapb1-cache
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 40   ECR manifests: 40
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/sapb1-consumer
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 60
+  ACR manifests: 60   ECR manifests: 60
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/sapb1-erply-consumer
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/sapb1-erply-producer
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 60
+  ACR manifests: 60   ECR manifests: 60
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/sapb1-master-data-consumer
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 67
+  ACR manifests: 67   ECR manifests: 68
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (7):
+    2337
+    2338
+    2383
+    4316
+    4317
+    4318
+    4320
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (3):
+    sha256:2daeabb6afdc360124667b25fc46f1af9092f5876e1ea3051bc5e5c285f31748
+    sha256:33427952d24cde2ed0e0a82d1d8700a64b4b83730757c10cc02d9d27f74c53c5
+    sha256:5b667bd7585d2236543c565668a1555787124a047f2923a9debf01ed0409f7e9
+
+  MANIFESTS IN ECR ONLY — not in ACR (4):
+    sha256:b01e0b2649f8b5d1caabd261d7d1a10038d23fcb1061fb153db1e96111e925a3
+    sha256:bb5e497e18a138e51c0969e5920d5ce3e152448e42ed991a52695c4f20f719aa
+    sha256:c16c802dc448e49c6081b1cdb9409351984f5308aa6d426e12a2fc3744de785f
+    sha256:e8905b130386c6d764381f9561d777b8e9105dac50379e8a05fbf1b79e5cca6e
+
+REPO: oneacrefund/sapb1-odoo-consumer
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 83
+  ACR manifests: 114   ECR manifests: 87
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (23):
+    3637
+    3638
+    3642
+    3643
+    3656
+    3657
+    3659
+    3661
+    4308
+    4328
+    4331
+    4333
+    4334
+    4335
+    4354
+    4370
+    4374
+    4375
+    4376
+    4377
+    4378
+    4386
+    4392
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (46):
+    sha256:0638b393c870052702892c71a639d7dd03ae67e2496f6e40d4e2518338d90605
+    sha256:06761fff2dba5a51827ec92733c3b8b0ec7f5b98ab5067b0542cd39a67506cf7
+    sha256:06cb89dfd20c19fe46c47c2b832be2399ef9e4ce6ab24c9b4dfee573bc13c1d2
+    sha256:10de2a44b80268b7d701fc77e74098fe6c6076d67c617634a2daf6d5c6eec6a8
+    sha256:17c048cf049189a0382ed63eb57c1d53396b591462f44860259be72e1c2f6fa0
+    sha256:219062402b53c2ec2fa529b2e952d5526d43cfc55f71bc9d31cb732863dbda35
+    sha256:247ab61b77adb24102cadf0ada491cc1a71b607b95753b3661572498e2743688
+    sha256:2f822b0b9ff1743bdef552039427b45bae2c79ae2b3225f1562fa49f5dd02aa1
+    sha256:32ed7aac21803debd6adca4c16e2e9a053d582f4cc4e4976ce879af680f5df02
+    sha256:36b57773ce108a9d90494223761e6946758c2db90b08e1206e2b6586c4329afb
+    sha256:38243b5d87296c0b5da596dda3a14279c0e48e682887df3a794d20ca67e8a5ad
+    sha256:3ced0332305713e8bf4be23579f028079babd1f6f61d36ae0d5bd302179123ac
+    sha256:506afbbf79cbcfe57a5de8508a19ecdc4420e2914a6582b04f5dc2f720d71f47
+    sha256:60108dd53d941c6cba6365ac29af35927cc1a20d99e1c1df3bbaa1a5fd4ecf59
+    sha256:61be103c0d8c4621889a0805bb6b471a8aab856aa224531edff445fa8c83880c
+    sha256:6e6225fc1bb2f5edba9d2c977e73791fc9b4f197ace0668e6c0ae2becd776003
+    sha256:7014c4da1aa026797b04cd00ea3b14162f9196656f0253e28d046ce983b97a35
+    sha256:744dc4f5fa6fb4d7f83f4f1d6c6181300eb45aef0437ddd964fa5c74d030b8b9
+    sha256:78b822075b516a0d8a7707fb1c6a1cf43e0017cfb2f2129d7180eb05dcd2fd8f
+    sha256:7957990ce3767086d02956e94d3354585a3aba0748bb7b5fd873dc6b7efa719f
+    sha256:836c64e4fa3e8f6fc47d1aa131b090b741dda6d4b18f9a843950cecc73d4d561
+    sha256:86d225475c89213c66823ba0d6111c23797541f538ba2c642bef37c5cbe416d8
+    sha256:8818deec3689efa375fa53cd32f150f21ce17c9b6d570d65a3e587fddeb085a8
+    sha256:8ea6f8aaddd5dd44b6561014296210550c65206aeeeabbc0e106cd9abf5c4e6a
+    sha256:9227a9315abc16e056e7bc9393ca88902af437ba4e47217b388dfdde36fdc474
+    sha256:9271b2441836789357a61187fc3d1ae6fd70f9433434a6f9c47fd85e5b776174
+    sha256:94a3242bbd0a1150ede8e35c407aed614a01880bb5653837586d24b9d25c1722
+    sha256:965f4ae3d72dd217e502be4b41ceea75af5c9f43dd4135cae0897853cf7784cb
+    sha256:9814634d81eab83b5af2807ee2bc543a06296df95682d62aed8046b380e2d6f4
+    sha256:9a0daf57d98ab9b45443221536c657b875b4c1f2a6522d1b9af1ccb48a7f9cf5
+    sha256:a0981d3253ab5e2254223dd18d29c222fae7753bc4bcd982236d8a698bf53fa9
+    sha256:a30d808b249ed45d69aed86f0754041d85b7f16bcf2a749b89744576db65ff00
+    sha256:b16025470ed6672965f083b047304bd1b5f69fba94039569a76d0d06b51c0ee3
+    sha256:b93c0589f089fae3e61789a19535a5326e795b9daf19dfe1e2675d31628c7979
+    sha256:c057cccc5926a6b8f591630c4a613ecf0160e411a14664b665b0bee97487608f
+    sha256:c9e539476e38f904029aab7002ac32642af5d35810ddfbdf4f75bed7c073c4ad
+    sha256:ca5fd57413c40c107837c36b3b9b05074bb0a4403d79098b3d19cb4cdf5b6b5c
+    sha256:cc73f4ad2a71342e3e74579560dcbb3f18069c15f8f5b2915282b8321e0adca4
+    sha256:d093a580905a71b2e7c83f286705684403022ce5876491271bd77a27c52e777a
+    sha256:d6585c33fcf0bfd37282dad25c03e6ab2cfc072c6c1776f60efe639d09025707
+    sha256:de37262a99ef31e742bbabb6d1843ae9ba62d4a418353d0607ccad54abcd52be
+    sha256:f1c49a206924becb388d94c74909a4aec0db10cb05e0323e4f970ffecf2727f9
+    sha256:f4f262054132ecece58331655043d01c9b9fec4fcabfc009f036c8a00eaf91dd
+    sha256:fd0cc2fa2f2089d1ed5d7718cb3b7eb8c3f437399549e5a450c52f0d05c76142
+    sha256:fee8d4118cedaf37f26e635f1fe74c6518d754db44606d602103d54f45484595
+    sha256:ff2890320aeb912afedfb63f850525668bbe9b87964369380d25ada683f0dede
+
+  MANIFESTS IN ECR ONLY — not in ACR (19):
+    sha256:06e35c60ab91eec5a5e1cda9ea46e6fb32871820e8e44a4d8dadb187048facf3
+    sha256:0cbbb21d14a8b4e63c2d38aecb0f845030b4a801fda342e1cb558015e40cf0cf
+    sha256:402c8575abf72f56127b5f19b4dd99f29a133c52cec8cefe410ae3c4efcf43d2
+    sha256:4a0a2dfa7943513fba31e3e58b9a8ce0551f5ca2717d78d1e899f19261359d3b
+    sha256:4bdb7c70aed9f31f373be03fce68a918bd851305641682c078e4663b84494a5b
+    sha256:68e496c0d14b4ab117f3eb96b64b9443e185e4634e036daa93c1a585f6b98d7c
+    sha256:705ada72bf3a109f4869ea9c857ca6ce8f1453b7c4af50b90093e2e9b8a246db
+    sha256:8ef9a94162a995ea4cc8e6bc77697276229b6466b7acc3d061d3c3fed229db6a
+    sha256:92b7a9c89258449bc5f0aaa76e8668a579dddae1fb928f8586bc0201880e8ddd
+    sha256:abc6f4a3edfc1484f632de8519a3cdb791e49f68dbd3daf0ecd650e43d4daa18
+    sha256:b0c96061f2a4f677c4e9d2aa207a9a2ae04100ef2d319a4f8cc388e2f43bae7b
+    sha256:c8d337fa7778c97fcb90f3ab89665653631fa5b6e13a5d8efb088d7fe132f90f
+    sha256:cde4cb14af68a868c4680dfb840e220238bbba7f31a0db9d0a0dea163cfe282f
+    sha256:df4ecef7ae60bd2c99a22211b0d1acab0895d06acf2bb58e2d9eec7982d20bf6
+    sha256:e2916bf03eb1149c03255f91d558c39debb274ad1fab898a78a7d3daa743f761
+    sha256:e3ce99ffadb400032c69566d30cb97f522d16af06018683fd69f5d75ddcafff0
+    sha256:e994fb6f4bb40301f5a9b3798a1299c53533aeda908051a0746330cc75141eae
+    sha256:eef0d93e48ee1479ac055debe4b0e87c156b000cad15495b8b818897d83d6b61
+    sha256:f6cd901e32dfca4643e0bea17ef046db711bac181090d2bc1f6933e255fea3a6
+
+REPO: oneacrefund/sapb1-producer
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 64
+  ACR manifests: 122   ECR manifests: 88
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (4):
+    3582
+    3584
+    3587
+    3594
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (34):
+    sha256:02c9a50c482788194cb0691505a9b3a197e51cbb627d6c2f8698589e3acef8bc
+    sha256:0bd18e2a2a041e22b9b467cfd93218a43e6159937584d9cbf466fcf8bffd1a17
+    sha256:10e9648ef957d445ef141947ac6f63f4dee3c76846762619c52e4ec0cfa26347
+    sha256:194468a21c83ef0dffa24c2d78cfbef88648718f61a5d6d1bd990917e06b775a
+    sha256:1c03432afa9f0660b556766b6f020ce790b3f712b5743402e69b1042f4ed5ba8
+    sha256:1efc24b6ba601bfa52d2408d7540f1bee507d37055524987e94ab92152b7e1bb
+    sha256:1f1e19b47dca4e61295d0842554e389c0ed845e3efa609e30698de0d9af50c99
+    sha256:20c0ab08f2cb984237e03fdb57302b54d6c933cc5cd204b2497389b696d4de74
+    sha256:27085e97be67c61c1c51d774a7cc30523e0f7e2cf1d8a2828c533e60dd497b9a
+    sha256:2b21d29e62a8913bbd26b32b265d4f468b419462d1aed17e522a043b9adff1f7
+    sha256:2bd73c78890ad5dce0525b78a7d0936fca8aaf009167ed743caad97f57596009
+    sha256:2f6d87e33fc3099ebfae91c4f7aada4cff7edb1682365674f71ae749b63ded46
+    sha256:3114f7312c65c41a83135b71d9febf42031f5ea1c33cd16d541913e79c3aefa4
+    sha256:36cc0fa2a59376ea80123f9772e16704951471c6706d710747ca53c77caaf2a6
+    sha256:4271aab845fb09830ed2d50a940947dfa06a79971e64bc741d9b0dac55807421
+    sha256:47e4addeebd856aff00c3370b26c4821ea8af8a88680d393cc522e7503e2ad2d
+    sha256:495345bd7a6bc98bcb54b5ba9c53010b563d513a198ff674a54966d4a0fb002b
+    sha256:4bb61b7d0ada44ea4cc8c309da93eea24b132a7e160f7d06f4c05f6da37eea36
+    sha256:69bf9acb4da6cee4286e86ab40bf8ae48d84592f4807dbfbd3014d5b00fec6c8
+    sha256:6ac1299e6e3a11509aab4f81818d83d7b2b9e7760717068ffc24a2b562e7b30a
+    sha256:71555ab66689ea822cde699020ad3b2202b4bfae32a9506ee617c28f36ac48d8
+    sha256:8129447f25fe2031a5ced961ad763efcdba0715f6a02b00b2c9616890db34cba
+    sha256:83dc72e97837ee6b87e6889667c706e97f1035cb567c2d7797a337d7db8ad630
+    sha256:8adf9d03b98f585bfc2cad1e5b9d7b62de9821ede07f066cae33fd19847ec3e6
+    sha256:8f0c635623c5d1589f017afd715ccb2c5c8f625c5a4051c32c078b92e5c0c697
+    sha256:95f5cbb990b5f433eb4a4e1cbc4b482a4835b8b928d701bc9dd977043c49811f
+    sha256:a97e0ea546eec94d29a0cbc7ad655d98a68c7e15a1d4a6f44f1dc8266383e59d
+    sha256:adf32737bead1b666e8c496005d33e57ae6ee1bb2d4a79953c92c32d61047a88
+    sha256:ae12a115a39ce8c49f531b76c21c5ec0e0759f31fc764d20981c0d8c889a07ae
+    sha256:bcf7e6a931f1e044bc0980bcc367d20df09e6b680a0750d406a36cfad33fa580
+    sha256:c9631df2ba11d07f2aa6f660a2e0f88787f321b88351c4c5fcf2d5a06c7bbdc8
+    sha256:e887e3e1dc3c81c25d7ee2f61c6f32c46518fae8b500e2c3250bacd8c36b5db9
+    sha256:e8cdc56425cb87f985b1450b53fc88574221f31514395497a2417e25595526d9
+    sha256:f90dfd27a81f985927e69f63142f9d19d921a51b25ec48907de1f580f74ac455
+
+
+REPO: oneacrefund/scheduler
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 103
+  ACR manifests: 120   ECR manifests: 103
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (43):
+    v2.8.1_1710a1151fba9212f8f031f2d7e7ce037288f520
+    v2.8.1_270bf9f305c5a8f2f569a73902993b3972e10a65
+    v2.8.1_3dfcf970f136e7201f718b4ef0da3c312edec6c5
+    v2.8.1_73f485e3c3c5d296512d6884e06584bf4fcf85a6
+    v2.8.1_756085cff877d579c098544455740f8d713d9b68
+    v2.8.1_863d04ca2ba7170bc74449dd30a19a88d2455e16
+    v2.8.1_901aafd7e7ee6b5fe3e29e67f39d60c373877d38
+    v2.8.1_95ec1297fe9e9c3adfda8bd0bc852a6285f48474
+    v2.8.1_9a830f3d1cea8fd0d74c080df8a150e050332c30
+    v2.8.1_ac157619424d34eb05de71e4905e2eeccbbc97c0
+    v2.8.1_cb8d3e7a65d630af14099695f871d055fa49d2fa
+    v2.8.1_d1a560798b39f89e155b294e0d65d9297fb1e52b
+    v2.8.1_e17b2e5bdd4770900442a4803d3933c91cf802c0
+    v2.8.1_e96c6fb12559c2375fd15ad5618d932468b2a613
+    v3.0.0_20f7974bc8b2f5431c8c614a141f1356ac4d9656
+    v4.0.0_265d723cedce5941538603fe284432c582b81197
+    v4.0.0_f51941148fc24166c86596b16e152d64ddc81f13
+    v4.1.0_0520ba6dbc5188f38694f279d90a06c995ada46e
+    v4.1.0_2fd2188fb04f8a356c4693b75d2f94bcb11aaa93
+    v4.1.0_4a1b9d7249e6bc1a7bd5be1dbf12267b9d60cb99
+    v4.1.0_8261ca1222957cc9a5811472da0b2a58d0451bcc
+    v4.1.0_aa1c0e3b48a56e38a686dd10c321deea0feb20f6
+    v4.1.0_f0fb8f7bb27071fbb9cf4b90e2a0bbfddb2a2bf9
+    v4.1.1_0d2719765ceecaa55ade3b80a086e9b831c1958f
+    v4.1.1_133c35df79193d1e5322140b2e2d3614ebd78354
+    v4.1.1_399533a7439476135a7ab236c0808f1fb31b8bbb
+    v4.1.1_41c1c62740ac1d3e6220dd84beedb87f6a6c3483
+    v4.1.1_47122d9367f3ccb32f875fb1618f4f89367cd01c
+    v4.1.1_521e2279700eaaf6e1d328e0292e31b0739b9104
+    v4.1.1_6efdc54440a1271d950bc795de8a415c4bfd929b
+    v4.1.1_763f08219eba08b00c6a1191cf2dedcdd35548ed
+    v4.1.1_7eb23a1d4b9131f28f16246c3badf24b36ecb847
+    v4.1.1_88618baec4f5ea81dff3d50f3eb1ad6b31c1a63c
+    v4.1.1_997839add41fbaceb433d22b0e3522392f506e06
+    v4.1.1_a92f9703843e34572e25c007b9ac533faa56a695
+    v4.1.1_ab278fd3a5fbcb510452cc926908b80d3d0f6113
+    v4.1.1_be882047961ed3d2d749f25b0dedcbd15b6fdc6c
+    v4.1.1_c9cb463f859aca7c03f1f0962b8b7ff71b1445bc
+    v4.1.1_d788b83a73015d1e4363896cbbe5be44662ebb92
+    v4.1.1_f972a1533e3758cb581392dc42ff9e974234a7e7
+    v4.2.0_696abe8863b398606db3f2eb795aa066243cd642
+    v4.3.0_05c77444e0bdcf65704f43981104c24849f8a58b
+    v4.3.0_dad64fa19d99bdbd7db37e3bf8a973b0892095ba
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (17):
+    sha256:01353461727ea9342ce58ae8ba0442b52ba6ce5f990128161e8d3e0b196e4d78
+    sha256:03e0e6b117ff2ba8a90fe8eb4d893ac9ecf044146aa213eedb3dbd3e239223d3
+    sha256:06dcf2d82fcb785e9d8f6cc1723a9a420df65a7174a5d3ab97778f25097cb9c9
+    sha256:0702088834ed9157ca857f36710d2aa0fc05bfafddf55dbaba3e8e7ec0ddc041
+    sha256:07c4ce54b1ad475ff6aa67329cb00edbd5f4c9e165cb9354ffc02e4c88a933c2
+    sha256:096bf34b048fc158cec62d2694834d655955911ed1830bb4c54950f8647ac2e3
+    sha256:112ce988916184a1f57d0b7c76a12aee974934483fd7c5ef3094401a05bca16e
+    sha256:25d45fa4939df03cb0b648020df460d641a9ac50695858cb52032b654029c123
+    sha256:3fed6af9d15015fd56b2f1296b539051cabef551fb27a5cb2f4bccab48ab70bc
+    sha256:48807b2b0adff37f9093d9908e155da12a7a1dbd4b21fcbd0badb8b2769f53d4
+    sha256:6668f83b96764be092d0f8005eb141116d58427701c663dc36ef8ca42a2025da
+    sha256:68b5bc6471ed8eecd04a69932da36be992c0a46eb714b0aaf840ae9c0e691379
+    sha256:6bfb28ba12db11a5c7fef79cc3b300a9c700ca07e8a532fab2a0259c585b2239
+    sha256:6c72b47068092cdd11a6bc394c0bd343de7f391188380f5547b179c536ae1897
+    sha256:7baa306722aafaf600303fd5cc69094cb8669e3aa62f27c73712ad4f1c6ddc45
+    sha256:d0920835bef15d43b29c7cde76d94360c38533a0e208dd79cebe894a536deda5
+    sha256:d9fe06bc6249af1ee0038d1d944d1c8becd4a0e474db9f4b4a8219bafb6260b6
+
+
+REPO: oneacrefund/sf-cache
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 40   ECR manifests: 40
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/sf-cache-etl
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/sf-fetch-employee-data
+------------------------------------------------------------
+  ACR tags    : 40   ECR tags    : 40
+  ACR manifests: 40   ECR manifests: 40
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/sf-producer
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/sf-sync
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/shopxp-backend
+------------------------------------------------------------
+  ACR tags    : 6   ECR tags    : 6
+  ACR manifests: 18   ECR manifests: 18
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/shs-migrator
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 3   ECR manifests: 3
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/sns
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 68
+  ACR manifests: 287   ECR manifests: 267
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (8):
+    1.0.6.2025.03.26.1
+    1.0.6.2025.03.26.2
+    1.0.7.2025.03.27.1
+    1.0.7.2025.03.27.2
+    1.0.7.2025.03.27.3
+    1.0.8.2025.04.02.20
+    1.0.8.2025.04.02.21
+    1.0.8.2025.04.02.22
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (20):
+    sha256:010a4c13a237522e53c0e8e739e8d046263925ec1bffc6b05cae65dd6751c131
+    sha256:2b074e576fdd4ec11ad4c100d8d9721c7dd3e78d55f67d15fa25c3d499f1429f
+    sha256:351f38a76c6f6269d47ade46b24d78a84ae0d71356e4a1eec9fc43939b9d7925
+    sha256:35e823af4a8816b0dcc2db110374e5b8f690824d9fff8b5b1e313a7c8f0dd87b
+    sha256:3da2ba1b2f6cfc7c705ed0e31972e34de33ab1cde2c8509cc29f995a66271b3b
+    sha256:491169054a009b2cfef0b17b530fb1e109a980f8b0b1adc42597c74460919c34
+    sha256:4dffdb8750229828005e2c707b3fdc3d1736d22b6b359fb4161b94d13aa80899
+    sha256:617ac458c4b7c3b96cf07cd2d18c20fb2e8a5907bced3ef490887986f1d37d80
+    sha256:79d560af1dfab925d8e021cb6906230e79d4b7156e0db40cd7320c0ee276a37f
+    sha256:7c38e4ce60c00e97b69921796ff7aa30820e523e2da553eba99521d1d3a66a9e
+    sha256:922c8d2957a6fe0e7eae4510e3dd75e836022c9f9f85cb78058baa0780df9301
+    sha256:9526affa8897d90da8e4fdea9c7b89b5959c3606219300ad2906a8c3938d3785
+    sha256:9fe7dac32d89117b14b744bc02826dfea88203665330478d428e634bf4fa58e6
+    sha256:c3ced7cf51f9755d6feb7ed2b4785bfbc6972ffc1056d6d31863bc33339743fb
+    sha256:c5e9eb522c44c0bf4c30a8df33e05be95aa51122bbe3d0487bfd97efbd77c123
+    sha256:ca2a293baf89a95c15db4d95f897c97768353091ad624a9c88fdd7a2efe76165
+    sha256:ccc334e75aa1a4a63086847a31b41adab669b3b6471abe543a67eeeaefa7a1f0
+    sha256:e5e70cc8526827eace4125671ec72c51906c185b513c45f7447ddd3027256403
+    sha256:f93349cb242d24109d251c5b1763054159a2365f39508f1034dec4dde77e8ffa
+    sha256:fb005755c6106b7020e78e8ddcc44987874c6638145e608b6e8ac30f31fcfce8
+
+
+REPO: oneacrefund/superset
+------------------------------------------------------------
+  ACR tags    : 57   ECR tags    : 57
+  ACR manifests: 101   ECR manifests: 101
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/sydent
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/sync-gw-dataset
+------------------------------------------------------------
+  ACR tags    : 60   ECR tags    : 103
+  ACR manifests: 120   ECR manifests: 103
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (43):
+    v2.8.1_1710a1151fba9212f8f031f2d7e7ce037288f520
+    v2.8.1_270bf9f305c5a8f2f569a73902993b3972e10a65
+    v2.8.1_3dfcf970f136e7201f718b4ef0da3c312edec6c5
+    v2.8.1_73f485e3c3c5d296512d6884e06584bf4fcf85a6
+    v2.8.1_756085cff877d579c098544455740f8d713d9b68
+    v2.8.1_863d04ca2ba7170bc74449dd30a19a88d2455e16
+    v2.8.1_901aafd7e7ee6b5fe3e29e67f39d60c373877d38
+    v2.8.1_95ec1297fe9e9c3adfda8bd0bc852a6285f48474
+    v2.8.1_9a830f3d1cea8fd0d74c080df8a150e050332c30
+    v2.8.1_ac157619424d34eb05de71e4905e2eeccbbc97c0
+    v2.8.1_cb8d3e7a65d630af14099695f871d055fa49d2fa
+    v2.8.1_d1a560798b39f89e155b294e0d65d9297fb1e52b
+    v2.8.1_e17b2e5bdd4770900442a4803d3933c91cf802c0
+    v2.8.1_e96c6fb12559c2375fd15ad5618d932468b2a613
+    v3.0.0_20f7974bc8b2f5431c8c614a141f1356ac4d9656
+    v4.0.0_265d723cedce5941538603fe284432c582b81197
+    v4.0.0_f51941148fc24166c86596b16e152d64ddc81f13
+    v4.1.0_0520ba6dbc5188f38694f279d90a06c995ada46e
+    v4.1.0_2fd2188fb04f8a356c4693b75d2f94bcb11aaa93
+    v4.1.0_4a1b9d7249e6bc1a7bd5be1dbf12267b9d60cb99
+    v4.1.0_8261ca1222957cc9a5811472da0b2a58d0451bcc
+    v4.1.0_aa1c0e3b48a56e38a686dd10c321deea0feb20f6
+    v4.1.0_f0fb8f7bb27071fbb9cf4b90e2a0bbfddb2a2bf9
+    v4.1.1_0d2719765ceecaa55ade3b80a086e9b831c1958f
+    v4.1.1_133c35df79193d1e5322140b2e2d3614ebd78354
+    v4.1.1_399533a7439476135a7ab236c0808f1fb31b8bbb
+    v4.1.1_41c1c62740ac1d3e6220dd84beedb87f6a6c3483
+    v4.1.1_47122d9367f3ccb32f875fb1618f4f89367cd01c
+    v4.1.1_521e2279700eaaf6e1d328e0292e31b0739b9104
+    v4.1.1_6efdc54440a1271d950bc795de8a415c4bfd929b
+    v4.1.1_763f08219eba08b00c6a1191cf2dedcdd35548ed
+    v4.1.1_7eb23a1d4b9131f28f16246c3badf24b36ecb847
+    v4.1.1_88618baec4f5ea81dff3d50f3eb1ad6b31c1a63c
+    v4.1.1_997839add41fbaceb433d22b0e3522392f506e06
+    v4.1.1_a92f9703843e34572e25c007b9ac533faa56a695
+    v4.1.1_ab278fd3a5fbcb510452cc926908b80d3d0f6113
+    v4.1.1_be882047961ed3d2d749f25b0dedcbd15b6fdc6c
+    v4.1.1_c9cb463f859aca7c03f1f0962b8b7ff71b1445bc
+    v4.1.1_d788b83a73015d1e4363896cbbe5be44662ebb92
+    v4.1.1_f972a1533e3758cb581392dc42ff9e974234a7e7
+    v4.2.0_696abe8863b398606db3f2eb795aa066243cd642
+    v4.3.0_05c77444e0bdcf65704f43981104c24849f8a58b
+    v4.3.0_dad64fa19d99bdbd7db37e3bf8a973b0892095ba
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (17):
+    sha256:108dbf89593ae3ac8c34cfb961c45a8c0d0d17d9d2cdca103700fa32b6f51bdd
+    sha256:16f5c84eb56d4ea095f610411fd4d792ec11aeac53bb2e25d78c820d149d4dce
+    sha256:1d4a9d34f228e3dd648224fe291a1cecdce16dae03e3c5f80d6bcdd3932cad67
+    sha256:2aa5f770537cd1433b83268121a181a811809e86fa02e9fa5fb4f4ae9e1c3d57
+    sha256:4f26181a1f3ba338f1eab686547c7e1b35447362a0b4a088c462bb8d67197b33
+    sha256:63bbcd67b433f4797fa3550a3e98fde4a0e080e773e65c759c76c6410649e268
+    sha256:64c70b2820477cfeca776dff987f86eea6a831c79b288837a58b6dde301d4dbd
+    sha256:6f1af36624c21759648731f39bd831b6caf229f4934e0b3328cb812f6d6cbf9e
+    sha256:72c4c3b52e74bf222e3f0514e92b0188d3e493d55160b110c7cc62fbee68b2f4
+    sha256:a3d013d9c9670aa3ffe1097d5e00a77cfa724b121d046360bac8845074ac7578
+    sha256:c255e80d786a61bdd9ed50d5a25702a31516d324082286e6e5bd3ae4c8c10ffb
+    sha256:d2c224afcea52982edc4a976adf686249fbee706c6036efc0b5b995616a9d311
+    sha256:d3f02c4bf680e96c936dfda93cae8062f8da283ce61afdf75d6a1175a97604f4
+    sha256:d775419903afcde61978e2325f96e1fde5f540178c18497d125f7b9fa6ce2e27
+    sha256:d85c45758c4325f7da67cf692db1b342a8bb3a1be90c193b4be9bfbe6d5a305d
+    sha256:d94bebcd5a73d87ffaa1d3ac96c5764b10470ef7d48dbd22b54319e37578084e
+    sha256:da9edf94070ee546c7c6a024f6762db0e194138263161630cf49c2f02290f1bb
+
+
+REPO: oneacrefund/tnm-connector
+------------------------------------------------------------
+  ACR tags    : 13   ECR tags    : 13
+  ACR manifests: 14   ECR manifests: 14
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/tupande-connector
+------------------------------------------------------------
+  ACR tags    : 6   ECR tags    : 6
+  ACR manifests: 7   ECR manifests: 8
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+  MANIFESTS IN ECR ONLY — not in ACR (1):
+    sha256:fdccab72e36b5f825edff93bbdb5d304665bffed93aa6bcd9379befbfa6f13a7
+
+REPO: oneacrefund/tupande_timiza
+------------------------------------------------------------
+  ACR tags    : 61   ECR tags    : 70
+  ACR manifests: 92   ECR manifests: 71
+
+  TAGS IN ACR BUT MISSING FROM ECR (1):
+    v1.7.0_791
+
+  TAGS IN ECR ONLY — not in ACR (10):
+    v1.5.6_503
+    v1.5.6_505
+    v1.5.6_513
+    v1.5.6_515
+    v1.5.6_527
+    v1.5.6_530
+    v1.5.6_531
+    v1.5.6_532
+    v1.5.6_533
+    v1.5.6_569
+
+  MANIFESTS IN ACR BUT MISSING FROM ECR (21):
+    sha256:0913267e1c16f4ce4af3b63eed7cb5876cba69568aa6b0fbb26e907846cf1ef4
+    sha256:09bb453146a948e42d21444082dc1b9a647b01b4b101fcf62af6869ece7b38e1
+    sha256:122895dcd420473ffb07c8ad9aca327afea95f0519298df4fa00f4111502173a
+    sha256:1607abe2aff23c3afe0f690b0a1525ac5452bfb35ca56e8011fca1d6871b3dbe
+    sha256:1bd2a8bc79a857ea495dd9dea17d8567fc06d638351386895e16668c9bcfd977
+    sha256:2ca0de18d91f2938a0b11f91028e518a3e09168bc23ac63bb74862532e37185a
+    sha256:2fcfc96e058d23a0ba3f6708fda5d3b4e5f46f76d8de955b16f49813b5115848
+    sha256:367197dc4122b6c6be7f5edc17ad3defba9d76404b21b1674d09c3bf1b7dc2d4
+    sha256:3fbe4084eac4f4c48677ccb0ce552d8ff602ecad9237373bd689bc9683bd64ed
+    sha256:43aa1ff520d53dd419d6696cb497c5ad762d66e3e56287436780019bf08162b0
+    sha256:4eb71bfae97ccefeaf1c08259c5b602e15603e8a9334b78af61e2fdbb49efbf9
+    sha256:53327b1d586397d10b5e62887be6eaae831b7d418e0f221bae786a95a945150a
+    sha256:53d23cec29687c7d1820ec43434948ee6c95deb492828016a1fe0540a0c84441
+    sha256:71d4235d62a6984b0787bd551d20c546efce8eea0dde4299a80fbb418b7f3114
+    sha256:78b701b82d0175a628d5344d8c0989292f02c84202d599cba307d8663edd159b
+    sha256:b002071d2a231a9250a61cc5dddd3686cb2d5cd5eb08b5e9e51155095e03c4cf
+    sha256:b999f76e70308258a98fe7ed3a472773909cce14c7f23e1fa47f7a3b1d1dd220
+    sha256:ba3f0579d634394196e1c09896da89c9a0521c5b4cdd4cd36fa6932c88fc6a8f
+    sha256:c0d0d3e37bf00126e14b48081642ad1e18a27ca10c104c1e35d4611613fa32d5
+    sha256:e4247e040e6114c46d6cdb3db68f54b3a27b01677c59c6b1f4755e9ad94753e5
+    sha256:fa93b0bb482058905a50c986b31eb771dcc2df05954abd8fe5526f8621d7f833
+
+
+REPO: oneacrefund/uptime-kuma-wrapper
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: oneacrefund/uptime-wrapper-api
+------------------------------------------------------------
+  ACR tags    : 3   ECR tags    : 3
+  ACR manifests: 6   ECR manifests: 6
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: openfaas/faas-netes
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: openfaas/gateway
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: openfaas/of-watchdog
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: openfaas/queue-worker
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: phee-ns/message-gateway
+------------------------------------------------------------
+  ACR tags    : 5   ECR tags    : 5
+  ACR manifests: 4   ECR manifests: 4
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: phee-ns/ops-web
+------------------------------------------------------------
+  ACR tags    : 5   ECR tags    : 5
+  ACR manifests: 5   ECR manifests: 5
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: phee-ns/ph-ee-connector-ams-paygops
+------------------------------------------------------------
+  ACR tags    : 5   ECR tags    : 5
+  ACR manifests: 5   ECR manifests: 5
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: phee-ns/ph-ee-connector-ams-pesa
+------------------------------------------------------------
+  ACR tags    : 5   ECR tags    : 5
+  ACR manifests: 5   ECR manifests: 5
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: phee-ns/ph-ee-connector-channel
+------------------------------------------------------------
+  ACR tags    : 5   ECR tags    : 5
+  ACR manifests: 5   ECR manifests: 5
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: phee-ns/ph-ee-connector-mpesa
+------------------------------------------------------------
+  ACR tags    : 5   ECR tags    : 5
+  ACR manifests: 5   ECR manifests: 5
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: phee-ns/ph-ee-connector-slcb
+------------------------------------------------------------
+  ACR tags    : 4   ECR tags    : 4
+  ACR manifests: 4   ECR manifests: 4
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: phee-ns/ph-ee-importer-es
+------------------------------------------------------------
+  ACR tags    : 5   ECR tags    : 5
+  ACR manifests: 5   ECR manifests: 5
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: phee-ns/ph-ee-importer-rdbms
+------------------------------------------------------------
+  ACR tags    : 5   ECR tags    : 5
+  ACR manifests: 5   ECR manifests: 5
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: phee-ns/ph-ee-notifications
+------------------------------------------------------------
+  ACR tags    : 5   ECR tags    : 8
+  ACR manifests: 5   ECR manifests: 7
+
+  TAGS: All ACR tags present in ECR ✓
+
+  TAGS IN ECR ONLY — not in ACR (3):
+    4a8cc1ed26
+    e61dcc8881
+    latest
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+  MANIFESTS IN ECR ONLY — not in ACR (2):
+    sha256:070d4d4821dfe45fdd180e8c57d162fad40b3b9af6d9f661c8a36db37f6086df
+    sha256:c616cef905e7d216a193612875f589effdfb738a0d9808d20fe970e6a226e163
+
+REPO: phee-ns/ph-ee-operations-app
+------------------------------------------------------------
+  ACR tags    : 5   ECR tags    : 5
+  ACR manifests: 5   ECR manifests: 5
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: phee-ns/ph-ee-operations-web
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: phee-ns/ph-ee-ops-web
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: phee-ns/phee-bulk-processor
+------------------------------------------------------------
+  ACR tags    : 5   ECR tags    : 5
+  ACR manifests: 5   ECR manifests: 5
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: phee-ns/phee-zeebe-ops
+------------------------------------------------------------
+  ACR tags    : 5   ECR tags    : 5
+  ACR manifests: 5   ECR manifests: 5
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: prom/alertmanager
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: prom/prometheus
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: rabbitmq
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: rclone-image
+------------------------------------------------------------
+  ACR tags    : 1   ECR tags    : 1
+  ACR manifests: 1   ECR manifests: 1
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: risk-register
+------------------------------------------------------------
+  ACR tags    : 29   ECR tags    : 29
+  ACR manifests: 87   ECR manifests: 87
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: shs-service
+------------------------------------------------------------
+  ACR tags    : 23   ECR tags    : 23
+  ACR manifests: 26   ECR manifests: 26
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: tools/pg-restore
+------------------------------------------------------------
+  ACR tags    : 2   ECR tags    : 2
+  ACR manifests: 2   ECR manifests: 2
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
+
+REPO: us.icr.io/phee-ns/ph-ee-notifications
+------------------------------------------------------------
+  ACR tags    : 3   ECR tags    : 3
+  ACR manifests: 2   ECR manifests: 2
+
+  TAGS: All ACR tags present in ECR ✓
+
+
+  MANIFESTS: All ACR manifests present in ECR ✓
+
