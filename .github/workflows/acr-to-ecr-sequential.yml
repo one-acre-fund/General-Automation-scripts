@@ -212,3 +212,52 @@ jobs:
             printf "%b\n" "$failed_list"
             exit 1
           fi
+
+      - name: Send email notification on success
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.NOTIFY_SMTP_USER }}
+          password: ${{ secrets.NOTIFY_SMTP_PASSWORD }}
+          to: nawaaz_mohammed@epam.com
+          from: ${{ secrets.NOTIFY_SMTP_USER }}
+          subject: "✅ ACR → ECR Sync Completed — ${{ github.run_id }}"
+          body: |
+            ACR to ECR sequential migration has completed successfully.
+
+            Repository : ${{ github.repository }}
+            Workflow   : ${{ github.workflow }}
+            Run ID     : ${{ github.run_id }}
+            Triggered  : ${{ github.event_name }}
+            Branch     : ${{ github.ref_name }}
+            Started    : ${{ github.event.head_commit.timestamp }}
+
+            View the full run log:
+            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+      - name: Send email notification on failure
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.NOTIFY_SMTP_USER }}
+          password: ${{ secrets.NOTIFY_SMTP_PASSWORD }}
+          to: nawaaz_mohammed@epam.com
+          from: ${{ secrets.NOTIFY_SMTP_USER }}
+          subject: "❌ ACR → ECR Sync FAILED — ${{ github.run_id }}"
+          body: |
+            ACR to ECR sequential migration has FAILED. Please check the logs.
+
+            Repository : ${{ github.repository }}
+            Workflow   : ${{ github.workflow }}
+            Run ID     : ${{ github.run_id }}
+            Triggered  : ${{ github.event_name }}
+            Branch     : ${{ github.ref_name }}
+
+            View the full run log:
+            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
