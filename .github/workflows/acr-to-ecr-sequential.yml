@@ -65,9 +65,9 @@ jobs:
         run: |
           ACR="${{ vars.AZURE_ACR_NAME }}.azurecr.io"
           ECR="${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com"
-          MAPPING_FILE="${{ inputs.mapping_file }}"
-          FILTER_REPO="${{ inputs.filter_repo }}"
-          FORCE_RECOPY="${{ inputs.force_recopy }}"
+          MAPPING_FILE="${{ inputs.mapping_file || 'acr-ecr-mapping.json' }}"
+          FILTER_REPO="${{ inputs.filter_repo || '' }}"
+          FORCE_RECOPY="${{ inputs.force_recopy || 'false' }}"
           AWS_REGION_VAR="${{ vars.AWS_REGION }}"
           AZURE_ACR_NAME="${{ vars.AZURE_ACR_NAME }}"
 
