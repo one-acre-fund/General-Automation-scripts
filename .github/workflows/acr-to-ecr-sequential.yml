@@ -2,7 +2,7 @@ name: Migrate ACR to ECR (Sequential — One by One)
 
 on:
   schedule:
-    - cron: '30 14 * * *'  # Every day at 20:00 IST (14:30 UTC) — testing
+    - cron: '30 5 * * *'  # Every day at 11:00 IST (05:30 UTC)
   workflow_dispatch:
     inputs:
       mapping_file:
